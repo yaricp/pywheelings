@@ -1,14 +1,14 @@
 ## About
-This is application for musicians who want  to create compositions founded on repeated phrases. 
+Pywheels is an application for musicians who want to create compositions based upon repeated phrases. 
 
 ## Version
 1.0 (beta)
 
 ## Configuration
-In configuration file settings.py you can adjust  size, color of loops and section of loops and level of sounds of loops
+In configuration file settings.py, you can adjust size, color, and section of loops and level of sounds in loops.
 
 ## Dependencies
-This application founded on pygame library and it use also pyaudio and wave library.
+This application is based upon pygame library and also uses pyaudio and wave libraries.
 
  Dependencies:
 
@@ -16,17 +16,17 @@ This application founded on pygame library and it use also pyaudio and wave libr
 
     pyaudio,
 
-    wave.             
+    wave.
 
 ## Installation and run
-For run application you need copy all files from repositories and run main.py file.
-Perhaps you should give right for run main.py file.
+To run the application you need to copy all files from the repository and run main.py.
+You probably should set execution permissions on for main.py.
 
 ## Wishes
-If you have thoughts how to make code better I would pleased to hear it.
+If you have thoughts how to make the code better I would be pleased to hear it.
 
 ## Terms of use
-It is free software. You can use it for any goals, but you should make link to this repo.
+This is a free software. You can use it for any purposes, but you should make a link to this repo.
 
 ## Author
 Yaroslav Pisarev
