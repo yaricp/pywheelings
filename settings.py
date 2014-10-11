@@ -75,6 +75,7 @@ MAIN_TICK = 1000
 REC_FILE_EXT = 'wav'
 PLAY_FILE_EXT = 'wav'
 PATH_FILES = 'files/'
+SOUND_SYNC_LOOP = 'high.wav'
 #Aqua
 #	
 #

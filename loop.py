@@ -229,7 +229,7 @@ class LoopSync(Loop):
     def __init__(self, rad,  x, y):
         super(LoopSync, self).__init__(rad, x, y)
         self.rad_vol = int(NORMAL_VALUE_LOOP_SYNC * rad)
-        self.__playfilename = 'files/high.wav'
+        self.__playfilename = PATH_FILES+SOUND_SYNC_LOOP
         self.time_sync = 0
         self.__prev_time_sound = 0
         self.delta = None
