@@ -1,15 +1,17 @@
 
 from pygame import *
 
-from time import time
+import time
 from math import sin, cos, radians
+from pyo_test import SoundLoop
+
 
 try:
     from multiprocessing import Value, Process, Condition
 except ImportError:
     from processing import Value,  Process,  Condition
 
-from sound import record_sound
+from record_sound import record
 
 from settings import *
 
@@ -19,12 +21,12 @@ class Loop(sprite.Sprite):
     sync_start = 0
     sync_time = 0
     
-    def __init__(self, rad,  x, y):
+    def __init__(self, rad,  x, y, sync_pipe):
         sprite.Sprite.__init__(self)
         self.focus = False
         self.id = Loop.count + 1
         Loop.count += 1
-        
+        self.sync_pipe = sync_pipe
         self.x = x
         self.y = y
         self.rad = rad 
@@ -40,6 +42,9 @@ class Loop(sprite.Sprite):
         self.__time_start_play = None
         self.__time_start_record = None
         self.recording = False
+        self.rec_process = None
+        self.play_process = None
+        self.soundTable = None
         self.muted = False
         
         self.rect = Rect(x-rad, y-rad, 2*rad, 2*rad)
@@ -99,7 +104,7 @@ class Loop(sprite.Sprite):
    
 #    def __delete_files(self):
 #        if self.__class__.__name__!='Loop_Sync':
-#            print 'del file '
+#            print( 'del file ')
 #            os.system(' rm '+self.playfilename)
 #        return True
             
@@ -108,11 +113,13 @@ class Loop(sprite.Sprite):
             self.sound = mixer.Sound(self.playfilename)
         
     def __start_play(self):
-        self.__init_sound()
-        if not self.playing:
-            if self.sound:
-                self.playing = True
-                self.play_sound()
+        if self.soundTable:
+            self.play_proccess = PlayProc(self.id, self.soundTable)
+#        self.__init_sound()
+#        if not self.playing:
+#            if self.sound:
+#                self.playing = True
+#                self.play_sound()
 
     def __stop_play(self):
         
@@ -121,38 +128,41 @@ class Loop(sprite.Sprite):
                 self.playing = False
                 self.__time_start_play = None
 
-    def play_sound(self, delta=None, time_sync=None):
+    def play_sound(self, delta=0, time_sync=None):
         if self.playing:
             if delta >= 0 and self.is_last_period(time_sync):
                 if self.__channel and self.__channel.get_busy():
                     self.sound.stop()
                 self.__channel = self.sound.play()
-                self.__time_start_play = time()
+                self.__time_start_play = time.time()
 
     #@profile_c
     def __start_record(self):
         if self.focus:
             if not self.recording:
                 self.__stop_rec.value = 0
-                rec_process = Process(  target=record_sound,
-                                        args=(  self.__stop_rec,
-                                                self.recfilename,
-                                                    ),
-                                                         )
-                rec_process.start()
-                self.__time_start_record = time()
+                self.sync_pipe[0].send((None, NEW_LOOP))
+                self.rec_process = SoundLoop( self.id, 
+                                            self.sync_pipe[1]
+                                            )
+                self.rec_process.start()
+                self.sync_pipe[0].send([self.id, RECORD])
+                self.__time_start_record = time.time()
                 self.recording = True
     
     def __stop_record(self):
         if self.focus:
             if self.recording:
-                self.__stop_rec.value = 1
                 self.recording = False
-                self.playfilename = PATH_FILES+self.filename+PLAY_FILE_EXT
+                self.sync_pipe[0].send([self.id, STOP_RECORD])
+#                self.__stop_rec.value = 1
+#                
+#                self.playfilename = PATH_FILES+self.filename+PLAY_FILE_EXT
 
     def mute(self):
         if self.sound and self.playing:
-            self.sound.set_volume(0.0)
+#            self.sound.set_volume(0.0)
+            self.sync_pipe[0].send(self.id, MUTE)
             self.rad_vol = 3
             self.muted = True
             
@@ -189,11 +199,11 @@ class Loop(sprite.Sprite):
         if self.sound:
             length_s = self.sound.get_length()
         else:
-            length_s = time()-self.__time_start_record
+            length_s = time.time()-self.__time_start_record
         return length_s
             
     def __end_point(self):
-        now = time()
+        now = time.time()
         time_begin = None
         if self.playing:
             time_begin = self.__time_start_play
@@ -226,8 +236,8 @@ class Loop(sprite.Sprite):
 
 class LoopSync(Loop):
 
-    def __init__(self, rad,  x, y):
-        super(LoopSync, self).__init__(rad, x, y)
+    def __init__(self, rad,  x, y, sync_pipe):
+        super(LoopSync, self).__init__(rad, x, y, sync_pipe)
         self.rad_vol = int(NORMAL_VALUE_LOOP_SYNC * rad)
         self.__playfilename = PATH_FILES+SOUND_SYNC_LOOP
         self.time_sync = 0
@@ -263,25 +273,26 @@ class LoopSync(Loop):
     def __start_play(self):
         self.playing = True
         self.sound.play(0)
-        self.__prev_time_sound = time()
+        self.__prev_time_sound = time.time()
         
     def play_sound(self):
         if self.playing:
-            prev_delta = time()-self.__prev_time_sound
+            prev_delta = time.time()-self.__prev_time_sound
             self.delta = round(prev_delta-self.time_sync, CORRECT_TIME_SYNC)
             if self.delta and self.delta >= 0:
                 self.sound.play(0)
-                self.__prev_time_sound = time()
+                self.__prev_time_sound = time.time()
         
     def __stop_play(self):
         self.playing = False
         
     def __start_record(self):
-        self.start_time = time()
+        self.start_time = time.time()
+        #print(gmtime)
         self.recording = True
         
     def __stop_record(self):
-        self.time_sync = time() - self.start_time-self.__length_sound
+        self.time_sync = time.time() - self.start_time-self.__length_sound
         self.recording = False
         
     def __end_point(self):
@@ -296,6 +307,7 @@ class LoopSync(Loop):
             thin = FOCUS_THICKNESS_LINE_LOOP_SYNC
         else:
             thin = THICKNESS_LINE_LOOP_SYNC
+        #print(screen,self.x,self.y,self.rad,thin,COLOR_LOOP_SYNC)
         draw.circle(screen, COLOR_LOOP_SYNC, (self.x, self.y), self.rad, thin)
         if self.playing:
             self.__line_delta += 1

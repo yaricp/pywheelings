@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-import pygame
+import sys, pygame, multiprocessing
 from pygame import *
 
 from settings import *
+from pyo_test import MixerLoops
 
 from loop import Loop, LoopSync
 from sections import Section
@@ -11,6 +12,7 @@ from sections import Section
 
 def main():
     pygame.mixer.init(44100,  -16, 2, 1024)
+    
     pygame.init()
     screen = pygame.display.set_mode(DISPLAY)
     pygame.display.set_caption("py Wheels")
@@ -21,6 +23,8 @@ def main():
     margin_sect = MARGIN * 0.5
     list_loops = []
     total_dict_loops = {}
+    sync_pipe = signal, child = multiprocessing.Pipe()
+    mixer = MixerLoops(child)
 
     pygame.mouse.set_cursor(*pygame.cursors.diamond)
     for row in range(0, COUNT_ROWS):
@@ -32,7 +36,7 @@ def main():
             margin_loop += MARGIN 
             x = LOOP_RAD + 2 * col * LOOP_RAD + margin_loop + TOTAL_X_MARGIN
             y = LOOP_RAD + 2 * row * LOOP_RAD + margin_row + TOTAL_Y_MARGIN
-            loop = Loop(LOOP_RAD, x, y)
+            loop = Loop(LOOP_RAD, int(x), int(y),  sync_pipe)
             total_dict_loops.update({loop.id: loop})
             loops.append(loop)
         height = (2 * LOOP_RAD)+MARGIN
@@ -41,8 +45,9 @@ def main():
         sect = Section(TOTAL_X_MARGIN, y, width, height)
         list_loops.append([sect, loops])
     loop_sync = LoopSync(   LOOP_RAD_SYNC,
-                            TOTAL_X_MARGIN+(width/2),
-                            MARGIN+height*COUNT_ROWS+LOOP_RAD_SYNC+TOTAL_Y_MARGIN)
+                            int(TOTAL_X_MARGIN+(width/2)),
+                            int(MARGIN+height*COUNT_ROWS+LOOP_RAD_SYNC+TOTAL_Y_MARGIN), 
+                            sync_pipe)
     main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer)
  
 
@@ -88,7 +93,8 @@ def main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer):
                 if KEY == K_DOWN:
                     e_loop = WHEEL_DOWN
             if e.type == QUIT:
-                raise SystemExit, "QUIT"
+                tb = sys.exc_info()[2]
+                raise OtherException(...).with_traceback(tb)
         screen.blit(bg, (0,0)) 
         loop_sync.play_sound()
         delta = loop_sync.delta
