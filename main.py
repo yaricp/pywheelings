@@ -10,7 +10,7 @@ except ImportError:
 
 
 from settings import *
-from pyo_test import mixer_loops
+from pyo_sound import mixer_loops
 
 from loop import Loop, LoopSync
 from sections import Section
@@ -57,6 +57,7 @@ def main():
                         mixer_event)
             total_dict_loops.update({loop.id: loop})
             loops.append(loop)
+        
         height = (2 * LOOP_RAD)+MARGIN
         y = row * height + MARGIN * 0.5 + TOTAL_Y_MARGIN
         width = (2 * LOOP_RAD*COUNT_IN_ROW)+(MARGIN * (COUNT_IN_ROW+1))
@@ -69,6 +70,9 @@ def main():
                             mixer_event
                             )
     main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer)
+    mixer_event.value = QUIT
+    pygame.quit()
+    return 'Quit!'
  
 
 def main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer):
@@ -76,10 +80,9 @@ def main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer):
     waiting = False
     current_sect = 1
     prev_sect = None
+    done = False
     
-    
-
-    while 1:  # main circle
+    while not done:  # main circle
         e_loop = 1000
         KEY = None
         key_for_focus = 0
@@ -97,6 +100,7 @@ def main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer):
             # Keyboard
             if e.type == KEYDOWN:
                 KEY = e.key
+                print(KEY)
                 if KEY == REC_PLAY_SYNC_KEY:
                     loop_sync.start_stop()
                 if KEY == SELECT_SECTION_KEY:
@@ -114,10 +118,11 @@ def main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer):
                     e_loop = WHEEL_UP
                 if KEY == K_DOWN:
                     e_loop = WHEEL_DOWN
-            if e.type == QUIT:
-                mixer.stop()
-                tb = sys.exc_info()[2]
-                raise OtherException(...).with_traceback(tb)
+                if KEY == QUIT_KEY:
+                    done = True
+                    
+            if e.type == pygame.QUIT:
+                done = True
         screen.blit(bg, (0,0)) 
         loop_sync.play_sound()
         delta = loop_sync.delta
@@ -147,18 +152,23 @@ def main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer):
             if KEY == ERASE_LAST_LOOP_KEY:
                 if sect.focus and sect.playing:
                     loop_for_erase = sect.loops.pop()
-                    loop_for_erase.event(ERASE, mouse_pos)
+                    loop_for_erase.event(ERASE)
                     loop_in_focus = sect.loops[-1].id
             for loop in loops:
                 loop.check_focus(key_for_focus, mouse_pos, loop_in_focus)
+                #print('check focus: ', loop.id)
                 if loop.focus:
-                    loop_in_focus, waiting, stop_prev_event, start_curr_event = rec_play_logik(KEY,
-                                                                             loop,
-                                                                             total_dict_loops,
-                                                                             delta,
-                                                                             waiting,
-                                                                             sect,
-                                                                             prev_sect)
+                    #print('loop in focuse: ',  loop.id)
+                    (loop_in_focus, 
+                    waiting, 
+                    stop_prev_event, 
+                    start_curr_event) = rec_play_logik(KEY,
+                                                     loop,
+                                                     total_dict_loops,
+                                                     delta,
+                                                     waiting,
+                                                     sect,
+                                                     prev_sect)
                 if sect.focus and start_curr_event:
                     loop.event(PLAY, mouse_pos)
                 if sect.prev and stop_prev_event and sect.playing:
@@ -170,6 +180,9 @@ def main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer):
             sect.draw(screen)
         pygame.display.update()     # update all views
         timer.tick(MAIN_TICK)
+    print('Good buy!')
+    
+    return True
  
 
 def rec_play_logik(key, loop, loops, delta, waiting, sect, prev_sect):
@@ -203,9 +216,10 @@ def rec_play_logik(key, loop, loops, delta, waiting, sect, prev_sect):
                 start_curr_event = True
 
             waiting = False
-       
     return loop_in_focus, waiting, stop_prev_event, start_curr_event
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+res = main()
+print(res)
+

@@ -3,18 +3,14 @@ from pygame import *
 
 import time, os
 from math import sin, cos, radians
-from pyo_test import loop_sound_process
-
 
 try:
     from multiprocessing import Value, Process, Condition
 except ImportError:
     from processing import Value,  Process,  Condition
 
-from record_sound import record 
-from pyo_test import *
 
-
+from pyo_sound import *
 from settings import *
 
 
@@ -104,6 +100,7 @@ class Loop(sprite.Sprite):
    
     def __start_play(self):
         if not self.playing:
+            self.mixer_channel.value = self.id
             self.mixer_event.value = PLAY          
             self.playing = True
             self.__time_start_play = time.time()
@@ -112,6 +109,7 @@ class Loop(sprite.Sprite):
         
         if self.playing:
             #self.sound.stop()
+            self.mixer_channel.value = self.id
             self.mixer_event.value = STOP_PLAY
             self.playing = False
             self.__time_start_play = None
@@ -119,15 +117,14 @@ class Loop(sprite.Sprite):
     def __start_record(self):
         if self.focus:
             if not self.recording:
-                #self.__stop_rec.value = 0
-                #print('loop_event: ', self.loop_event.value)
+                print('start loop record: ', self.id)
                 self.mixer_channel.value = self.id
                 self.mixer_event.value = NEW_LOOP
                 self.rec_process = Process( target = loop_sound_process, 
                                             args = (self.loop_proc_id,
                                                     self.loop_event)
                                             ).start()
-                #print('loop_event: ', self.loop_event.value)                            
+                self.loop_proc_id.value = self.id
                 self.loop_event.value = RECORD
                 self.__time_start_record = time.time()
                 self.recording = True
@@ -142,6 +139,7 @@ class Loop(sprite.Sprite):
                 print('rec_process: ', self.rec_process)
                 self.length_sound = time.time() - self.__time_start_record
                 self.has_sound = True
+                print('length: ',  self.length_sound)
                 self.__time_start_play = time.time()
 
     def mute(self):
@@ -172,7 +170,22 @@ class Loop(sprite.Sprite):
             if new_rad >= 3:
                 self.rad_vol = new_rad
             
-
+    def erase_sound(self):
+        if self.has_sound:
+            print(' erase self :', self.id)
+            self.mixer_channel.value = self.id
+            self.mixer_event.value = ERASE
+            self.rad_vol = int(NORMAL_VALUE_LOOP*self.rad)
+            self.current_vol = NORMAL_VALUE_LOOP
+            self.delta = 0
+            self.__line_delta = 0
+            self.length_sound = 0
+            self.has_sound = False
+            self.playing = None
+            self.recording = None
+            self.__time_start_play = None
+            self.__time_start_record = None
+        
             
     def __end_point(self):
         now = time.time()
@@ -204,17 +217,32 @@ class Loop(sprite.Sprite):
             thin = FOCUS_THICKNESS_LINE_LOOP
         else:
             thin = THICKNESS_LINE_LOOP
-        draw.circle(screen, COLOR_LOOP, (self.x, self.y), self.rad,thin)
-        if self.has_sound:
-            draw.circle(screen, COLOR_VOL_LOOP, (self.x, self.y), self.rad_vol, thin)
+            
+        color_loop = COLOR_LOOP
+        color_vol_loop = COLOR_VOL_LOOP
         if self.recording:
-            draw.line(screen, COLOR_VOL_LOOP, (self.x, self.y), self.__end_point(), thin)
+            color_loop = COLOR_RECORDING
+            color_vol_loop = COLOR_RECORDING
+        if self.has_sound:
+            draw.circle(screen, 
+                        color_vol_loop, 
+                        (self.x, self.y), 
+                        self.rad_vol,
+                        thin)
         elif self.playing:
             if self.__line_delta <= 5:
                 thin = FOCUS_THICKNESS_LINE_LOOP_SYNC+5
             else:
                 thin = THICKNESS_LINE_LOOP_SYNC
-            draw.line(screen, COLOR_VOL_LOOP, (self.x, self.y), self.__end_point(), thin)
+        #main circle
+        draw.circle(screen, color_loop, (self.x, self.y), self.rad,thin)
+        # line of time of loop
+        if self.playing or self.recording:
+            draw.line(  screen, 
+                        color_vol_loop, 
+                        (self.x, self.y), 
+                        self.__end_point(), 
+                        thin)
         font_loop = font.Font(None, SIZE_FONT_LOOP)
         height_font = font_loop.get_height()
         width_font = font_loop.get_linesize()
@@ -236,6 +264,8 @@ class LoopSync(Loop):
         self.sound = mixer.Sound(filename)
         self.sound.set_volume(NORMAL_VALUE_LOOP_SYNC)
         self.__length_sound = self.sound.get_length()
+        self.loop_event = Value('i', 100)
+        self.loop_proc_id = Value('i', self.id)
         
     def erase_sound(self):
         self.__stop_play()
@@ -307,5 +337,10 @@ class LoopSync(Loop):
             else:
                 thin = THICKNESS_LINE_LOOP_SYNC
             draw.line(screen, COLOR_VOL_LOOP_SYNC, (self.x, self.y), self.__end_point(), thin)
-            draw.circle(screen, COLOR_VOL_LOOP_SYNC, (self.x, self.y), self.rad_vol, THICKNESS_LINE_LOOP_SYNC)
+            #draw volume circle
+            thin_vol = THICKNESS_LINE_LOOP_SYNC
+            if THICKNESS_LINE_LOOP_SYNC > self.rad_vol:
+                thin_vol = self.rad_vol
+                
+            draw.circle(screen, COLOR_VOL_LOOP_SYNC, (self.x, self.y), self.rad_vol, thin_vol)
 
