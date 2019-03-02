@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 
-import sys, pygame, multiprocessing
+import sys, pygame
 from pygame import *
 
+try:
+    from multiprocessing import Value, Process, Condition
+except ImportError:
+    from processing import Value,  Process,  Condition
+
+
 from settings import *
-from pyo_test import MixerLoops
+from pyo_test import mixer_loops
 
 from loop import Loop, LoopSync
 from sections import Section
+
 
 
 def main():
@@ -23,20 +30,31 @@ def main():
     margin_sect = MARGIN * 0.5
     list_loops = []
     total_dict_loops = {}
-    sync_pipe = signal, child = multiprocessing.Pipe()
-    mixer = MixerLoops(child)
-
+    mixer_event = Value('i', 1000)
+    mixer_channel = Value('i', 0)
+    mixer = Process( target = mixer_loops, 
+                    args = (mixer_event,
+                            mixer_channel, )
+                    ).start()
+    
+    print('Main')
+    
     pygame.mouse.set_cursor(*pygame.cursors.diamond)
     for row in range(0, COUNT_ROWS):
+        #print('row ', row)
         margin_row += MARGIN
         margin_sect += row * MARGIN*0.5
         loops = []
         margin_loop = 0
         for col in range(0, COUNT_IN_ROW):
+            #print('col ',  col)
             margin_loop += MARGIN 
             x = LOOP_RAD + 2 * col * LOOP_RAD + margin_loop + TOTAL_X_MARGIN
             y = LOOP_RAD + 2 * row * LOOP_RAD + margin_row + TOTAL_Y_MARGIN
-            loop = Loop(LOOP_RAD, int(x), int(y),  sync_pipe)
+            loop = Loop(LOOP_RAD, 
+                        int(x), int(y), 
+                        mixer_channel, 
+                        mixer_event)
             total_dict_loops.update({loop.id: loop})
             loops.append(loop)
         height = (2 * LOOP_RAD)+MARGIN
@@ -47,7 +65,9 @@ def main():
     loop_sync = LoopSync(   LOOP_RAD_SYNC,
                             int(TOTAL_X_MARGIN+(width/2)),
                             int(MARGIN+height*COUNT_ROWS+LOOP_RAD_SYNC+TOTAL_Y_MARGIN), 
-                            sync_pipe)
+                            mixer_channel, 
+                            mixer_event
+                            )
     main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer)
  
 
@@ -56,9 +76,11 @@ def main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer):
     waiting = False
     current_sect = 1
     prev_sect = None
+    
+    
 
     while 1:  # main circle
-        e_loop = None
+        e_loop = 1000
         KEY = None
         key_for_focus = 0
         #Mouse moving
@@ -93,6 +115,7 @@ def main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer):
                 if KEY == K_DOWN:
                     e_loop = WHEEL_DOWN
             if e.type == QUIT:
+                mixer.stop()
                 tb = sys.exc_info()[2]
                 raise OtherException(...).with_traceback(tb)
         screen.blit(bg, (0,0)) 
@@ -142,7 +165,7 @@ def main_process(screen, bg,  list_loops, total_dict_loops, loop_sync, timer):
                     loop.event(STOP_PLAY, mouse_pos)
                 else:
                     loop.event(e_loop, mouse_pos)
-                loop.play_sound(delta, time_sync)
+                #loop.play_sound(delta, time_sync)
                 loop.draw(screen)
             sect.draw(screen)
         pygame.display.update()     # update all views
@@ -159,7 +182,6 @@ def rec_play_logik(key, loop, loops, delta, waiting, sect, prev_sect):
     if  key == REC_PLAY_LOOP_KEY:
         if delta < 0:
             waiting = True
-
     if loop.recording:
         if waiting and delta >= 0:
             loop.event(STOP_RECORD)
@@ -173,6 +195,7 @@ def rec_play_logik(key, loop, loops, delta, waiting, sect, prev_sect):
             waiting = False
     else:
         if waiting and delta >= 0:
+            
             loop.event(RECORD)
             if prev_sect:
                 stop_prev_event = True

@@ -4,102 +4,124 @@ from pyo import *
 from settings import *
 
 
-class MixerLoops(multiprocessing.Process):
-    def __init__(self, connection):
-        super(MixerLoops, self).__init__()
-        self.daemon = True
-        self.connection = connection
-        self.mixer = None
-
-    def run(self):
-        self.server = Server(audio="jack")
-        self.server.deactivateMidi()
-        self.server.boot().start()
-        bufsize = self.server.getBufferSize()
-        self.mixer = Mixer(outs=1, chnls=COUNT_IN_ROW * COUNT_ROWS, time=.025)
-        
-        event = self.connection[1]
-        loop_id = self.connection[0]
-        tables
-        if event == NEW_LOOP:
-#            self.tables.update({'id': loop_id,  
-#                                'table': SharedTable("/audio-"+str(loop_id), 
-#                                                    create=False, 
-#                                                    size=bufsize)
-#                                })
-            tab = SharedTable("/audio-"+str(loop_id), 
-                                create=False, 
-                                size=bufsize)
-            out = TableScan(tab).out()
-            self.mixer.addInput(loop_id, out)
-            self.mixer.setAmp(loop_id,0,.5)
-        elif event == MUTE:
-            self.mixer.setAmp(loop_id,0,0)
-        elif event == INC_VOLUME:
-            self.mixer.setAmp(loop_id,0,.5)
-
-        self.server.stop()
-        
-
-class SoundLoop(multiprocessing.Process):
-    """ Process of record sound in loop processing and play realtime"""
+def mixer_loops(event, channel):
+    server = Server(audio='jack', nchnls=2)
+    server.deactivateMidi()
+    server.boot().start()
+    bufsize = server.getBufferSize()
+    mixer = Mixer(outs=1, chnls=COUNT_IN_ROW * COUNT_ROWS, time=.025).out()
+    e = event.value
+    ch = channel.value
+    rec_tables = {}
+    print('mixer e: ', e)
+    print('mixer ch: ', ch)
     
-    def __init__(self, loop, connection):
-        super(SoundLoop, self).__init__()
-        self.loop = loop
-        self.daemon = True
-        self.connection = connection
-        self.mixer = None
-        self.rec = None
-        self.play = None
-        self.filename = "/files/%d_file.wav" % loop
-        
-    def processing(self, table):
-        """ Filters, effects and other processing with sound """
-        
-        self.mixer = Mixer(outs=3, chnls=2, time=.025)
-        # Processing with sound
-        return table
-        
-    def run(self):
-        print(self.connection.poll())
-        id  = self.connection.poll()[0]
-        e = self.connection.poll()[1]
-        while 1:
-            if id == self.loop :
+    while True:
+        e = event.value
+        ch = channel.value
+        if e == NEW_LOOP and ch and not (ch in rec_tables):
+            name = "/audio-%d" % ch
+            print('name: ', name)
+            newTable = NewTable(length=8, chnls=1, feedback=0.5)
+            tab = SharedTable(  name, 
+                                create=True, 
+                                size=bufsize)
+            
+            #print('tab in mixer: ', tab)
+            out = TableScan(tab)
+            table_rec = TableRec(out, table=newTable, fadetime=0.05).play()
+            mixer.addInput(ch, out)
+            mixer.setAmp(ch,0,.1)
+            #print('mixer: ',  mixer.__dict__)
+            event.value = 1000
+            channel.value = 0
+            
+        elif e == STOP_RECORD or e == PLAY:
+            print('mixer stop record')
+            table_rec.stop()
+            mixer.delInput(ch)
+            if not ch in rec_tables:
+                rec_tables.update({ch:newTable})
+            soundTable = rec_tables[ch]
+            dur = soundTable.getDur()
+            out = Looper(soundTable, start=0, dur=dur, mul=0.3)
+            print('out: ', out)
+            mixer.addInput(ch, out)
+            mixer.setAmp(ch,0,.1)
+            #freq = soundTable.getRate()
+            #out = Osc(table=soundTable, freq=freq, phase=[0, 0.5], mul=0.4).out()
+            #mixer.addInput(ch, out)
+            event.value = 1000
+            channel.value = 0
+            
+        elif e == STOP_PLAY:
+            play_table.stop()
+            event.value = 1000
+            channel.value = 0
+            
+        elif e == WHEEL_UP:
+            value = mixer._base_players[ch].gains[str(ch)][0]
+            print('mixer._base_players ', mixer._base_players[ch].gains[str(ch)][0])
+            if value < 1.0:
+                mixer.setAmp(ch,0, value + STEP_VALUE_LOOP)
+            event.value = 1000
+            channel.value = 0
+            
+            
+        elif e == WHEEL_DOWN:
+            value = mixer._base_players[ch].gains[str(ch)][0]
+            if value > 0:
+                mixer.setAmp(ch,0, value - STEP_VALUE_LOOP)
+            event.value = 1000
+            channel.value = 0
+            
+        elif e == MUTE:
+            mixer.setAmp(ch,0,0)
+#        elif event == INC_VOLUME:
+#            mixer.setAmp(channel,0,.5)
+        if e == QUIT:
+            server.stop()
+            return true
 
-                if e == PLAY:
-                    if self.rec:
-                        self.__play_sound()
-                elif e == STOP_PLAY:
-                    if self.play:
-                        self.server.stop()
-                elif e == RECORD:
-                    self.__start_record()
-                elif e == STOP_RECORD:
-                    self.server.stop()
-                
-    def __play_sound(self):
-        self.server = Server().boot()
-        self.server.start()
-        name = "/audio-%d" % self.loop
-        play_tab = SharedTable(name, create=True, size=bufsize)
-        self.play = TablePut(self.rec, play_tab).play()
+    
+def loop_sound_process(loop_id, event):
+    print('start loop sound process')
+    e = event.value
+    id = loop_id.value
+    print('e: ', e)
+    print('id: ', id)
+    
+    soundTable = None
+    name = "/audio-%d" % id
+    
+    while True:
+        e = event.value
+        id = loop_id.value
+        if e == RECORD:
+            server = Server(audio='jack',  ichnls=1)
+            server.deactivateMidi()
+            server.boot().start()
+            bufsize = server.getBufferSize()
+            soundTable = NewTable(length=8, chnls=1, feedback=0.5)
+            share_tab = SharedTable(name, create=False, size=bufsize)
+            inp = Input(chnl=0)
+            #
+            # Rack of effects
+            #
+            res_out = Delay(inp, delay=.1, feedback=0.8, mul=0.2)
+            res = TableFill(res_out, share_tab)
+            event.value = 1000
+            loop_id.value = 0
+        elif e == STOP_RECORD:
+            print('stop record')
+            inp.stop()
+            res.stop()
+            res_out.stop()
+            server.stop()
+            return True
+#   
+        if e == QUIT:
+            server.stop()
         
-    def __start_record(self):
-        self.server = Server(audio='jack', nchnls=1).boot()
-        inp = Input(chnl=0).out()
-        self.server.deactivateMidi()
-        self.server.boot()
-        self.server.start()
-        bufsize = self.server.getBufferSize()
-        t = NewTable(length=8, chnls=1, feedback=0.5)
-        #
-        # Send sound to processor
-        #
         
-        #
-        # Get sound after processor
-        #
-        self.rec = TableRec(inp, table=t, fadetime=0.05)
         
