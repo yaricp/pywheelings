@@ -34,13 +34,15 @@ def main():
     mixer_channel = Value('i', 0)
     mixer_length_loop = Value('i', DEFAULT_LOOP_LENGTH)
     mixer_metro_time = Value('i', DEFAULT_METRO_TIME)
+    mixer_duration = Value('i', DEFAULT_LOOP_LENGTH)
     mixer_tick = Value('i', 0)
     mixer = Process( target = mixer_loops, 
                     args = (mixer_event,
                             mixer_channel,
                             mixer_metro_time, 
                             mixer_length_loop, 
-                            mixer_tick
+                            mixer_tick, 
+                            mixer_duration
                            )
                     ).start()
     
@@ -64,7 +66,8 @@ def main():
                         mixer_event, 
                         mixer_metro_time, 
                         mixer_length_loop, 
-                        mixer_tick)
+                        mixer_tick, 
+                        mixer_duration)
             total_dict_loops.update({loop.id: loop})
             loops.append(loop)
         
@@ -132,6 +135,10 @@ def main_process(screen, bg,
                         current_sect = 1
                     else:
                         current_sect += 1
+                    if len(list_loops[current_sect-1][0].loops) > 0:
+                        id_loop_after_rec = list_loops[current_sect-1][0].loops[-1].id
+                    else:
+                        id_loop_after_rec = COUNT_IN_ROW * (current_sect - 1)
                 if KEY == ERASE_KEY:
                     e_loop=ERASE
                     loop_in_focus = 1
@@ -183,7 +190,7 @@ def main_process(screen, bg,
                     if len(sect.loops) > 0: 
                         id_loop_after_rec = sect.loops[-1].id
                     else:
-                        id_loop_after_rec = 0
+                        id_loop_after_rec = COUNT_IN_ROW * (sect.id - 1)
             #        
             # Loops Events
             #       
@@ -199,10 +206,10 @@ def main_process(screen, bg,
                         sect.loops.append(loop)
                 if loop.focus:
                     loop.event(e_loop, mouse_pos)
-                if sect.prev and stop_prev_event and sect.playing:
-                    loop.event(STOP_PLAY, mouse_pos)
-                else:
-                    loop.event(e_loop, mouse_pos)
+#                if sect.prev and stop_prev_event and sect.playing:
+#                    loop.event(STOP_PLAY, mouse_pos)
+#                else:
+                loop.event(e_loop, mouse_pos)
                 loop.draw(screen)
                 if not loop.tick_checked:
                     all_tick_checked = False
@@ -220,50 +227,19 @@ def main_process(screen, bg,
     
     return True
     
-    
-def start_rec_play_by_tick(tick, total_dict_loops, loop_sync):
-    
-    if tick.value == 1:
-        for loop in total_dict_loops.values():
-            #print(loop)
-            if loop.recording:
-                loop.start_record()
-            if loop.playing:
-                loop.start_play()
-        if loop_sync.playing:
-            loop_sync.play()
-    tick.value = 0
- 
-
-#def rec_play_logik(key, loop, loops, sect, prev_sect):
-#
-#    loop = loops[loop.id]
-#    loop_in_focus = loop.id
-#    next_loop = loops[loop.id+1]
-#    stop_prev_event = False
-#    start_curr_event = False
-#    if loop.recording:
-#        if waiting and delta >= 0:
-#            loop.event(STOP_RECORD)
-#            next_loop.focus = True
-#            loop_in_focus = next_loop.id
-#            sect.loops.append(loop)
-#            waiting = False
-#    elif loop.playing:
-#        if delta >= 0:
-#            next_loop.event(RECORD)
-#            waiting = False
-#    else:
-#        if waiting and delta >= 0:
-#            
-#            loop.event(RECORD)
-#            if prev_sect:
-#                stop_prev_event = True
-#            if sect.loops and not sect.playing:
-#                start_curr_event = True
-#
-#            waiting = False
-#    return loop_in_focus, waiting, stop_prev_event, start_curr_event
+#    
+#def start_rec_play_by_tick(tick, total_dict_loops, loop_sync):
+#    
+#    if tick.value == 1:
+#        for loop in total_dict_loops.values():
+#            #print(loop)
+#            if loop.recording:
+#                loop.start_record()
+#            if loop.playing:
+#                loop.start_play()
+#        if loop_sync.playing:
+#            loop_sync.play()
+#    tick.value = 0
 
 
 if __name__ == "__main__":

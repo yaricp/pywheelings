@@ -8,7 +8,7 @@ def send_tick(tick):
     tick.value = 1
     
 
-def mixer_loops(event, channel, metro_time, size_loop, tick):
+def mixer_loops(event, channel, metro_time, size_loop, tick, duration):
     server = Server(audio='jack', nchnls=2)
     server.deactivateMidi()
     server.boot().start()
@@ -39,6 +39,7 @@ def mixer_loops(event, channel, metro_time, size_loop, tick):
     while True:
         e = event.value
         ch = channel.value
+        play_dur = duration.value
 #        if ch == COUNT_IN_ROW * COUNT_ROWS+1:
 #            e = 1000
 #            ch = 0
@@ -47,21 +48,21 @@ def mixer_loops(event, channel, metro_time, size_loop, tick):
             name = "/audio-%d" % ch
             print('mixer create shared table : ', name)
             length_loop = size_loop.value
-            newTable = NewTable(length=length_loop, chnls=1, feedback=0.5)
+            newTable = NewTable(length=length_loop, chnls=1, feedback=0)
             if not ch in sh_tables:
-                share_tab = SharedTable(  name, 
-                                    create=True, 
-                                    size=bufsize)
+                share_tab = SharedTable( name, 
+                                        create=True, 
+                                        size=bufsize)
                 sh_tables.update({ch: share_tab})
             else:
                 share_tab = sh_tables[ch]
             
             #print('tab in mixer: ', tab)
             scan_tab = TableScan(share_tab)
-            #table_rec = TableRec(scan_tab, table=newTable, fadetime=0.05).play()
+            table_rec = TableRec(scan_tab, table=newTable, fadetime=0).play()
             
             #amp = TrigEnv(met, table=newTable, dur=length_loop, mul=.3)
-            trec = TrigTableRec(scan_tab, m, table=newTable)
+            #trec = TrigTableRec(scan_tab, m, table=newTable)
             
             mixer.addInput(ch, scan_tab)
             mixer.setAmp(ch,0,NORMAL_VALUE_LOOP/2)
@@ -72,15 +73,17 @@ def mixer_loops(event, channel, metro_time, size_loop, tick):
         elif (e == STOP_RECORD or e == PLAY) and ch:
             print('mixer stop record and start play')
             #table_rec.stop()
-            trec.stop()
+            table_rec.stop()
             mixer.delInput(ch)
             if not ch in rec_tables:
                 rec_tables.update({ch:newTable})
             soundTable = rec_tables[ch]
-            dur = soundTable.getDur()
-            print('mixer start table with duration: ',  dur)
-            #looper = Looper(soundTable, start=0, dur=dur, mul=0.3, xfade=0)
-            looper = OscTrig(soundTable, m, freq=soundTable.getRate(), mul=.3)
+            #dur = soundTable.getDur()
+            print('mixer start table with duration: ',  play_dur)
+            #looper = TrigEnv(m, table=soundTable, dur=play_dur, mul=.2)
+            looper = Osc(table=soundTable, freq=soundTable.getRate(), phase=[0, 0.5],
+                        mul=0.4)
+            #looper = OscTrig(soundTable, m, freq=soundTable.getRate(), mul=.3)
             play_tables.update({ch: looper})
             mixer.addInput(ch, looper)
             mixer.setAmp(ch,0,.1)
@@ -142,7 +145,7 @@ def mixer_loops(event, channel, metro_time, size_loop, tick):
             channel.value = 0
             
         elif e == ERASE and ch:
-            #print('erase ', ch)
+            print('erase ', ch)
             play_tables[ch].stop()
             mixer.delInput(ch)
             del play_tables[ch]
@@ -189,11 +192,11 @@ def rec_process(loop_id, event, size_loop, mixer_tick ):
         id = loop_id.value
         tick = mixer_tick.value
         
-        if tick == 1 and ready_to_record:
-            print('rec proc real start fiil shared table')
-            print('rec proc time: ', time.time())
-            res = TableFill(res_out, share_tab)
-            ready_to_record = False
+#        if tick == 1 and ready_to_record:
+#            print('rec proc real start fiil shared table')
+#            print('rec proc time: ', time.time())
+#            res = TableFill(res_out, share_tab)
+#            ready_to_record = False
         
         if e == RECORD:
             length = size_loop.value
@@ -210,8 +213,8 @@ def rec_process(loop_id, event, size_loop, mixer_tick ):
             # Rack of effects
             #
             res_out = Delay(inp, delay=.1, feedback=0.8, mul=0.2)
-            ready_to_record = True
-            
+            #ready_to_record = True
+            res = TableFill(res_out, share_tab)
             event.value = 1000
             loop_id.value = 0
         elif e == STOP_RECORD:

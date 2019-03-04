@@ -24,7 +24,8 @@ class Loop(sprite.Sprite):
                         mixer_event, 
                         mixer_metro_time, 
                         mixer_length_loop, 
-                        mixer_tick):
+                        mixer_tick, 
+                        mixer_duration):
         sprite.Sprite.__init__(self)
         
         #print('loop init')
@@ -42,9 +43,11 @@ class Loop(sprite.Sprite):
         self.mixer_channel = mixer_channel
         self.mixer_length_loop = mixer_length_loop
         self.mixer_tick = mixer_tick
+        self.mixer_duration = mixer_duration
         self.delta = 0
         self.__line_delta = 0
         self.length_sound = DEFAULT_LOOP_LENGTH
+        self.count_ticks = 0
 #        self.filename = str(self.id)+'_file.'
 #        self.recfilename = PATH_FILES+self.filename+REC_FILE_EXT
 #        self.playfilename = None
@@ -131,7 +134,8 @@ class Loop(sprite.Sprite):
         print('send start play to mixer')
         self.playing = True
         self.mixer_channel.value = self.id
-        self.mixer_event.value = PLAY          
+        self.mixer_event.value = PLAY 
+        self.mixer_duration.value = self.length_sound
            
     def stop_play(self):
         print('send stop play to mixer')
@@ -154,6 +158,7 @@ class Loop(sprite.Sprite):
                                     ).start()
         self.rec_proc_id.value = self.id
         self.rec_event.value = RECORD
+        self.__time_start = time.time()
     
     def stop_record(self):
         print('send stop record to mixer')
@@ -161,10 +166,8 @@ class Loop(sprite.Sprite):
         self.mixer_event.value = STOP_RECORD
         self.mixer_channel.value = self.id
         self.rec_event.value = STOP_RECORD
-        self.length_sound = time.time() - self.__time_start
-        self.__time_start = None
-        if self.length_sound > self.rec_length.value:
-            self.length_sound = self.rec_length.value
+        self.length_sound = self.rec_length.value * self.count_ticks
+        self.__time_start = time.time()
         print('length: ', self.length_sound)
         self.has_sound = True
 
@@ -237,13 +240,8 @@ class Loop(sprite.Sprite):
     def check_tick(self):
         #print('tick: ', self.mixer_tick.value)
         if self.mixer_tick.value == 1:
-            
-#            print(self.recording or self.playing)
-#            print(not self.__time_start)
-#            print((self.recording or self.playing) and not self.__time_start)
-            if (self.recording or self.playing) and not self.__time_start:
-                self.__time_start = time.time()
-            
+            if self.recording:
+                self.count_ticks += 1
             self.tick_checked = True
 
    
@@ -269,7 +267,7 @@ class Loop(sprite.Sprite):
         # main circle
         draw.circle(screen, color_loop, (self.x, self.y), self.rad,thin)
         # line of time of loop
-        if self.__time_start:
+        if self.playing or self.recording:
             if self.__line_delta <= 10:
                 thin = FOCUS_THICKNESS_LINE_LOOP_SYNC+5
             else:

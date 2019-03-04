@@ -17,7 +17,7 @@ class Section(sprite.Sprite):
         self.prev = False
         self.muted = False
         self.loops = []
-
+        
     def check_focus(self, current_sect):
 
         if self.playing:
