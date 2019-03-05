@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project pywheels-git -->
-<!-- Saved: 2019-03-04, 01:55:54 -->
+<!-- Saved: 2019-03-05, 01:49:04 -->
 <!-- Copyright (C) 2019 yaricp, yaricp@gmail.com -->
 <Project version="5.1">
   <Language></Language>
@@ -14,17 +14,12 @@
   <Eol index="0"/>
   <Sources>
     <Source>__init__.py</Source>
-    <Source>jack_record.py</Source>
     <Source>loop.py</Source>
     <Source>main.py</Source>
     <Source>profiler.py</Source>
     <Source>pyo_sound.py</Source>
-    <Source>pyo_test.py</Source>
-    <Source>record_sound.py</Source>
     <Source>sections.py</Source>
     <Source>settings.py</Source>
-    <Source>sound.py</Source>
-    <Source>test_rec.py</Source>
     <Source>venv/bin/activate_this.py</Source>
     <Source>venv/lib/python2.7/UserDict.py</Source>
     <Source>venv/lib/python2.7/_abcoll.py</Source>

@@ -32,15 +32,13 @@ def main():
     total_dict_loops = {}
     mixer_event = Value('i', 1000)
     mixer_channel = Value('i', 0)
-    mixer_length_loop = Value('i', DEFAULT_LOOP_LENGTH)
     mixer_metro_time = Value('i', DEFAULT_METRO_TIME)
-    mixer_duration = Value('i', DEFAULT_LOOP_LENGTH)
+    mixer_duration = Value('d', DEFAULT_LOOP_LENGTH)
     mixer_tick = Value('i', 0)
     mixer = Process( target = mixer_loops, 
                     args = (mixer_event,
                             mixer_channel,
                             mixer_metro_time, 
-                            mixer_length_loop, 
                             mixer_tick, 
                             mixer_duration
                            )
@@ -64,8 +62,6 @@ def main():
                         int(x), int(y), 
                         mixer_channel, 
                         mixer_event, 
-                        mixer_metro_time, 
-                        mixer_length_loop, 
                         mixer_tick, 
                         mixer_duration)
             total_dict_loops.update({loop.id: loop})
@@ -78,11 +74,10 @@ def main():
         list_loops.append([sect, loops])
     loop_sync = LoopSync(   LOOP_RAD_SYNC,
                             int(TOTAL_X_MARGIN+(width/2)),
-                            int(MARGIN+height*COUNT_ROWS+LOOP_RAD_SYNC+TOTAL_Y_MARGIN), 
+                            int(MARGIN+height*COUNT_ROWS+LOOP_RAD_SYNC+TOTAL_Y_MARGIN),
                             mixer_channel, 
-                            mixer_event, 
+                            mixer_event,
                             mixer_metro_time, 
-                            mixer_length_loop, 
                             mixer_tick
                             )
     main_process(screen, bg,  list_loops, 
@@ -90,6 +85,8 @@ def main():
                 timer, mixer_tick)
     mixer_event.value = QUIT
     pygame.quit()
+    if mixer:
+        mixer.join()
     return 'Quit!'
  
 
@@ -224,7 +221,6 @@ def main_process(screen, bg,
         pygame.display.update()     # update all views
         timer.tick(MAIN_TICK)
     print('Good buy!')
-    
     return True
     
 #    
