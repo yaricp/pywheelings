@@ -32,9 +32,10 @@ def main():
     total_dict_loops = {}
     mixer_event = Value('i', 1000)
     mixer_channel = Value('i', 0)
-    mixer_metro_time = Value('i', DEFAULT_METRO_TIME)
+    mixer_metro_time = Value('d', DEFAULT_METRO_TIME)
     mixer_duration = Value('d', DEFAULT_LOOP_LENGTH)
     mixer_tick = Value('i', 0)
+    mixer_time_tick = Value('d', 0)
     mixer = Process( target = mixer_loops, 
                     args = (mixer_event,
                             mixer_channel,
@@ -62,6 +63,7 @@ def main():
                         int(x), int(y), 
                         mixer_channel, 
                         mixer_event, 
+                        mixer_metro_time, 
                         mixer_tick, 
                         mixer_duration)
             total_dict_loops.update({loop.id: loop})

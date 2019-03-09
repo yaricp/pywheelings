@@ -22,6 +22,7 @@ class Loop(sprite.Sprite):
     def __init__(self, rad,  x, y, 
                         mixer_channel, 
                         mixer_event, 
+                        mixer_metro_time, 
                         mixer_tick, 
                         mixer_duration):
         sprite.Sprite.__init__(self)
@@ -41,7 +42,9 @@ class Loop(sprite.Sprite):
         self.mixer_event = mixer_event
         self.mixer_channel = mixer_channel
         self.mixer_tick = mixer_tick
+        self.mixer_metro_time = mixer_metro_time
         self.mixer_duration = mixer_duration
+        print('self.mixer_metro_time: ', self.mixer_metro_time.value) 
         
         self.delta = 0
         self.__line_delta = 0
@@ -95,13 +98,13 @@ class Loop(sprite.Sprite):
         elif e == REC_PLAY_LOOP_KEY:
             print('ID: ', self.id)
             if not self.has_sound and not self.recording:
-                print(' loop start record')
+                print('loop start record: ', time.time())
                 self.start_record()
             else:
                 if self.recording:
                     print('loop stop record start play')
                     self.stop_record()
-                    self.start_play()
+                    #self.start_play()
                 elif not self.playing:
                     print('loop start play')
                     self.start_play()
@@ -165,7 +168,8 @@ class Loop(sprite.Sprite):
     def stop_record(self):
         print('send stop record to mixer')
         self.recording = False
-        self.length_sound = time.time() - self.__time_start
+        #self.length_sound = time.time() - self.__time_start
+        self.length_sound = (self.count_ticks+1)*self.mixer_metro_time.value
         self.mixer_channel.value = self.id
         self.mixer_duration.value = self.length_sound
         self.mixer_event.value = STOP_RECORD

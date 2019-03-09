@@ -30,6 +30,7 @@ def mixer_loops(event, channel, metro_time, tick, duration):
     m = Metro(time=t)
     print('m: ', m)
     def send_tick():
+        print('tick:',  time.time())
         tick.value = 1
     tf = TrigFunc(m, send_tick)
     start_play_metro = Trig()
@@ -43,23 +44,28 @@ def mixer_loops(event, channel, metro_time, tick, duration):
         e = event.value
         ch = channel.value
         rec_play_dur = duration.value
+       
         
         if ch == 0 and e == 1000:
-            list_for_del = []
-            for tmp_ch in temp_tables:
-                dur = play_tables[tmp_ch][2]
-                if (dur - round(time.time() - temp_tables[tmp_ch], 5)) < float(t):
-                    list_for_del.append(tmp_ch)
-                    #print('for del : ', tmp_ch, time.time())
-            for id_for_del in list_for_del:
-                if id_for_del in temp_tables:
-                    #print('del')
-                    del temp_tables[id_for_del]
+#            list_for_del = []
+#            for tmp_ch in temp_tables:
+#                dur = play_tables[tmp_ch][2]
+#                if (dur - round(time.time() - temp_tables[tmp_ch], 5)) < float(t):
+#                    list_for_del.append(tmp_ch)
+#                    #print('for del : ', tmp_ch, time.time())
+#            for id_for_del in list_for_del:
+#                if id_for_del in temp_tables:
+#                    #print('del')
+#                    del temp_tables[id_for_del]
             for play_t in play_tables:
-                if play_t not in temp_tables and tick.value == 1:
-                    #print('new circlwe loop: ', play_t)
-                    play_tables[play_t][1].play()
-                    temp_tables.update({play_t: time.time()})
+                if play_tables[play_t][1] == 0 and tick.value == 1:
+                    print('change start time')
+                    print('delta: ',0)
+                    play_tables[play_t][1] = 1
+                    play_tables[play_t][0].stop()
+                    play_tables[play_t][0].setStart(0)
+                    play_tables[play_t][0].play()
+#                    temp_tables.update({play_t: time.time()})
 
         if e == NEW_LOOP and ch and not (ch in rec_tables):
             name = "/audio-%d" % ch
@@ -74,6 +80,7 @@ def mixer_loops(event, channel, metro_time, tick, duration):
             else:
                 share_tab = sh_tables[ch]
             scan_tab = TableScan(share_tab)
+            print('start rec:', time.time())
             table_rec = TableRec(scan_tab, table=newTable, fadetime=0).play()
             mixer.addInput(ch, scan_tab)
             mixer.setAmp(ch,0,NORMAL_VALUE_LOOP*0.6)
@@ -86,16 +93,20 @@ def mixer_loops(event, channel, metro_time, tick, duration):
             mixer.delInput(ch)
             dur = 0
             if not ch in play_tables:
-                
-                play_tables.update({ch: [newTable, Trig(), rec_play_dur]})
-                looper = TrigEnv(play_tables[ch][1], 
-                                table=play_tables[ch][0], 
-                                dur=play_tables[ch][0].getDur(),
-                                mul=1)
+                looper = Looper( table=newTable, 
+                                start=2 * 0.073913, dur=rec_play_dur, 
+                                mul=1).out()
+                play_tables.update({ch: [looper, 0]})
+#                looper = TrigEnv(play_tables[ch][1], 
+#                                table=play_tables[ch][0], 
+#                                dur=play_tables[ch][0].getDur(),
+#                                mul=1)
                 print('mixer start table with duration: ', rec_play_dur)
+                print('t:', time.time())
+                print('delta: ',  2 * 0.073913)
 
             mixer.addInput(ch, looper)
-            mixer.setAmp(ch,0,.1)
+            mixer.setAmp(ch,0,.5)
             event.value = 1000
             channel.value = 0
             
