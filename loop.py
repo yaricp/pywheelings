@@ -168,8 +168,14 @@ class Loop(sprite.Sprite):
     def stop_record(self):
         print('send stop record to mixer')
         self.recording = False
+        self.playing = True
         #self.length_sound = time.time() - self.__time_start
-        self.length_sound = (self.count_ticks+1)*self.mixer_metro_time.value
+        delta = (1 - self.count_ticks)*self.mixer_metro_time.value - time.time() - self.__time_start
+        if delta >= 0:
+            add_tick = 1
+        else:
+            add_tick = 0
+        self.length_sound = (self.count_ticks + add_tick)*self.mixer_metro_time.value
         self.mixer_channel.value = self.id
         self.mixer_duration.value = self.length_sound
         self.mixer_event.value = STOP_RECORD
@@ -204,6 +210,8 @@ class Loop(sprite.Sprite):
             new_rad = int(round(self.current_vol*self.rad))
             if new_rad >= self.rad:
                 new_rad = self.rad
+            if new_rad <= 0:
+                new_rad = 0
             self.rad_vol = new_rad
             
     def erase_sound(self):
@@ -249,9 +257,9 @@ class Loop(sprite.Sprite):
         #print('tick: ', self.mixer_tick.value)
         if self.mixer_tick.value == 1:
             if self.recording:
-                print('recording')
+                #print('recording')
                 self.count_ticks += 1
-                print('count+')
+                print('count+ ', self.count_ticks)
             self.tick_checked = True
 
    

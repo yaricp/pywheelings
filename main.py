@@ -243,4 +243,5 @@ def main_process(screen, bg,
 if __name__ == "__main__":
     res = main()
     print(res)
+    sys.exit(0)
 
