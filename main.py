@@ -224,20 +224,6 @@ def main_process(screen, bg,
         timer.tick(MAIN_TICK)
     print('Good buy!')
     return True
-    
-#    
-#def start_rec_play_by_tick(tick, total_dict_loops, loop_sync):
-#    
-#    if tick.value == 1:
-#        for loop in total_dict_loops.values():
-#            #print(loop)
-#            if loop.recording:
-#                loop.start_record()
-#            if loop.playing:
-#                loop.start_play()
-#        if loop_sync.playing:
-#            loop_sync.play()
-#    tick.value = 0
 
 
 if __name__ == "__main__":

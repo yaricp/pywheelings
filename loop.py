@@ -10,7 +10,6 @@ except ImportError:
     from processing import Value,  Process,  Condition
 
 
-from pyo_sound import rec_process
 from settings import *
 
 
@@ -57,11 +56,6 @@ class Loop(sprite.Sprite):
         self.playing = False
         self.__time_start = None
         self.recording = False
-        #Shared with record proccess
-        self.rec_event = Value('i', 100)
-        self.rec_proc_id = Value('i', self.id)
-        self.rec_duration = Value('d', DEFAULT_LOOP_LENGTH)
-        
         self.muted = False
         
         self.rect = Rect(x-rad, y-rad, 2*rad, 2*rad)
@@ -155,23 +149,19 @@ class Loop(sprite.Sprite):
         self.mixer_channel.value = self.id
         self.mixer_duration.value = self.length_sound
         self.mixer_event.value = NEW_LOOP
-        self.rec_process = Process( target = rec_process, 
-                                    args = (self.rec_proc_id,
-                                            self.rec_event, 
-                                            self.rec_duration)
-                                    ).start()
-        self.rec_proc_id.value = self.id
-        self.rec_duration.value = self.length_sound
-        self.rec_event.value = RECORD
         self.__time_start = time.time()
     
     def stop_record(self):
         print('send stop record to mixer')
+        if self.count_ticks < 1:
+            return False
         self.recording = False
         self.playing = True
         #self.length_sound = time.time() - self.__time_start
-        delta = (1 - self.count_ticks)*self.mixer_metro_time.value - time.time() - self.__time_start
-        if delta >= 0:
+        full_time = time.time() - self.__time_start
+        full_time_by_ticks = self.count_ticks*self.mixer_metro_time.value
+        delta =full_time - full_time_by_ticks
+        if delta >= HUMAN_FACTOR/100:
             add_tick = 1
         else:
             add_tick = 0
@@ -179,7 +169,6 @@ class Loop(sprite.Sprite):
         self.mixer_channel.value = self.id
         self.mixer_duration.value = self.length_sound
         self.mixer_event.value = STOP_RECORD
-        self.rec_event.value = STOP_RECORD
         self.__time_start = time.time()
         print('stop rec length: ', self.length_sound)
         self.has_sound = True
