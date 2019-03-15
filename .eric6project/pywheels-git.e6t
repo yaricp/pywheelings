@@ -1,2218 +1,2218 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project pywheels-git -->
-<!-- Saved: 2019-03-13, 14:24:39 -->
+<!-- Saved: 2019-03-15, 23:51:25 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="3" uid="{065e3252-f159-4ab6-a1e5-b9abf677cb3e}">
+  <Task priority="1" completed="False" type="3" uid="{efe04320-4f59-43c6-a097-2dabf2946d25}">
     <Summary>NOTE: this mapping is incomplete.  If your language is missing, please</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/locale.py</Filename>
       <Linenumber>1782</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{3fc12390-66dc-4564-810e-b8fd5ca9861a}">
+  <Task priority="1" completed="False" type="3" uid="{6e6322d0-6d50-49c5-94d3-87536250754a}">
     <Summary>NOTE:'</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/locale.py</Filename>
       <Linenumber>2043</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{429894f2-670a-4832-a735-466c20d24adb}">
+  <Task priority="1" completed="False" type="1" uid="{43747839-ea5f-4bd4-a252-5800013e1ff8}">
     <Summary>TODO: Try to get these passing down from the command?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/cli/base_command.py</Filename>
       <Linenumber>160</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{c497ee00-2269-469c-9f33-7c1b541a7ce3}">
+  <Task priority="1" completed="False" type="0" uid="{2d5e464b-0f87-40b8-b888-306c141a317a}">
     <Summary>FIXME: all commands should return an exit status</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/cli/base_command.py</Filename>
       <Linenumber>180</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{d57b15c3-2edc-4cb3-87f5-eabd55dc635f}">
+  <Task priority="1" completed="False" type="3" uid="{26ce416b-4be2-42a1-b2cf-647b66918203}">
     <Summary>NOTE: As a side-effect, options.require_hashes and</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/cli/base_command.py</Filename>
       <Linenumber>254</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{43815fcd-f837-46d0-88da-6897a5f1c65f}">
+  <Task priority="1" completed="False" type="3" uid="{d0a65801-c781-4ca0-b0b3-66c6d02de7ca}">
     <Summary>NOTE: There is some duplication here from pip check</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/commands/install.py</Filename>
       <Linenumber>509</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{93f89fa6-d344-4e36-bbed-12baf3cea65f}">
+  <Task priority="1" completed="False" type="3" uid="{ea92fe6e-8845-4b5e-95df-9516b0a4da38}">
     <Summary>NOTE: XMLRPC Client is not annotated in typeshed as on 2017-07-17, which is</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/commands/search.py</Filename>
       <Linenumber>10</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{c62b7326-c2a0-4f56-8785-237df2b7aa23}">
+  <Task priority="1" completed="False" type="3" uid="{026429e2-d9d7-43c8-b953-2b5bdfa1ceb8}">
     <Summary>NOTE: Maybe use the optionx attribute to normalize keynames.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/configuration.py</Filename>
       <Linenumber>42</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{591c5e85-b55f-4f08-865a-89f7ebedf106}">
+  <Task priority="1" completed="False" type="3" uid="{46e7962f-0b39-46f2-8b83-f8df73c6b011}">
     <Summary>NOTE: Dictionaries are not populated if not loaded. So, conditionals</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/configuration.py</Filename>
       <Linenumber>236</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{76bbfdc3-dd48-458e-a95c-042a0965ee3e}">
+  <Task priority="1" completed="False" type="3" uid="{a73357f1-d27e-4d92-8085-a0e9f164405c}">
     <Summary>NOTE: XMLRPC Client is not annotated in typeshed as on 2017-07-17, which is</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/download.py</Filename>
       <Linenumber>24</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{9272e0ac-0321-4966-91af-dfd9b3211dd6}">
+  <Task priority="1" completed="False" type="0" uid="{587a22d3-051c-4a5d-ac06-e22783bdb312}">
     <Summary>FIXME: catch some errors</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/download.py</Filename>
       <Linenumber>439</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{ce374ae3-9d30-4a68-b7f5-74a655bb1415}">
+  <Task priority="1" completed="False" type="0" uid="{4e7a0b2d-81e1-4d7e-90bb-9b265b49c347}">
     <Summary>FIXME: keep src in cwd for now (it is not a temporary folder)</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/locations.py</Filename>
       <Linenumber>77</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{15a90313-2bea-4a0c-8868-3d65e666a53e}">
+  <Task priority="1" completed="False" type="3" uid="{6b22a373-8088-4fc8-828b-1f5f24be3352}">
     <Summary>NOTE: Ignoring type since mypy can't find attributes on 'Command'</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/locations.py</Filename>
       <Linenumber>167</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{5b9a5b3d-c438-41c8-8906-3677b51e1adc}">
+  <Task priority="1" completed="False" type="3" uid="{aa858c4e-d996-460f-8c82-ef053fd81f71}">
     <Summary>NOTE: setting user or home has the side-effect of creating the home dir</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/locations.py</Filename>
       <Linenumber>170</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{10ad6fe0-b9f7-4480-b3eb-c20f4784b4da}">
+  <Task priority="1" completed="False" type="0" uid="{0b350d7a-95b2-467d-a330-5369b573100f}">
     <Summary>FIXME:https://github.com/pypa/pip/issues/1112</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/operations/prepare.py</Filename>
       <Linenumber>94</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{04ce9073-cd0a-4865-8e66-62b2dfb35ac8}">
+  <Task priority="1" completed="False" type="1" uid="{c1e6519a-b16a-49ba-a483-ee15555884af}">
     <Summary>TODO: Modify to reduce indentation needed</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/operations/prepare.py</Filename>
       <Linenumber>218</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{a903397f-e8ed-4f17-8de3-31f17fb62dcf}">
+  <Task priority="1" completed="False" type="1" uid="{502c51bc-38c0-40f1-b2e3-5625203562e8}">
     <Summary>TODO: Breakup into smaller functions</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/operations/prepare.py</Filename>
       <Linenumber>241</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{3a63c847-85a7-4c72-8ba5-59642c1df1cc}">
+  <Task priority="1" completed="False" type="0" uid="{d18e9a98-f45c-4182-95ba-f7409beef675}">
     <Summary>FIXME: this won't upgrade when there's an existing</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/operations/prepare.py</Filename>
       <Linenumber>257</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{f416aeda-d97a-4b6e-bf4d-57ec292c5728}">
+  <Task priority="1" completed="False" type="1" uid="{c278987b-64fb-4ba8-ab7a-5384a4da5b8b}">
     <Summary>TODO: Why not use `comes_from='-r {} (line {})'` here as well?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/req/req_file.py</Filename>
       <Linenumber>221</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{02182f40-7eaa-4073-9229-1c99c7aacbeb}">
+  <Task priority="1" completed="False" type="0" uid="{8fc6e07d-9074-43b0-b558-17300c72f7fd}">
     <Summary>FIXME: it would be nice to keep track of the source</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/req/req_file.py</Filename>
       <Linenumber>242</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{041693af-ec5c-4d73-86a1-8ee63b1919b0}">
+  <Task priority="1" completed="False" type="3" uid="{f3482eb1-a55a-4eba-a2d8-b8ee3dc33b5b}">
     <Summary>NOTE: mypy disallows assigning to a method</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/req/req_file.py</Filename>
       <Linenumber>294</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{032df4fa-4dc5-44ca-8f1e-80f25cc8de63}">
+  <Task priority="1" completed="False" type="1" uid="{e08f39c7-dce1-481b-9010-fdf8a61e25a6}">
     <Summary>TODO: handle space after '\'.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/req/req_file.py</Filename>
       <Linenumber>328</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{317f9a82-2c89-4174-8936-2339b85a462d}">
+  <Task priority="1" completed="False" type="0" uid="{20da3193-bc4f-492c-904a-1ded75eddc3f}">
     <Summary>FIXME: Is there a better place to create the build_dir? (hg and bzr</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/req/req_install.py</Filename>
       <Linenumber>314</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{04ce6fe7-2f0d-4a62-8d97-ea00992dd698}">
+  <Task priority="1" completed="False" type="0" uid="{06c24852-f042-4acd-a7e8-7218c6dd89c1}">
     <Summary>FIXME: should we do --install-headers here too?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/req/req_install.py</Filename>
       <Linenumber>747</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{412259c9-69cd-4baf-8125-7b618e582dc8}">
+  <Task priority="1" completed="False" type="1" uid="{1d36786e-1325-4338-ab91-b3b9b4a1a932}">
     <Summary>TODO: Investigate if this should be kept in InstallRequirement</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/req/req_install.py</Filename>
       <Linenumber>834</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{801b78d6-db7a-4cf3-a1ba-43161a912e21}">
+  <Task priority="1" completed="False" type="0" uid="{1a896f93-1377-4fa6-bf45-2645c93a9031}">
     <Summary>FIXME: put the record somewhere</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/req/req_install.py</Filename>
       <Linenumber>971</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{7f01478c-1586-4b0b-82d6-eeaa40e4210c}">
+  <Task priority="1" completed="False" type="0" uid="{a06a3d35-1c30-48bc-b258-2188c75fba72}">
     <Summary>FIXME: should this be an error?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/req/req_install.py</Filename>
       <Linenumber>972</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{a44d42e6-8dc4-4bec-9721-55e8dc4c1b1e}">
+  <Task priority="1" completed="False" type="0" uid="{dc8ae35b-8709-4021-8a68-8a3e60d2bb91}">
     <Summary>FIXME: what about other normalizations?  E.g., _ vs. -?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/req/req_set.py</Filename>
       <Linenumber>127</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{68b7296b-3316-470b-8d02-53892618cebd}">
+  <Task priority="1" completed="False" type="0" uid="{3245c8fd-0d56-4ce9-9790-0f703657cd89}">
     <Summary>FIXME: need a test for this elif block</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/req/req_uninstall.py</Filename>
       <Linenumber>458</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{73dae516-e6c4-498f-8723-028fe738244f}">
+  <Task priority="1" completed="False" type="3" uid="{28fd23b8-d31d-4615-8f60-c1ab2772fb0a}">
     <Summary>NOTE: This would eventually be replaced with a cache that can give</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/resolve.py</Filename>
       <Linenumber>71</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{7157f593-e8b1-4583-b5df-b99b0332e646}">
+  <Task priority="1" completed="False" type="2" uid="{1226101a-f1e0-4711-ad7a-df3a8948e32b}">
     <Summary>WARNING: time of check vulnerability, but best we can do w/o NOFOLLOW</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/utils/compat.py</Filename>
       <Linenumber>164</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{0c0bf898-ed78-47fd-85dd-2a89b0e29903}">
+  <Task priority="1" completed="False" type="3" uid="{36605ab3-da18-4678-a2bb-717a6d9387d5}">
     <Summary>NOTE: retrying is not annotated in typeshed as on 2017-07-17, which is</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/utils/misc.py</Filename>
       <Linenumber>22</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{25408fab-3488-4c98-a2cf-4d1f126a8a9f}">
+  <Task priority="1" completed="False" type="0" uid="{fff90ee8-4ca3-4a99-9aa4-ffec7fc13771}">
     <Summary>FIXME: handle?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/utils/misc.py</Filename>
       <Linenumber>639</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{27050f06-d5a5-4367-868f-1f94c8f9f32d}">
+  <Task priority="1" completed="False" type="0" uid="{cc5b5c82-4a64-4fdd-a39c-51e51d5b5ed6}">
     <Summary>FIXME: magic signatures?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/utils/misc.py</Filename>
       <Linenumber>640</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{817452d5-94d5-4963-a5c4-ee1a1d40bdff}">
+  <Task priority="1" completed="False" type="3" uid="{c43834e9-32c2-41db-bf5a-5396b063d08c}">
     <Summary>NOTE: The &quot;type: ignore&quot; comments on the following classes are there to</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/utils/ui.py</Filename>
       <Linenumber>201</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{17a3ae38-7fae-43cd-9a50-6035529cf20a}">
+  <Task priority="1" completed="False" type="0" uid="{97edd9dd-8598-487b-afab-ebe04c03d475}">
     <Summary>FIXME: should we warn?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/vcs/subversion.py</Filename>
       <Linenumber>78</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{e087a342-9330-42fc-9ba4-d8394ae12be1}">
+  <Task priority="1" completed="False" type="1" uid="{8b8655ae-9967-4cdc-bcf4-1afa811c8821}">
     <Summary>TODO: Investigate and break this up.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/wheel.py</Filename>
       <Linenumber>313</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{6af54e67-fe22-4537-b33e-62dafde5128e}">
+  <Task priority="1" completed="False" type="1" uid="{bec860f8-a6bd-490e-87a1-3396c6ac3ce4}">
     <Summary>TODO: Look into moving this into a dedicated class for representing an</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/wheel.py</Filename>
       <Linenumber>314</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{cf24c583-cdf9-4c77-b0da-6c4325d52fc8}">
+  <Task priority="1" completed="False" type="1" uid="{4a528b34-38df-4723-966d-45a8db1ae54c}">
     <Summary>TODO: Maybe move the class into the models sub-package</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/wheel.py</Filename>
       <Linenumber>669</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{71ca5f76-0608-4930-85ae-b4ae1bd766d1}">
+  <Task priority="1" completed="False" type="1" uid="{b72d1070-5aef-47fd-a141-6cef44448689}">
     <Summary>TODO: Maybe move the install code into this class</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/wheel.py</Filename>
       <Linenumber>670</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{1871dbd8-af1e-462b-a127-1871844e699a}">
+  <Task priority="1" completed="False" type="3" uid="{bd8ea1dc-e8ab-4560-9bf0-8070d62edb7e}">
     <Summary>NOTE: Eventually, we'd want to also -S to the flags here, when we're</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_internal/wheel.py</Filename>
       <Linenumber>900</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{1a85c912-e341-4edd-b831-e37925289c3c}">
+  <Task priority="1" completed="False" type="2" uid="{4c638d5a-5eaa-468d-aad8-de00c48ee54d}">
     <Summary>WARNING: Do not use this on Windows. See the Vista-Fail note above for why.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/appdirs.py</Filename>
       <Linenumber>129</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{74571102-81f2-4bab-a849-437d42e20fa8}">
+  <Task priority="1" completed="False" type="2" uid="{e818d52d-d512-4418-a419-dcf14b06083d}">
     <Summary>WARNING: Do not use this on Windows. See the Vista-Fail note above for why.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/appdirs.py</Filename>
       <Linenumber>234</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{ec323ecd-0905-477d-b154-7bf7672df1e8}">
+  <Task priority="1" completed="False" type="3" uid="{d72cea90-679c-4daa-8841-2e14a57a13fb}">
     <Summary>NOTE: In order to use the FileCache you must have</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/cachecontrol/caches/file_cache.py</Filename>
       <Linenumber>77</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{1dcdff59-dbbb-4a27-8bc2-9b845bd6276d}">
+  <Task priority="1" completed="False" type="3" uid="{2cd0a045-cac2-4501-bc34-6dcaea616fe9}">
     <Summary>NOTE: This method should not change as some may depend on it.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/cachecontrol/caches/file_cache.py</Filename>
       <Linenumber>102</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{41eaa902-b6e7-4310-af92-47dc41f43273}">
+  <Task priority="1" completed="False" type="1" uid="{da49d514-8e2e-4e19-b546-7a441461547f}">
     <Summary>TODO: There is an assumption that the result will be a</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/cachecontrol/controller.py</Filename>
       <Linenumber>181</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{8a82c0f2-7e3e-405d-aa96-12382d8972d6}">
+  <Task priority="1" completed="False" type="1" uid="{653adfb2-7129-4acd-aeae-753b1bb8fe2e}">
     <Summary>TODO: Add some logging here...</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/cachecontrol/filewrapper.py</Filename>
       <Linenumber>47</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{623bff10-87ea-4d87-b31b-6937391b283d}">
+  <Task priority="1" completed="False" type="3" uid="{bddfce0f-0743-4540-a21b-35eba5f9ea40}">
     <Summary>NOTE: This SHOULD always include some Warning header to</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/cachecontrol/heuristics.py</Filename>
       <Linenumber>36</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{8d1e0014-2187-4ef9-afc9-8eecf74b790e}">
+  <Task priority="1" completed="False" type="3" uid="{f3b4b979-6bd6-4180-8b92-3a6e9cee7512}">
     <Summary>NOTE: 99% sure this is dead code. I'm only leaving it</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/cachecontrol/serialize.py</Filename>
       <Linenumber>28</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{ce111374-849b-41ef-8d86-46b44b0d0245}">
+  <Task priority="1" completed="False" type="3" uid="{68d98613-f9de-4605-9940-d70a9ba6238b}">
     <Summary>NOTE: This is all a bit weird, but it's really important that on</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/cachecontrol/serialize.py</Filename>
       <Linenumber>40</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{cc2cac8f-2517-41bc-b22f-639e7eb8b4ff}">
+  <Task priority="1" completed="False" type="3" uid="{4553888b-56fd-4039-b10c-7cb0dc1a3a76}">
     <Summary>NOTE: CP949 is a superset of EUC-KR, so the distribution should be</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/chardet/cp949prober.py</Filename>
       <Linenumber>38</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{8b86eeaa-ae87-4276-aa7a-fe5eab8fb1ac}">
+  <Task priority="1" completed="False" type="1" uid="{756ac6e0-0bd5-459a-b083-9f6e21c15c22}">
     <Summary>TODO: Restore Hungarian encodings (iso-8859-2 and windows-1250)</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/chardet/sbcsgroupprober.py</Filename>
       <Linenumber>57</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{cf03af2a-08c5-4f08-9e6a-682536181699}">
+  <Task priority="1" completed="False" type="3" uid="{3c813e4f-f94e-45c0-93da-2d59cd146f00}">
     <Summary>NOTE: This name was introduced by Apple in OSX 10.5 and</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/distlib/_backport/sysconfig.py</Filename>
       <Linenumber>546</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{784fc740-56b8-46eb-8a38-1bb3da0f92e8}">
+  <Task priority="1" completed="False" type="3" uid="{bbf4ecf4-3a0a-4087-8112-6b7a2273f23e}">
     <Summary>NOTE: This API may change in the future.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/distlib/database.py</Filename>
       <Linenumber>645</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{48b064c3-0ffb-4d39-9f9b-6017ea40e5ad}">
+  <Task priority="1" completed="False" type="1" uid="{2bd42b3e-34e0-4088-bcb0-d923c51a6219}">
     <Summary>TODO: other fields such as contacts</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/distlib/metadata.py</Filename>
       <Linenumber>1044</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{7937056e-0eb3-462c-aa1a-5a4105eb727e}">
+  <Task priority="1" completed="False" type="1" uid="{92aaa0d9-1b13-4313-98d6-771310324c0f}">
     <Summary>TODO: fill this out</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/distlib/version.py</Filename>
       <Linenumber>259</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{324c8a53-db5a-4a8c-8bce-b6cbbba5bb2e}">
+  <Task priority="1" completed="False" type="1" uid="{0972a40b-14d5-4662-bb3e-655f68694138}">
     <Summary>TODO: unintended side-effect on, e.g., &quot;2003.05.09&quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/distlib/version.py</Filename>
       <Linenumber>507</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{80b48e15-ee85-4c97-9654-0b0124e556aa}">
+  <Task priority="1" completed="False" type="1" uid="{e9f4b7bc-915a-405a-b886-bbbd77b02308}">
     <Summary>TODO: Add namespace support here</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/html5lib/serializer.py</Filename>
       <Linenumber>302</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{e2311132-8b57-4941-8296-0d9c907bffea}">
+  <Task priority="1" completed="False" type="0" uid="{b7918d1b-c4d0-4bc9-9412-32cd1a9cfe8a}">
     <Summary>FIXME: What to do?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/html5lib/treeadapters/genshi.py</Filename>
       <Linenumber>51</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{dbb8bc91-23e4-488e-8e63-5b2c180711d2}">
+  <Task priority="1" completed="False" type="1" uid="{692239cf-f6cf-41e4-b508-ea9dfa7238a8}">
     <Summary>TODO: Can we test whether something is contained within a requirement?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/packaging/requirements.py</Filename>
       <Linenumber>86</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{8311c3b6-81a6-4c38-b723-1ebe0c548669}">
+  <Task priority="1" completed="False" type="1" uid="{749d4325-82dd-4b12-ac92-5a495614f09a}">
     <Summary>TODO: Can we normalize the name and extra name?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/packaging/requirements.py</Filename>
       <Linenumber>89</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{3ced8bcb-a284-46f9-a9f9-48f4422b1075}">
+  <Task priority="1" completed="False" type="2" uid="{daea187a-01ef-4d55-b694-c403ab0be4b2}">
     <Summary>WARNING: 3,  # Yellow</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/pep517/colorlog.py</Filename>
       <Linenumber>45</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{b870aefd-cc4c-4a1d-a0fd-93f74db01234}">
+  <Task priority="1" completed="False" type="1" uid="{2ad48d48-7f3e-4b9a-9cb0-6ae8e67f3792}">
     <Summary>TODO: Is this over-engineered? Maybe frontends only need to</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/pep517/wrappers.py</Filename>
       <Linenumber>51</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{1653ddbe-95f8-43d0-80a9-3210fed9773a}">
+  <Task priority="1" completed="False" type="3" uid="{5000ee91-9a3d-41c1-b25a-27f5a3a8e9b3}">
     <Summary>NOTE: this returns a *copy* of the original :class:`ParserElement` object;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/pyparsing.py</Filename>
       <Linenumber>1348</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{99f0234f-d5b8-49e1-83b3-c7b6d83272b2}">
+  <Task priority="1" completed="False" type="1" uid="{23394dba-8541-409b-b17d-942fe98fc3e9}">
     <Summary>TODO: Remove this in 3.0.0: see #2811</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/requests/adapters.py</Filename>
       <Linenumber>502</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{f41ed2b3-b3c7-4563-83c1-6f357c88539e}">
+  <Task priority="1" completed="False" type="1" uid="{c264c302-c2d1-4aa9-a423-39a1a0cb8578}">
     <Summary>TODO: response is the only one</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/requests/hooks.py</Filename>
       <Linenumber>20</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{a6425683-b750-48a9-aa53-a4dabd695b16}">
+  <Task priority="1" completed="False" type="1" uid="{f0fac000-ebc1-4166-99a5-835f5546a65c}">
     <Summary>TODO: Fix tunnel so it doesn't depend on self.sock state.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/urllib3/connection.py</Filename>
       <Linenumber>175</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{37fdf5ec-34d9-4764-8390-bfed1b76d8fe}">
+  <Task priority="1" completed="False" type="1" uid="{b4a184d9-153d-4c19-b65c-59c55d84739e}">
     <Summary>TODO: Add optional support for socket.gethostbyname checking.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/urllib3/connectionpool.py</Filename>
       <Linenumber>433</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{2af9fb59-253c-4d40-8b6d-ef625b8ede9a}">
+  <Task priority="1" completed="False" type="1" uid="{770158f3-b943-4653-b446-bf76c965a21a}">
     <Summary>TODO: should I do clean shutdown here? Do I have to?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/urllib3/contrib/securetransport.py</Filename>
       <Linenumber>590</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{d36705e7-1325-486d-a367-cd03d068a0e7}">
+  <Task priority="1" completed="False" type="1" uid="{26776748-c41d-4204-a389-fb26b69a17d3}">
     <Summary>TODO: Well, crap.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/urllib3/contrib/securetransport.py</Filename>
       <Linenumber>727</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{970c6a13-0822-4084-96a3-b552d5b68404}">
+  <Task priority="1" completed="False" type="1" uid="{1e2ef8c8-95d7-4054-af4a-79947fd4b028}">
     <Summary>TODO: Update in line with above.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/urllib3/contrib/securetransport.py</Filename>
       <Linenumber>737</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{1923e4b6-345a-4db7-93f0-6267b3a1b9b5}">
+  <Task priority="1" completed="False" type="0" uid="{1dc2568a-4b65-4ece-8020-81b1325cd92b}">
     <Summary>FIXME: Ideally we'd like to include the url in the ReadTimeoutError but</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/urllib3/response.py</Filename>
       <Linenumber>363</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{18c5bf71-3c70-4045-90ba-b2dece8109b5}">
+  <Task priority="1" completed="False" type="0" uid="{444cd54a-55b0-4f5b-90a4-1938faaaf1f8}">
     <Summary>FIXME: Is there a better way to differentiate between SSLErrors?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/urllib3/response.py</Filename>
       <Linenumber>368</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{20e40cf9-716b-434e-84f6-59ab85ee460f}">
+  <Task priority="1" completed="False" type="0" uid="{29ce65dc-2873-45b1-8b45-6ea236607c5c}">
     <Summary>FIXME: Rewrite this method and make it a class with a better structured logic.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:32</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/urllib3/response.py</Filename>
       <Linenumber>644</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{b1efddf0-6980-46e8-8950-b87ee3e0fedc}">
+  <Task priority="1" completed="False" type="0" uid="{53b05755-0fb2-4a66-a901-5f0cef01a7b8}">
     <Summary>FIXME: Can we do this somehow without accessing private httplib _method?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pip/_vendor/urllib3/util/response.py</Filename>
       <Linenumber>83</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{e26b1b96-5707-492d-964a-26feabb3867e}">
+  <Task priority="1" completed="False" type="2" uid="{3004f6e9-ec92-4c45-81b0-0d3ceb316eac}">
     <Summary>WARNING: Do not use this on Windows. See the Vista-Fail note above for why.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pkg_resources/_vendor/appdirs.py</Filename>
       <Linenumber>129</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{f671aab0-774f-46f5-8a6c-1717a20da4a2}">
+  <Task priority="1" completed="False" type="2" uid="{c9706ce2-9f1d-4b85-ae2e-b0ce9175b323}">
     <Summary>WARNING: Do not use this on Windows. See the Vista-Fail note above for why.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pkg_resources/_vendor/appdirs.py</Filename>
       <Linenumber>234</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{0e124d2d-1245-42b7-bd9c-0ce988bc42e0}">
+  <Task priority="1" completed="False" type="1" uid="{a9fd5bd0-337b-4778-a569-48ba0008fffd}">
     <Summary>TODO: Can we test whether something is contained within a requirement?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pkg_resources/_vendor/packaging/requirements.py</Filename>
       <Linenumber>83</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{417e91b4-2f20-4750-a60f-b87a3d56b7c9}">
+  <Task priority="1" completed="False" type="1" uid="{4644a224-cfcb-4bb9-a275-8c679fba005f}">
     <Summary>TODO: Can we normalize the name and extra name?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pkg_resources/_vendor/packaging/requirements.py</Filename>
       <Linenumber>86</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{7282152f-3887-42b1-82ec-16587296a489}">
+  <Task priority="1" completed="False" type="3" uid="{0055c7b6-acfa-48c3-ba09-5a13ead85372}">
     <Summary>NOTE: this returns a *copy* of the original C{ParserElement} object;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pkg_resources/_vendor/pyparsing.py</Filename>
       <Linenumber>1185</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{44ab9203-01ac-4740-8b45-96b98da2a650}">
+  <Task priority="1" completed="False" type="3" uid="{da3b951c-fba9-4d89-abd7-2267e1b9e8fc}">
     <Summary>NOTE: the pygame scale function uses mmx/sse if available, and can be run</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/examples/headless_no_windows_needed.py</Filename>
       <Linenumber>5</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{454b2cc5-cd05-4106-9ce1-e23123839100}">
+  <Task priority="1" completed="False" type="1" uid="{549ceb4e-caad-4f91-9651-40da011e6a44}">
     <Summary>TODO: this is broken.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/examples/sound_array_demos.py</Filename>
       <Linenumber>213</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{dc972ffe-cb18-418b-8f4b-61c69b4fed68}">
+  <Task priority="1" completed="False" type="1" uid="{638cc65d-d3e0-48b9-b542-43cc055fe809}">
     <Summary>TODO: FIXME: HACK: need to find a good way to do this.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/gp2x/__init__.py</Filename>
       <Linenumber>12</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{cac3f644-5d96-4e20-8d90-cfbd7dea951a}">
+  <Task priority="1" completed="False" type="1" uid="{91c2cc4a-d3d3-4338-a840-acc5f6a8a2d7}">
     <Summary>TODO:</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/midi.py</Filename>
       <Linenumber>19</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{e8822a8c-afd5-4e50-8b50-52a82ac2f87d}">
+  <Task priority="1" completed="False" type="1" uid="{b9bbf2a7-971d-4fa9-9c8d-6e49af7dbaa4}">
     <Summary>TODO: find all Input and Output classes and close them first?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/midi.py</Filename>
       <Linenumber>90</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{2dcf53b0-5ac4-4403-9ae7-e30d25b13afb}">
+  <Task priority="1" completed="False" type="3" uid="{98f36a2d-7774-44f1-82bb-7279268f0c9e}">
     <Summary>NOTE: time is measured</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/midi.py</Filename>
       <Linenumber>349</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{372d4087-e4af-4e3a-b169-d1949d9a327b}">
+  <Task priority="1" completed="False" type="3" uid="{55981610-0d9b-4393-8028-cc04a7e6b4d4}">
     <Summary>NOTE: time is measured</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/midi.py</Filename>
       <Linenumber>376</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{6d4070ba-98ce-4be5-a585-62da1fbb0446}">
+  <Task priority="1" completed="False" type="1" uid="{9e364c54-cd75-423c-ae02-b34c66c5cf2d}">
     <Summary>TODO: these should be true too.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/blit_test.py</Filename>
       <Linenumber>42</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{1e7f17e1-d7f7-43ae-89a7-b57d8fdad467}">
+  <Task priority="1" completed="False" type="1" uid="{3bb2af53-ec2c-42be-9b72-f5e080df02f4}">
     <Summary>TODO:</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/cdrom_test.py</Filename>
       <Linenumber>107</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{20f6bed8-65c9-48ff-9bd7-79249f156d31}">
+  <Task priority="1" completed="False" type="1" uid="{330a9777-8bc3-49b9-8f35-86f25fb77c4f}">
     <Summary>TODO: add tests for</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:18</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/color_test.py</Filename>
       <Linenumber>43</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{3cce8f39-58fe-44fe-adad-2be31d71ea1e}">
+  <Task priority="1" completed="False" type="3" uid="{5cbe27e0-6871-4e5a-ad9c-dc8950d581cf}">
     <Summary>NOTE: assigning to a slice is currently unsupported.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/color_test.py</Filename>
       <Linenumber>254</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{559e7c52-484d-4b18-9f33-899b50245e6c}">
+  <Task priority="1" completed="False" type="1" uid="{52a4a7d8-e3bc-4ad4-b0af-866bb8ba23e7}">
     <Summary>TODO: test against statically defined verified _correct_ values</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/color_test.py</Filename>
       <Linenumber>840</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{0cd9b1ea-966b-4c27-bd97-fa8e438b66d4}">
+  <Task priority="1" completed="False" type="3" uid="{479c2a9a-5322-4a49-a0aa-3a9d138a91aa}">
     <Summary>NOTE: if I don't call pygame.quit there is a segfault.  hrmm.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/display_test.py</Filename>
       <Linenumber>36</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{700439d0-34bc-4922-a808-2eab67b2fc81}">
+  <Task priority="1" completed="False" type="1" uid="{aad82ab7-e919-4b92-8a37-d0074fb6b570}">
     <Summary>TODO: pypy skip known failure.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/font_test.py</Filename>
       <Linenumber>36</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{318308fe-401b-40dd-8a43-a8e3bdb4935f}">
+  <Task priority="1" completed="False" type="1" uid="{d0c8f6d1-9412-47e9-bc2e-c33cfe043cb7}">
     <Summary>TODO: Test more corner case outlines.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/mask_test.py</Filename>
       <Linenumber>176</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{4bded20b-16eb-4cb5-883c-908bd4c4cef6}">
+  <Task priority="1" completed="False" type="1" uid="{acaa0930-96bb-4eaf-93e8-bc456f4641ae}">
     <Summary>TODO: this should really make one bounding rect.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/mask_test.py</Filename>
       <Linenumber>386</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{c7ae8e89-85f8-4b20-9fed-7bf497a5408d}">
+  <Task priority="1" completed="False" type="1" uid="{413435c7-6eb3-446c-bdd9-91d61a256277}">
     <Summary>TODO: test a color key surface.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/mask_test.py</Filename>
       <Linenumber>422</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{e36a15cb-0cba-4310-96dd-2524f85c6499}">
+  <Task priority="1" completed="False" type="1" uid="{9202cb29-bd7f-4941-87f0-23a0e67f6de6}">
     <Summary>TODO: known pypy failure.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/math_test.py</Filename>
       <Linenumber>1390</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{23c7398d-a7a1-48cf-8ffb-0bae832a65ac}">
+  <Task priority="1" completed="False" type="3" uid="{ae37dd55-492b-40ae-8102-49e4c59313cc}">
     <Summary>NOTE: TODO: loading from filelikes are disabled...</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/mixer_music_test.py</Filename>
       <Linenumber>48</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{9ca099f7-2f07-4121-8ffa-f3e193218f78}">
+  <Task priority="1" completed="False" type="1" uid="{873f4bcf-a784-40ec-b487-f0ba8f109e4c}">
     <Summary>TODO: When this bug is fixed, testing through every combination</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/mixer_test.py</Filename>
       <Linenumber>112</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{38a5d5e3-60ab-490c-8a22-ae3d9e12f46b}">
+  <Task priority="1" completed="False" type="1" uid="{38fe71fe-d39f-4b82-8f61-d76c72b2ceb3}">
     <Summary>TODO:</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/surface_test.py</Filename>
       <Linenumber>664</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{ebf532e0-8342-4de6-b5c6-16bc775c8cd7}">
+  <Task priority="1" completed="False" type="1" uid="{8a38e09f-9b4a-41dd-9933-4b2dc1130c16}">
     <Summary>TODO: pypy skip known failure.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/surfarray_test.py</Filename>
       <Linenumber>29</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{a8fbf19a-de90-4611-be77-d3d31fbeb7ca}">
+  <Task priority="1" completed="False" type="1" uid="{e97d7518-75ef-46b9-b9a9-d14e52397ecf}">
     <Summary>TODO: pypy skip known failure.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/surflock_test.py</Filename>
       <Linenumber>22</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{9efb8a2f-76c3-4d31-8342-0d36e03d8caa}">
+  <Task priority="1" completed="False" type="0" uid="{e04fc20c-4e7b-4058-a0ad-7da5debc9db4}">
     <Summary>FIXME: Somewhere we need support for greyscale backgrounds etc.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/test_utils/png.py</Filename>
       <Linenumber>3628</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{b2c76790-1a77-48c1-85ab-97bd00d7f00f}">
+  <Task priority="1" completed="False" type="3" uid="{9e3ee6dd-1b14-4caf-943d-61f84868f274}">
     <Summary>NOTE: If you want a &quot;crop&quot; that returns the part of an image within</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/tests/transform_test.py</Filename>
       <Linenumber>909</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{b498e06c-b19d-4f21-ac85-b4122f0be4a2}">
+  <Task priority="1" completed="False" type="1" uid="{f9d1df34-fea2-4b3d-9b41-890f16f20d73}">
     <Summary>TODO: try and make this scale better with slower/faster cpus.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/threads/__init__.py</Filename>
       <Linenumber>91</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{e094428b-d5d3-4fa5-b05c-42c412933e2d}">
+  <Task priority="1" completed="False" type="3" uid="{eeb701c2-467a-40b3-94e4-18c291a40cbc}">
     <Summary>NOTE: undefined behaviour if you call this again.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/threads/__init__.py</Filename>
       <Linenumber>161</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{10f957b1-2091-4ced-a6dc-6a30282a9784}">
+  <Task priority="1" completed="False" type="1" uid="{108bc26d-1c78-44f7-b1ab-f47f00291170}">
     <Summary>TODO: divide the data (seq_args) into even chunks and</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/threads/__init__.py</Filename>
       <Linenumber>269</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{e97855f2-497e-4c89-8daf-7bc0c2a34f05}">
+  <Task priority="1" completed="False" type="1" uid="{5d2b33b8-0795-4381-a17c-39eaf6f2f5e5}">
     <Summary>TODO: the traceback doesn't show up nicely.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/threads/__init__.py</Filename>
       <Linenumber>301</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{fc3998d1-f1b8-4093-a3a4-645192250b29}">
+  <Task priority="1" completed="False" type="3" uid="{1dc98c73-9088-4429-a1ea-597401ed8f5a}">
     <Summary>NOTE: TODO: we might want to return the results anyway?  This should be an option.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/pygame/threads/__init__.py</Filename>
       <Linenumber>302</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{74bcb6ee-cc76-4151-8fac-febd589729cf}">
+  <Task priority="1" completed="False" type="1" uid="{42a6bb7d-112a-4c87-8303-d4f696a32011}">
     <Summary>TODO: Can we test whether something is contained within a requirement?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/_vendor/packaging/requirements.py</Filename>
       <Linenumber>83</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{8f3d9b1f-14db-45d8-b105-985d631872b5}">
+  <Task priority="1" completed="False" type="1" uid="{53b7166b-b5a8-495e-9a30-cb1d9a20ebe7}">
     <Summary>TODO: Can we normalize the name and extra name?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/_vendor/packaging/requirements.py</Filename>
       <Linenumber>86</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{eade73ba-5241-4df5-86b3-b75662563a11}">
+  <Task priority="1" completed="False" type="3" uid="{bae0b338-be85-4c61-8752-ed9da14531ce}">
     <Summary>NOTE: this returns a *copy* of the original C{ParserElement} object;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/_vendor/pyparsing.py</Filename>
       <Linenumber>1208</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{a0f83a46-25f6-43ea-afaf-eb5143735f34}">
+  <Task priority="1" completed="False" type="2" uid="{8ec7bbfb-14d4-4e25-9dce-ef7b9933eb09}">
     <Summary>WARNING: 'depends.txt' will not be used by setuptools 0.6!\n&quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/command/bdist_egg.py</Filename>
       <Linenumber>225</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{d925332b-38f1-4703-8002-63ed1a160615}">
+  <Task priority="1" completed="False" type="2" uid="{d54fd068-0c1e-45d6-8ec8-9ceea3ed07d7}">
     <Summary>WARNING: can't process %s&quot;, src)</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/command/easy_install.py</Filename>
       <Linenumber>1024</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{7f2317bb-0ddb-4178-a4b9-53eb6804a231}">
+  <Task priority="1" completed="False" type="1" uid="{7ba98604-1fbb-4ecb-b9c2-1e31916f8f7f}">
     <Summary>TODO: self.report_extras(req, dist)</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/command/easy_install.py</Filename>
       <Linenumber>1109</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{c5383eb8-cb57-48f0-add6-46ab98b384d0}">
+  <Task priority="1" completed="False" type="2" uid="{ebcd8a7a-c53d-4bc4-935c-64a6e51d92c3}">
     <Summary>WARNING: 'depends.txt' is not used by setuptools 0.6!\n&quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/command/egg_info.py</Filename>
       <Linenumber>633</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{45ad8734-2b55-42be-a4b5-6f092f79599d}">
+  <Task priority="1" completed="False" type="1" uid="{b2b894f7-815b-4fb6-8328-66eca321a0d9}">
     <Summary>TODO: is it necessary to short-circuit here? i.e. what's the cost</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/command/install_lib.py</Filename>
       <Linenumber>54</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{5e29665d-efc8-403d-8fa5-8e5d12b8bf5b}">
+  <Task priority="1" completed="False" type="2" uid="{6a4d92d2-cdd3-4b80-895d-504a67bd33db}">
     <Summary>WARNING: Registering is deprecated, use twine to &quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/command/register.py</Filename>
       <Linenumber>15</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{00492109-f262-4cde-b9d6-63b9642d3e8c}">
+  <Task priority="1" completed="False" type="2" uid="{85e63fd8-b5bd-4a93-9504-f17a8eb2aca7}">
     <Summary>WARNING: Uploading via this command is deprecated, use twine &quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/command/upload.py</Filename>
       <Linenumber>29</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{b1b755dd-325d-4bd9-a4e2-a2481b348445}">
+  <Task priority="1" completed="False" type="2" uid="{b6c608fd-3dff-420d-aa24-391ad2c4dfb7}">
     <Summary>WARNING: %r is declared as a package namespace, but %r&quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/dist.py</Filename>
       <Linenumber>240</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{d63ad067-599e-44da-b165-22cdab68c2ae}">
+  <Task priority="1" completed="False" type="2" uid="{7fdf84ad-61b1-497f-83b6-d5ac366daf6b}">
     <Summary>WARNING: %r not a valid package name; please use only &quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/site-packages/setuptools/dist.py</Filename>
       <Linenumber>332</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{e3f4508d-c4eb-42c9-adcf-0b00ff23a290}">
+  <Task priority="1" completed="False" type="3" uid="{5982c706-1dfb-450a-9546-d3032ac132b0}">
     <Summary>NOTE: This file is generated by sre_constants.py.  If you need</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/lib/python2.7/sre_constants.py</Filename>
       <Linenumber>234</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{33c1f12b-238c-4063-9a8c-10ccddf385fa}">
+  <Task priority="1" completed="False" type="3" uid="{5db9917b-4aae-4b89-8355-c106e410895b}">
     <Summary>NOTE: this mapping is incomplete.  If your language is missing, please</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/locale.py</Filename>
       <Linenumber>1782</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{b739c897-1167-4f17-8aa0-d0f39590f454}">
+  <Task priority="1" completed="False" type="3" uid="{bcd9ee28-5e6c-42c5-b64e-e41f26bb0267}">
     <Summary>NOTE:'</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/locale.py</Filename>
       <Linenumber>2043</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{4817c186-2a12-46c6-8c3e-092d7622b3af}">
+  <Task priority="1" completed="False" type="1" uid="{f95cd76d-5f63-4a59-9d71-c563d70f4f71}">
     <Summary>TODO: Try to get these passing down from the command?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/cli/base_command.py</Filename>
       <Linenumber>160</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{e146bea9-544e-4a20-b5a2-85cde78d67ef}">
+  <Task priority="1" completed="False" type="0" uid="{8204434f-e9ff-40ed-ad5a-b2b0f8154664}">
     <Summary>FIXME: all commands should return an exit status</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/cli/base_command.py</Filename>
       <Linenumber>180</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{36d46e2f-8de6-4083-8c87-8838f5c420f3}">
+  <Task priority="1" completed="False" type="3" uid="{26c2ba97-3bd3-417b-bbdb-03c3f8f4b393}">
     <Summary>NOTE: As a side-effect, options.require_hashes and</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/cli/base_command.py</Filename>
       <Linenumber>254</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{95759c28-18f6-4509-a8d8-393d3714bdae}">
+  <Task priority="1" completed="False" type="3" uid="{04d8a50c-a1e4-45cf-959d-2e02d89cfbac}">
     <Summary>NOTE: There is some duplication here from pip check</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/commands/install.py</Filename>
       <Linenumber>509</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{995e9283-d7c5-4dd8-8daa-61c1fc2375c5}">
+  <Task priority="1" completed="False" type="3" uid="{2fb12df2-c2a5-4f12-8dde-bd660e51d766}">
     <Summary>NOTE: XMLRPC Client is not annotated in typeshed as on 2017-07-17, which is</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/commands/search.py</Filename>
       <Linenumber>10</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{cb6434ef-8d8c-45e1-a2b4-aeb1f9a0e31d}">
+  <Task priority="1" completed="False" type="3" uid="{993a5c64-a5de-4dd1-92f4-434f0c2b5dfc}">
     <Summary>NOTE: Maybe use the optionx attribute to normalize keynames.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/configuration.py</Filename>
       <Linenumber>42</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{eaf4fef1-a31c-4214-b517-ba11921a55c0}">
+  <Task priority="1" completed="False" type="3" uid="{18df4c99-305e-4d5a-bec9-3f38b10944c2}">
     <Summary>NOTE: Dictionaries are not populated if not loaded. So, conditionals</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/configuration.py</Filename>
       <Linenumber>236</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{38e77b54-7ec5-42e1-bcde-442de0c3d653}">
+  <Task priority="1" completed="False" type="3" uid="{67b2cc22-6d66-40b1-bae7-7aa078513b7a}">
     <Summary>NOTE: XMLRPC Client is not annotated in typeshed as on 2017-07-17, which is</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:33</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/download.py</Filename>
       <Linenumber>24</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{c02e435e-5ed6-419f-98e6-8733aafeee36}">
+  <Task priority="1" completed="False" type="0" uid="{e231a5c7-0b4b-4d49-86b5-8181874b0b72}">
     <Summary>FIXME: catch some errors</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/download.py</Filename>
       <Linenumber>439</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{4e0dac6b-4270-46f5-bece-d038f2a25f94}">
+  <Task priority="1" completed="False" type="0" uid="{2bf2f6ec-36a9-41d6-bc1e-63b2582f955d}">
     <Summary>FIXME: keep src in cwd for now (it is not a temporary folder)</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/locations.py</Filename>
       <Linenumber>77</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{4a8f468c-e281-4436-86a4-7edf8e0fe8f7}">
+  <Task priority="1" completed="False" type="3" uid="{77998198-32bc-4a37-b731-92a474551781}">
     <Summary>NOTE: Ignoring type since mypy can't find attributes on 'Command'</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/locations.py</Filename>
       <Linenumber>167</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{4ead33a7-78c8-400a-a84f-9a4e0f222189}">
+  <Task priority="1" completed="False" type="3" uid="{1d5499ef-6231-4e10-9709-fe81ae402096}">
     <Summary>NOTE: setting user or home has the side-effect of creating the home dir</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/locations.py</Filename>
       <Linenumber>170</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{53a25512-39dc-4c26-bf40-91e34337280e}">
+  <Task priority="1" completed="False" type="0" uid="{ab80f329-f954-4de8-8950-cfe3218fa568}">
     <Summary>FIXME:https://github.com/pypa/pip/issues/1112</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/operations/prepare.py</Filename>
       <Linenumber>94</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{c7f0d4c5-f37f-4ab3-a0b6-57a5962ce534}">
+  <Task priority="1" completed="False" type="1" uid="{35f2a9a8-3a57-4c28-8ad1-4f055f76c75e}">
     <Summary>TODO: Modify to reduce indentation needed</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/operations/prepare.py</Filename>
       <Linenumber>218</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{e73eba8c-5e77-44f8-8526-d50aa30836be}">
+  <Task priority="1" completed="False" type="1" uid="{aae05cbe-81f8-4dbe-a423-0923fb388f3a}">
     <Summary>TODO: Breakup into smaller functions</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:19</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/operations/prepare.py</Filename>
       <Linenumber>241</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{10e78dda-2355-4497-8299-aa7d4fd19531}">
+  <Task priority="1" completed="False" type="0" uid="{3c496632-d76b-4e48-a5df-4cce367e5ec0}">
     <Summary>FIXME: this won't upgrade when there's an existing</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/operations/prepare.py</Filename>
       <Linenumber>257</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{8a4eed93-7ac4-437f-8293-aa0cf020a2eb}">
+  <Task priority="1" completed="False" type="1" uid="{f9f8512a-3388-43d5-a5cb-8f9f8408e256}">
     <Summary>TODO: Why not use `comes_from='-r {} (line {})'` here as well?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/req/req_file.py</Filename>
       <Linenumber>221</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{b386bca3-6cd4-4aa6-9374-f46bedb08ce4}">
+  <Task priority="1" completed="False" type="0" uid="{25749e31-cab4-43f0-bf0b-06a4a5469835}">
     <Summary>FIXME: it would be nice to keep track of the source</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/req/req_file.py</Filename>
       <Linenumber>242</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{e82e5ec0-a18b-43a4-9ed3-88132c440f34}">
+  <Task priority="1" completed="False" type="3" uid="{60eb8a63-5a27-44db-9b66-db374cbf839e}">
     <Summary>NOTE: mypy disallows assigning to a method</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/req/req_file.py</Filename>
       <Linenumber>294</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{80584724-f084-4de0-b1fd-c5883227ce87}">
+  <Task priority="1" completed="False" type="1" uid="{963ef677-9ace-4efd-bc5b-ed0213ea7fad}">
     <Summary>TODO: handle space after '\'.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/req/req_file.py</Filename>
       <Linenumber>328</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{c4c69237-3fe5-49f5-811f-b0ebcba3b043}">
+  <Task priority="1" completed="False" type="0" uid="{ddedee4a-4980-4481-be3d-9ba8e41582c9}">
     <Summary>FIXME: Is there a better place to create the build_dir? (hg and bzr</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/req/req_install.py</Filename>
       <Linenumber>314</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{181647d5-e597-4bd5-8f9f-692df249b458}">
+  <Task priority="1" completed="False" type="0" uid="{eabc7bd9-5601-4a9c-a525-bb3f41e49e38}">
     <Summary>FIXME: should we do --install-headers here too?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/req/req_install.py</Filename>
       <Linenumber>747</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{2690c3d4-06e0-4815-943e-65b93f9e12aa}">
+  <Task priority="1" completed="False" type="1" uid="{b3262eb4-73ae-491c-878b-25a7332db4ff}">
     <Summary>TODO: Investigate if this should be kept in InstallRequirement</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/req/req_install.py</Filename>
       <Linenumber>834</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{e4a4843d-6015-4ddd-95cd-e81e0522ddbf}">
+  <Task priority="1" completed="False" type="0" uid="{f6e3ae76-a609-4b0c-8718-b7fb609b38db}">
     <Summary>FIXME: put the record somewhere</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/req/req_install.py</Filename>
       <Linenumber>971</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{307248e6-c1e8-498b-bfcc-abb47295b6a6}">
+  <Task priority="1" completed="False" type="0" uid="{b7c03c9f-c32b-440a-be3a-a986992d44d1}">
     <Summary>FIXME: should this be an error?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/req/req_install.py</Filename>
       <Linenumber>972</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{59e0382d-5e20-4c2c-ad43-dbf40b10daf3}">
+  <Task priority="1" completed="False" type="0" uid="{58cee7d4-95ac-4c94-87e9-68a0e8cd910a}">
     <Summary>FIXME: what about other normalizations?  E.g., _ vs. -?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/req/req_set.py</Filename>
       <Linenumber>127</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{8e863034-f2a2-4ccf-adaa-6ee93762591f}">
+  <Task priority="1" completed="False" type="0" uid="{91005fee-a369-4393-9f36-37a980a99b37}">
     <Summary>FIXME: need a test for this elif block</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/req/req_uninstall.py</Filename>
       <Linenumber>458</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{0621ea68-4541-4f5d-aba2-5335f8790002}">
+  <Task priority="1" completed="False" type="3" uid="{812c9915-32eb-4aeb-937d-6eda7037c67f}">
     <Summary>NOTE: This would eventually be replaced with a cache that can give</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/resolve.py</Filename>
       <Linenumber>71</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{072d6d82-f5df-4551-96bd-1aa28113b35f}">
+  <Task priority="1" completed="False" type="2" uid="{8f6487fa-fbe4-45f7-8acf-47966885173d}">
     <Summary>WARNING: time of check vulnerability, but best we can do w/o NOFOLLOW</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/utils/compat.py</Filename>
       <Linenumber>164</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{58e76d76-860b-4cb5-b3df-5ce9586358a1}">
+  <Task priority="1" completed="False" type="3" uid="{8d570635-ce9c-4203-aab7-c9307075df0e}">
     <Summary>NOTE: retrying is not annotated in typeshed as on 2017-07-17, which is</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/utils/misc.py</Filename>
       <Linenumber>22</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{5f5bc4a4-5fd3-49ed-854e-ac4dcba860ba}">
+  <Task priority="1" completed="False" type="0" uid="{64294541-33ad-4f58-94b5-4c98cd188e87}">
     <Summary>FIXME: handle?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/utils/misc.py</Filename>
       <Linenumber>639</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{94070061-388f-4329-99a8-6adb8a21f0ec}">
+  <Task priority="1" completed="False" type="0" uid="{08d7e3d4-a80b-49e1-8eb7-d093409b280a}">
     <Summary>FIXME: magic signatures?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/utils/misc.py</Filename>
       <Linenumber>640</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{1a4eb227-adcb-4e25-b0c3-59e81eadf6b6}">
+  <Task priority="1" completed="False" type="3" uid="{604f729f-4c7d-41a4-b8e6-1445bdb66d1e}">
     <Summary>NOTE: The &quot;type: ignore&quot; comments on the following classes are there to</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/utils/ui.py</Filename>
       <Linenumber>201</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{73f7ecee-a15a-41e4-8585-efee8c900ccf}">
+  <Task priority="1" completed="False" type="0" uid="{1b0794b5-ce28-4c25-a06c-2d3394fc8daa}">
     <Summary>FIXME: should we warn?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/vcs/subversion.py</Filename>
       <Linenumber>78</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{226f22a8-4ed8-4951-8e2c-5e8683ee1f83}">
+  <Task priority="1" completed="False" type="1" uid="{92cc1817-1cd3-4966-b646-a3c6645e0c9f}">
     <Summary>TODO: Investigate and break this up.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/wheel.py</Filename>
       <Linenumber>313</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{318d0d24-a65b-4542-bb82-12308ee571d1}">
+  <Task priority="1" completed="False" type="1" uid="{4d26f7b0-a810-4bcc-942d-b1875f174c24}">
     <Summary>TODO: Look into moving this into a dedicated class for representing an</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/wheel.py</Filename>
       <Linenumber>314</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{222a705c-ecf5-4ac1-bc5e-7f257b21869e}">
+  <Task priority="1" completed="False" type="1" uid="{d3f07e24-d0d9-4408-abee-e3376d331452}">
     <Summary>TODO: Maybe move the class into the models sub-package</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/wheel.py</Filename>
       <Linenumber>669</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{96f4b5c3-4b1e-470b-8c8f-bc0d99c0182e}">
+  <Task priority="1" completed="False" type="1" uid="{a5fa0a0c-b097-4f4a-8d07-efbadc549aa0}">
     <Summary>TODO: Maybe move the install code into this class</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/wheel.py</Filename>
       <Linenumber>670</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{1f7d77f9-81fc-4801-8304-6aa385748d43}">
+  <Task priority="1" completed="False" type="3" uid="{be797c74-a776-4105-95a4-5db410304327}">
     <Summary>NOTE: Eventually, we'd want to also -S to the flags here, when we're</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_internal/wheel.py</Filename>
       <Linenumber>900</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{114f5f3a-3920-4a97-abed-92fb8926e90b}">
+  <Task priority="1" completed="False" type="2" uid="{60e933cd-6a50-40eb-8e6b-a3e0ef6a9de2}">
     <Summary>WARNING: Do not use this on Windows. See the Vista-Fail note above for why.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/appdirs.py</Filename>
       <Linenumber>129</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{0ee5e2e5-f084-40a3-ace1-418229e550f7}">
+  <Task priority="1" completed="False" type="2" uid="{b9b5c840-de7a-4141-9c42-1549348f4713}">
     <Summary>WARNING: Do not use this on Windows. See the Vista-Fail note above for why.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/appdirs.py</Filename>
       <Linenumber>234</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{91bdcb74-010e-46d9-85ea-bda30cb8ddc8}">
+  <Task priority="1" completed="False" type="3" uid="{d02d144e-fdf8-48a0-98b3-26307de103a5}">
     <Summary>NOTE: In order to use the FileCache you must have</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/cachecontrol/caches/file_cache.py</Filename>
       <Linenumber>77</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{b97ee97b-b5cf-4cad-a6fc-cd6377137b1c}">
+  <Task priority="1" completed="False" type="3" uid="{c3d4de5c-2611-4629-b014-413052451ff6}">
     <Summary>NOTE: This method should not change as some may depend on it.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/cachecontrol/caches/file_cache.py</Filename>
       <Linenumber>102</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{36be94a3-5a48-4ceb-8f62-084c212fad4c}">
+  <Task priority="1" completed="False" type="1" uid="{3f6e0cb0-ce60-4ded-bdfa-0c20ce869773}">
     <Summary>TODO: There is an assumption that the result will be a</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/cachecontrol/controller.py</Filename>
       <Linenumber>181</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{cd169769-436b-4a13-a566-06b2c058c798}">
+  <Task priority="1" completed="False" type="1" uid="{67cd6af9-444f-4742-9fa7-cb1cda1e0072}">
     <Summary>TODO: Add some logging here...</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/cachecontrol/filewrapper.py</Filename>
       <Linenumber>47</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{f1b36031-d44c-445d-8126-c4ea6c7a51c6}">
+  <Task priority="1" completed="False" type="3" uid="{33f84670-8135-4bed-bfb6-f9fcbd10e9f8}">
     <Summary>NOTE: This SHOULD always include some Warning header to</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/cachecontrol/heuristics.py</Filename>
       <Linenumber>36</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{e2bff4f3-87ce-459c-bb7b-c83913de7106}">
+  <Task priority="1" completed="False" type="3" uid="{eb401505-fdd9-4d06-a69e-82d286c187a6}">
     <Summary>NOTE: 99% sure this is dead code. I'm only leaving it</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/cachecontrol/serialize.py</Filename>
       <Linenumber>28</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{878c8487-8757-4441-bd2f-ae793959f33e}">
+  <Task priority="1" completed="False" type="3" uid="{b025b146-262e-4a4a-a3b5-9ccfd57cebf2}">
     <Summary>NOTE: This is all a bit weird, but it's really important that on</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/cachecontrol/serialize.py</Filename>
       <Linenumber>40</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{88f9ec27-8409-4e45-b9a9-e4f0c903a366}">
+  <Task priority="1" completed="False" type="3" uid="{322d6a60-a4db-4386-9899-08a1919de68d}">
     <Summary>NOTE: CP949 is a superset of EUC-KR, so the distribution should be</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/chardet/cp949prober.py</Filename>
       <Linenumber>38</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{8a38d622-9d50-420f-bd9f-f9b15aea8f9f}">
+  <Task priority="1" completed="False" type="1" uid="{dc10cf99-819a-4a0e-8241-4af956a15d37}">
     <Summary>TODO: Restore Hungarian encodings (iso-8859-2 and windows-1250)</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/chardet/sbcsgroupprober.py</Filename>
       <Linenumber>57</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{2ae05262-85f3-4b0b-84fb-078c75b2651b}">
+  <Task priority="1" completed="False" type="3" uid="{506607d6-97ad-485f-b054-3272651160c5}">
     <Summary>NOTE: This name was introduced by Apple in OSX 10.5 and</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/distlib/_backport/sysconfig.py</Filename>
       <Linenumber>546</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{81978a60-955c-4875-be1c-e18e32ba3529}">
+  <Task priority="1" completed="False" type="3" uid="{4a840cf7-e387-413b-bbf4-55dfc5f10938}">
     <Summary>NOTE: This API may change in the future.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/distlib/database.py</Filename>
       <Linenumber>645</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{bd0cd20b-ec60-46f8-a15e-287a46801b94}">
+  <Task priority="1" completed="False" type="1" uid="{b895d061-786f-4448-b784-da89edc65899}">
     <Summary>TODO: other fields such as contacts</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/distlib/metadata.py</Filename>
       <Linenumber>1044</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{da9c35d2-bcdf-4d8d-8420-fb4fdb584f20}">
+  <Task priority="1" completed="False" type="1" uid="{64cdc2e5-3f59-405e-a21b-e2b4191db31a}">
     <Summary>TODO: fill this out</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/distlib/version.py</Filename>
       <Linenumber>259</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{6136e9da-a9fb-4c53-be9d-b48ae2bf703c}">
+  <Task priority="1" completed="False" type="1" uid="{b52072f1-6e57-494d-9726-bea4dccda6f9}">
     <Summary>TODO: unintended side-effect on, e.g., &quot;2003.05.09&quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/distlib/version.py</Filename>
       <Linenumber>507</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{eeb7cbc5-7bd7-413a-a463-63e3e8953702}">
+  <Task priority="1" completed="False" type="1" uid="{d56c46b6-af4d-47cc-9e28-7275a205a076}">
     <Summary>TODO: Add namespace support here</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/html5lib/serializer.py</Filename>
       <Linenumber>302</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{f87f649b-44a0-4dde-a2c9-d9748050c0af}">
+  <Task priority="1" completed="False" type="0" uid="{37c96cb8-1e67-42d4-b3c5-c02727f580db}">
     <Summary>FIXME: What to do?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/html5lib/treeadapters/genshi.py</Filename>
       <Linenumber>51</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{0aa0a5cb-ad43-4be7-8ed9-39ea4425e8b7}">
+  <Task priority="1" completed="False" type="1" uid="{bf4a5c2b-1885-45ef-b900-e6a05bd9f9db}">
     <Summary>TODO: Can we test whether something is contained within a requirement?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/packaging/requirements.py</Filename>
       <Linenumber>86</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{7a99f20c-c8e7-4166-9ba2-b5e90ae3cf01}">
+  <Task priority="1" completed="False" type="1" uid="{38ea583c-703b-4dc6-8e12-b7e766f0b852}">
     <Summary>TODO: Can we normalize the name and extra name?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/packaging/requirements.py</Filename>
       <Linenumber>89</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{305277f6-eb76-4a57-a207-b101df84a861}">
+  <Task priority="1" completed="False" type="2" uid="{c9491243-e66a-4889-b530-2e215b908ca5}">
     <Summary>WARNING: 3,  # Yellow</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/pep517/colorlog.py</Filename>
       <Linenumber>45</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{e1c5d34c-8dfd-44b0-94da-f5eaabcf2649}">
+  <Task priority="1" completed="False" type="1" uid="{ed8e18e1-a58d-422d-9dc7-66b2fce925a7}">
     <Summary>TODO: Is this over-engineered? Maybe frontends only need to</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/pep517/wrappers.py</Filename>
       <Linenumber>51</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{7e0db14d-8acb-4ea0-9f6d-7ace0ffdd6e3}">
+  <Task priority="1" completed="False" type="3" uid="{d1cadaa0-cb17-4eba-a7c0-a3b2a1603dd3}">
     <Summary>NOTE: this returns a *copy* of the original :class:`ParserElement` object;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:34</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/pyparsing.py</Filename>
       <Linenumber>1348</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{cc1d0225-ae12-4194-88eb-eec1ee87f8b2}">
+  <Task priority="1" completed="False" type="1" uid="{7cd5766b-991e-4898-a3ce-0b43e10156f2}">
     <Summary>TODO: Remove this in 3.0.0: see #2811</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/requests/adapters.py</Filename>
       <Linenumber>502</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{a24fd271-c0a5-4810-9aeb-275c5f266f98}">
+  <Task priority="1" completed="False" type="1" uid="{56ecb8f2-1ccb-4a9c-8b58-c142d64be0ed}">
     <Summary>TODO: response is the only one</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/requests/hooks.py</Filename>
       <Linenumber>20</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{0fea707c-d9ca-4c10-8ef9-59e091098a11}">
+  <Task priority="1" completed="False" type="1" uid="{3a2c51c5-e514-4c91-a223-7e64b8299a4b}">
     <Summary>TODO: Fix tunnel so it doesn't depend on self.sock state.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:20</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/urllib3/connection.py</Filename>
       <Linenumber>175</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{3e458e86-9952-4fe0-9b65-e63cb13eb3fc}">
+  <Task priority="1" completed="False" type="1" uid="{7e0ac536-4765-4177-aab9-da74ecc29e22}">
     <Summary>TODO: Add optional support for socket.gethostbyname checking.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/urllib3/connectionpool.py</Filename>
       <Linenumber>433</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{d785efcd-a96d-4296-91f8-907dd79e9bf6}">
+  <Task priority="1" completed="False" type="1" uid="{f8b76373-00a3-4df3-8ed7-9099e24759f0}">
     <Summary>TODO: should I do clean shutdown here? Do I have to?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/urllib3/contrib/securetransport.py</Filename>
       <Linenumber>590</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{93c931db-a66b-4db8-81c4-9c0ee9c387f5}">
+  <Task priority="1" completed="False" type="1" uid="{5c92c76b-59ca-4617-bde9-f8fc46c12d35}">
     <Summary>TODO: Well, crap.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/urllib3/contrib/securetransport.py</Filename>
       <Linenumber>727</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{d0aca52f-ab50-43cd-9bf7-59f8a97daeee}">
+  <Task priority="1" completed="False" type="1" uid="{6da0a878-ed75-4447-8752-3386c8e98218}">
     <Summary>TODO: Update in line with above.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/urllib3/contrib/securetransport.py</Filename>
       <Linenumber>737</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{46e55071-2d6f-41de-95c8-24aa17c9ba73}">
+  <Task priority="1" completed="False" type="0" uid="{f019ad39-19ae-43dd-8f4a-a6d5dd52e3c5}">
     <Summary>FIXME: Ideally we'd like to include the url in the ReadTimeoutError but</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/urllib3/response.py</Filename>
       <Linenumber>363</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{ddf85559-10ef-48a3-9f10-113fea05cf7a}">
+  <Task priority="1" completed="False" type="0" uid="{ae45109c-8a8d-4d63-8713-9432ddba6fb3}">
     <Summary>FIXME: Is there a better way to differentiate between SSLErrors?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/urllib3/response.py</Filename>
       <Linenumber>368</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{681c79b0-6304-4029-8adc-461a83f9ac45}">
+  <Task priority="1" completed="False" type="0" uid="{b575a89f-41d0-4a39-abd2-5e69d04e0ba6}">
     <Summary>FIXME: Rewrite this method and make it a class with a better structured logic.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/urllib3/response.py</Filename>
       <Linenumber>644</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{f9c768a1-c473-45ad-92ef-f4f784c612b4}">
+  <Task priority="1" completed="False" type="0" uid="{54e59074-a069-4247-8c4e-baffa1bb5e34}">
     <Summary>FIXME: Can we do this somehow without accessing private httplib _method?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pip/_vendor/urllib3/util/response.py</Filename>
       <Linenumber>83</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{3f5279b1-a699-47a6-aa60-9657c58053fd}">
+  <Task priority="1" completed="False" type="2" uid="{90f7175e-2d60-43a2-8104-f42aa4d8cbe6}">
     <Summary>WARNING: Do not use this on Windows. See the Vista-Fail note above for why.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pkg_resources/_vendor/appdirs.py</Filename>
       <Linenumber>129</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{341de803-7a7d-43d8-a296-567d2626ff06}">
+  <Task priority="1" completed="False" type="2" uid="{ecffc3b3-dac4-4af7-916d-db96b0c1211a}">
     <Summary>WARNING: Do not use this on Windows. See the Vista-Fail note above for why.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pkg_resources/_vendor/appdirs.py</Filename>
       <Linenumber>234</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{d03d4d5d-a32a-4d0e-83ec-aebee9c97ac1}">
+  <Task priority="1" completed="False" type="1" uid="{1df74407-ac8c-43c8-97de-06c4c03c0d8a}">
     <Summary>TODO: Can we test whether something is contained within a requirement?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pkg_resources/_vendor/packaging/requirements.py</Filename>
       <Linenumber>83</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{45002bbf-2ea5-43d1-8516-8dfe12b1cd81}">
+  <Task priority="1" completed="False" type="1" uid="{c4a16611-d2b3-49df-980c-f9baee0ba054}">
     <Summary>TODO: Can we normalize the name and extra name?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pkg_resources/_vendor/packaging/requirements.py</Filename>
       <Linenumber>86</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{463c7b6a-81f2-4ab4-980e-0765afb3aec4}">
+  <Task priority="1" completed="False" type="3" uid="{5bc89b87-d204-4fa1-9a4c-38f531f49b93}">
     <Summary>NOTE: this returns a *copy* of the original C{ParserElement} object;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pkg_resources/_vendor/pyparsing.py</Filename>
       <Linenumber>1185</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{c9963599-1a5f-48c8-b942-c3f33906e0e2}">
+  <Task priority="1" completed="False" type="3" uid="{cb15c7e3-d2bf-496a-b70d-11b5d931eb75}">
     <Summary>NOTE: the pygame scale function uses mmx/sse if available, and can be run</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/examples/headless_no_windows_needed.py</Filename>
       <Linenumber>5</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{55727813-d0f2-46e8-98ee-73c0767897bb}">
+  <Task priority="1" completed="False" type="1" uid="{a297e37d-e5c0-4d44-88e4-2ee71fba04ba}">
     <Summary>TODO: this is broken.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/examples/sound_array_demos.py</Filename>
       <Linenumber>213</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{ecd53cad-b57e-4277-a869-4ccf5618ceac}">
+  <Task priority="1" completed="False" type="1" uid="{1a89191b-841c-40ed-b6cd-08198ff56ac2}">
     <Summary>TODO: FIXME: HACK: need to find a good way to do this.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/gp2x/__init__.py</Filename>
       <Linenumber>12</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{ecf7d491-349f-444a-a511-ac4b20cb0cdc}">
+  <Task priority="1" completed="False" type="1" uid="{20aeb0a4-2dfd-4a98-8edb-a1cf20963f62}">
     <Summary>TODO:</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/midi.py</Filename>
       <Linenumber>19</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{73a52403-9728-4a80-86f1-2d5c052bade9}">
+  <Task priority="1" completed="False" type="1" uid="{bd80da12-e929-4ca4-be74-006de2e4bdcd}">
     <Summary>TODO: find all Input and Output classes and close them first?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/midi.py</Filename>
       <Linenumber>90</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{bee4df22-9c07-4719-a042-6da66a922c73}">
+  <Task priority="1" completed="False" type="3" uid="{7389e76a-98cb-4ed7-b006-1918d5b4fdcf}">
     <Summary>NOTE: time is measured</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/midi.py</Filename>
       <Linenumber>349</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{a1fa4a77-06bf-4d5f-9301-4942e45ce7ab}">
+  <Task priority="1" completed="False" type="3" uid="{60567360-ff82-4a46-be37-3a3938d75a67}">
     <Summary>NOTE: time is measured</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/midi.py</Filename>
       <Linenumber>376</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{b5d7c8bf-c5a0-4e6d-8907-f3cb72632c82}">
+  <Task priority="1" completed="False" type="1" uid="{09c6b679-9597-444f-99ca-1b057542f769}">
     <Summary>TODO: these should be true too.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/blit_test.py</Filename>
       <Linenumber>42</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{dd71d4b4-8f95-40ac-9d2d-d1e9c9fdbe0a}">
+  <Task priority="1" completed="False" type="1" uid="{b17ccfc3-dfc4-485d-923a-e551133d3ac7}">
     <Summary>TODO:</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/cdrom_test.py</Filename>
       <Linenumber>107</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{ca25094e-51b4-4056-97c7-b36bb8739b01}">
+  <Task priority="1" completed="False" type="1" uid="{5560e90c-806b-42d1-9f40-0700fbf45e21}">
     <Summary>TODO: add tests for</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/color_test.py</Filename>
       <Linenumber>43</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{033815b1-ae1c-4c79-ac87-1bbaf4efc4b7}">
+  <Task priority="1" completed="False" type="3" uid="{08048184-23a9-43fe-9b37-d4bb96b420ce}">
     <Summary>NOTE: assigning to a slice is currently unsupported.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/color_test.py</Filename>
       <Linenumber>254</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{c8f60ade-6f18-4787-8b2c-1df26ccd40cd}">
+  <Task priority="1" completed="False" type="1" uid="{1c4102a3-7410-4b8c-ac3d-7512b0c7e6d1}">
     <Summary>TODO: test against statically defined verified _correct_ values</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/color_test.py</Filename>
       <Linenumber>840</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{a840e24b-6950-455c-b8e0-caf07f2199d8}">
+  <Task priority="1" completed="False" type="3" uid="{f649bf31-cba2-4192-a748-bc7600d02bf3}">
     <Summary>NOTE: if I don't call pygame.quit there is a segfault.  hrmm.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/display_test.py</Filename>
       <Linenumber>36</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{818580ac-21c0-4b5e-8650-2c9132e42fad}">
+  <Task priority="1" completed="False" type="1" uid="{2d079e0c-4925-4738-8e16-4d2b68181587}">
     <Summary>TODO: pypy skip known failure.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/font_test.py</Filename>
       <Linenumber>36</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{feca62f2-955b-4d0d-b643-abc35e513563}">
+  <Task priority="1" completed="False" type="1" uid="{88842b98-371f-4e1d-84c1-ae90643f2ae4}">
     <Summary>TODO: Test more corner case outlines.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/mask_test.py</Filename>
       <Linenumber>176</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{b527f1b9-d481-4e1c-8b71-ae94aa693f7f}">
+  <Task priority="1" completed="False" type="1" uid="{12486e03-a752-4074-b6cd-5b8f36736e59}">
     <Summary>TODO: this should really make one bounding rect.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/mask_test.py</Filename>
       <Linenumber>386</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{c329fea9-a559-4724-ba07-c5fb4dfcee9b}">
+  <Task priority="1" completed="False" type="1" uid="{a7a52189-9360-4a6c-999e-8fd44e3735a7}">
     <Summary>TODO: test a color key surface.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/mask_test.py</Filename>
       <Linenumber>422</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{4e0f7c3a-5b16-4200-b709-ed90c1e3a8e2}">
+  <Task priority="1" completed="False" type="1" uid="{42535ff0-fa15-48af-8919-04b646005677}">
     <Summary>TODO: known pypy failure.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/math_test.py</Filename>
       <Linenumber>1390</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{8a989aa5-c180-434d-9f3f-b8974d816129}">
+  <Task priority="1" completed="False" type="3" uid="{59240892-1af3-4b92-ab81-7dab642de239}">
     <Summary>NOTE: TODO: loading from filelikes are disabled...</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/mixer_music_test.py</Filename>
       <Linenumber>48</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{073764b8-db85-4892-95de-32a25cd6939a}">
+  <Task priority="1" completed="False" type="1" uid="{ba4b5562-8a11-421d-9986-fe4d06e05a99}">
     <Summary>TODO: When this bug is fixed, testing through every combination</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/mixer_test.py</Filename>
       <Linenumber>112</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{1b6c56ad-a1e3-4a5e-b7e6-fb5bee0b93c6}">
+  <Task priority="1" completed="False" type="1" uid="{e6cfea16-72b0-42c3-8fae-5be2c8328fd1}">
     <Summary>TODO:</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/surface_test.py</Filename>
       <Linenumber>664</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{8d840d28-f0ab-433d-af2f-4c9ca9ba62ea}">
+  <Task priority="1" completed="False" type="1" uid="{3dc01acf-5934-483c-ab3a-9163ebe74a42}">
     <Summary>TODO: pypy skip known failure.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/surfarray_test.py</Filename>
       <Linenumber>29</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{98986d74-a8d4-4ab7-87e0-5e912843c041}">
+  <Task priority="1" completed="False" type="1" uid="{a6418493-92ed-4dcb-ba78-fdc316afe20c}">
     <Summary>TODO: pypy skip known failure.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/surflock_test.py</Filename>
       <Linenumber>22</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="0" uid="{7028a636-2068-471b-b45d-4ba958a37b7b}">
+  <Task priority="1" completed="False" type="0" uid="{3d0e5bd8-89d3-489c-8692-34fbe99c7555}">
     <Summary>FIXME: Somewhere we need support for greyscale backgrounds etc.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/test_utils/png.py</Filename>
       <Linenumber>3628</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{93dad7ad-0f70-4385-a03f-9a7b3080c3f8}">
+  <Task priority="1" completed="False" type="3" uid="{12752648-40c3-4668-830d-2d1a5bc2c0c6}">
     <Summary>NOTE: If you want a &quot;crop&quot; that returns the part of an image within</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/tests/transform_test.py</Filename>
       <Linenumber>909</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{ef0a0998-0829-4f8c-937d-39fffb11b73b}">
+  <Task priority="1" completed="False" type="1" uid="{f181c946-a192-481f-8d62-ac36ef5fa9de}">
     <Summary>TODO: try and make this scale better with slower/faster cpus.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/threads/__init__.py</Filename>
       <Linenumber>91</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{f5252f65-33bf-4719-adb6-598277202bea}">
+  <Task priority="1" completed="False" type="3" uid="{bd6b1c25-43b6-4545-93b4-c8f835657220}">
     <Summary>NOTE: undefined behaviour if you call this again.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/threads/__init__.py</Filename>
       <Linenumber>161</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{c90f8128-c192-4909-8c22-95ef09f00eee}">
+  <Task priority="1" completed="False" type="1" uid="{3dc43355-1bb6-4938-90c2-d538798d3de9}">
     <Summary>TODO: divide the data (seq_args) into even chunks and</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:35</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/threads/__init__.py</Filename>
       <Linenumber>269</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{24521e4d-dc18-4f64-af67-df39a7c842a7}">
+  <Task priority="1" completed="False" type="1" uid="{d80c6468-746b-4fc6-b83c-4c4acbb102cd}">
     <Summary>TODO: the traceback doesn't show up nicely.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:21</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/threads/__init__.py</Filename>
       <Linenumber>301</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{8d9b6b9d-3bce-4b4e-a494-9788a28ed601}">
+  <Task priority="1" completed="False" type="3" uid="{858f606d-1827-4c0c-8ae6-ecba0031fd0e}">
     <Summary>NOTE: TODO: we might want to return the results anyway?  This should be an option.</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/pygame/threads/__init__.py</Filename>
       <Linenumber>302</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{64d3aa2c-f5fb-473a-a6a3-fd58a69a661c}">
+  <Task priority="1" completed="False" type="1" uid="{79899bbe-fc90-4b73-bec5-9ffd71508f68}">
     <Summary>TODO: Can we test whether something is contained within a requirement?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/_vendor/packaging/requirements.py</Filename>
       <Linenumber>83</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{1c83656c-57e5-4762-ac3e-af605850ef6e}">
+  <Task priority="1" completed="False" type="1" uid="{2d288dab-d682-439d-a34d-02408f3732f0}">
     <Summary>TODO: Can we normalize the name and extra name?</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/_vendor/packaging/requirements.py</Filename>
       <Linenumber>86</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{db003e9a-7240-40f1-a314-5ebbdef53f1c}">
+  <Task priority="1" completed="False" type="3" uid="{96e31463-58d4-461f-86b4-a4243c87bacd}">
     <Summary>NOTE: this returns a *copy* of the original C{ParserElement} object;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/_vendor/pyparsing.py</Filename>
       <Linenumber>1208</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{2aef7f1b-ac68-4f8a-9362-007ac4b747fc}">
+  <Task priority="1" completed="False" type="2" uid="{0928ace7-9ac8-4371-a74a-4474a28c416c}">
     <Summary>WARNING: 'depends.txt' will not be used by setuptools 0.6!\n&quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/command/bdist_egg.py</Filename>
       <Linenumber>225</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{2c588390-6041-49bf-84ac-9b70030012df}">
+  <Task priority="1" completed="False" type="2" uid="{a1167744-45d6-4bdd-848d-a935a5229f0f}">
     <Summary>WARNING: can't process %s&quot;, src)</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/command/easy_install.py</Filename>
       <Linenumber>1024</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{63d11cf2-f1d7-4b4d-a474-5c6d50306383}">
+  <Task priority="1" completed="False" type="1" uid="{738acae8-de0d-4c16-8511-ce9db27036c1}">
     <Summary>TODO: self.report_extras(req, dist)</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/command/easy_install.py</Filename>
       <Linenumber>1109</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{2bb6e307-4e60-494f-8973-ef3d79ec04d4}">
+  <Task priority="1" completed="False" type="2" uid="{e7e44380-e8e2-4a4d-a00f-f68764cb358f}">
     <Summary>WARNING: 'depends.txt' is not used by setuptools 0.6!\n&quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/command/egg_info.py</Filename>
       <Linenumber>633</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{0dd54d6e-4dbd-4064-ba13-4195f34441e3}">
+  <Task priority="1" completed="False" type="1" uid="{9255e425-3e48-4ff4-9076-0e15215d2096}">
     <Summary>TODO: is it necessary to short-circuit here? i.e. what's the cost</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/command/install_lib.py</Filename>
       <Linenumber>54</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{18de83ba-ad16-404e-b4b5-4a482e0058a0}">
+  <Task priority="1" completed="False" type="2" uid="{8b2baba9-cb3b-4e8e-9eec-7feb7d108a27}">
     <Summary>WARNING: Registering is deprecated, use twine to &quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/command/register.py</Filename>
       <Linenumber>15</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{bf2fa53b-a892-4592-9b28-1ce6739a9abe}">
+  <Task priority="1" completed="False" type="2" uid="{6f50a0ef-e5e0-4aac-b5e6-b7cc3cd237a5}">
     <Summary>WARNING: Uploading via this command is deprecated, use twine &quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/command/upload.py</Filename>
       <Linenumber>29</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{ed485685-f320-4f86-8b6a-0236b82815a6}">
+  <Task priority="1" completed="False" type="2" uid="{f1c81afc-22fc-4a8f-8089-4028f054f925}">
     <Summary>WARNING: %r is declared as a package namespace, but %r&quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/dist.py</Filename>
       <Linenumber>240</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="2" uid="{8e1aab5c-c652-4780-b45b-1b4869025504}">
+  <Task priority="1" completed="False" type="2" uid="{ba940827-b9f0-4636-b8b8-8301930e21c0}">
     <Summary>WARNING: %r not a valid package name; please use only &quot;</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/site-packages/setuptools/dist.py</Filename>
       <Linenumber>332</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="3" uid="{027af4c8-9de7-45f1-bb21-5c4d9429bbb1}">
+  <Task priority="1" completed="False" type="3" uid="{0af6104f-3d6c-4fdb-a0f7-a0bb43316b7b}">
     <Summary>NOTE: This file is generated by sre_constants.py.  If you need</Summary>
     <Description></Description>
-    <Created>2019-03-13, 14:24:36</Created>
+    <Created>2019-03-15, 23:51:22</Created>
     <Resource>
       <Filename>venv/local/lib/python2.7/sre_constants.py</Filename>
       <Linenumber>234</Linenumber>

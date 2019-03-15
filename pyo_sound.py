@@ -1,9 +1,16 @@
-import sys, time, random, multiprocessing
+import sys, time, random, multiprocessing, json
 from pyo import *
 
 from settings import *
 
 
+def get_personal_settings():
+    """Get Persoaln settings from file"""
+    with open('settings/personal.json', 'r') as file:
+        text = file.read()
+        objects = json.loads(text)
+        print(objects)
+        return objects
 
 def vocoder(input):
     print('start vocoder')
@@ -31,8 +38,8 @@ def pads(input):
     return output
     
 dict_effects_by_loops = {
-        1: echo, 
-        2: vocoder, 
+        1: pads, 
+        2: pads, 
         3: pads, 
 }
 
@@ -58,6 +65,11 @@ def mixer_loops(event, channel, metro_time, tick, duration):
     mixer = Mixer(outs=1, chnls=COUNT_IN_ROW * COUNT_ROWS, time=.025).out()
     metro_id = COUNT_IN_ROW * COUNT_ROWS + 1
     #print('metro_id: ', metro_id)
+    #
+    #Load Personal settings from file
+    #
+    pers_settings = get_personal_settings()
+    dur_loops = pers_settings['dur_loops']
     e = event.value
     ch = channel.value
     rec_tables = {}
@@ -112,8 +124,9 @@ def mixer_loops(event, channel, metro_time, tick, duration):
 
 
         if e == NEW_LOOP and ch and not (ch in rec_tables):
-            newTable = NewTable(length=rec_play_dur, chnls=1, feedback=0)
-            print('mixer start rec:', time.time())
+            new_table_dur = dur_loops[str(ch)]
+            newTable = NewTable(length=new_table_dur, chnls=1, feedback=0)
+            print('mixer start rec:', time.time(), 'duration: ', new_table_dur)
             table_rec = TableRec(inp_after_effects, table=newTable, fadetime=0).play()
             event.value = 1000
             channel.value = 0
@@ -121,6 +134,7 @@ def mixer_loops(event, channel, metro_time, tick, duration):
         elif (e == STOP_RECORD or e == PLAY) and ch:
             print('mixer stop record and start play ', ch)
             table_rec.stop()
+            print('real duration: ',  newTable.getDur())
             mixer.delInput('main')
             inp_after_effects = load_effects(inp_main, ch+1)
             mixer.addInput('main', inp_after_effects)
