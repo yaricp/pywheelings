@@ -124,7 +124,9 @@ def mixer_loops(event, channel, metro_time, tick, duration):
 
 
         if e == NEW_LOOP and ch and not (ch in rec_tables):
-            new_table_dur = dur_loops[str(ch)]
+            new_table_dur = 6
+            if str(ch) in dur_loops: 
+                new_table_dur = dur_loops[str(ch)]
             newTable = NewTable(length=new_table_dur, chnls=1, feedback=0)
             print('mixer start rec:', time.time(), 'duration: ', new_table_dur)
             table_rec = TableRec(inp_after_effects, table=newTable, fadetime=0).play()
