@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project pywheels-git -->
-<!-- Saved: 2019-03-05, 01:49:04 -->
+<!-- Saved: 2019-03-18, 01:09:22 -->
 <!-- Copyright (C) 2019 yaricp, yaricp@gmail.com -->
 <Project version="5.1">
   <Language></Language>
@@ -14,6 +14,7 @@
   <Eol index="0"/>
   <Sources>
     <Source>__init__.py</Source>
+    <Source>effects.py</Source>
     <Source>loop.py</Source>
     <Source>main.py</Source>
     <Source>profiler.py</Source>
@@ -1472,6 +1473,7 @@
   <Others>
     <Other>README.md</Other>
     <Other>requirements.txt</Other>
+    <Other>settings</Other>
     <Other>venv/include/python2.7/numpy/multiarray_api.txt</Other>
     <Other>venv/include/python2.7/numpy/ufunc_api.txt</Other>
     <Other>venv/lib/python2.7/no-global-site-packages.txt</Other>

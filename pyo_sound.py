@@ -1,12 +1,14 @@
-import sys, time, random, multiprocessing, json
+import os, sys, time, random, multiprocessing, json
 from pyo import *
 
 from settings import *
+from effects import *
 
+HOME_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def get_personal_settings():
     """Get Persoaln settings from file"""
-    with open('settings/personal.json', 'r') as file:
+    with open(os.path.join(HOME_DIR,'settings/personal.json'), 'r') as file:
         text = file.read()
         objects = json.loads(text)
         print(objects)
@@ -38,8 +40,8 @@ def pads(input):
     return output
     
 dict_effects_by_loops = {
-        1: pads, 
-        2: pads, 
+        1: bass, 
+        2: voices, 
         3: pads, 
 }
 
