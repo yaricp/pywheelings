@@ -12,7 +12,6 @@ except ImportError:
 
 from settings import *
 from pyo_sound import mixer_loops
-from utils import *
 
 from loop import Loop, LoopSync
 from sections import Section
@@ -79,6 +78,7 @@ def main():
     loop_sync = LoopSync(   LOOP_RAD_SYNC,
                             int(TOTAL_X_MARGIN+(width/2)),
                             int(MARGIN+height*COUNT_ROWS+LOOP_RAD_SYNC+TOTAL_Y_MARGIN),
+                            loops, 
                             mixer_channel, 
                             mixer_event,
                             mixer_metro_time, 
@@ -101,14 +101,14 @@ def main_process(screen, bg,
                 timer, 
                 mixer_tick):
     loop_in_focus = 1
-    waiting = False
+    #waiting = False
     current_sect = 1
     prev_sect = None
     done = False
     loop_for_rec = 1
     id_loop_after_rec = 0
     all_tick_checked = True
-    time_click = None
+    #time_click = None
     
     while not done:  # main circle
         e_loop = 1000
@@ -120,9 +120,17 @@ def main_process(screen, bg,
         for e in pygame.event.get():  # events
             if e.type == pygame.MOUSEBUTTONDOWN:
                 if e.dict['button'] == 4:
+                    #print('wheel up')
                     e_loop = WHEEL_UP
+                    if pygame.key.get_pressed()[pygame.K_z]:
+                        print('length inc')
+                        e_loop = LENGTH_INC
                 elif e.dict['button'] == 5:
+                    #print('wheel down')
                     e_loop = WHEEL_DOWN
+                    if pygame.key.get_pressed()[pygame.K_z]:
+                        print('length dec')
+                        e_loop = LENGTH_DEC
                 elif e.dict['button'] == 1:
 #                    and check_time_clicked(time_click):
 #                    time_click = datetime.now()
@@ -188,6 +196,7 @@ def main_process(screen, bg,
                 else:
                     loop_in_focus = last_loop_ob.id+1
             if KEY == ERASE_LAST_LOOP_KEY:
+                print('e_loop: ', e_loop)
                 if sect.focus and sect.playing:
                     loop_for_erase = sect.loops.pop()
                     loop_for_erase.event(ERASE)

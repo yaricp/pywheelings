@@ -77,9 +77,9 @@ def mixer_loops(event, channel, metro_time, tick, duration):
     ch = channel.value
     rec_tables = {}
     play_tables = {}
-    sh_tables = {}
+    #sh_tables = {}
     temp_tables = {}
-    list_for_del = []
+    #list_for_del = []
     #print('mixer e: ', e)
     #print('mixer ch: ', ch)
     metro_playing = False
@@ -90,7 +90,7 @@ def mixer_loops(event, channel, metro_time, tick, duration):
         #print('tick:',  time.time())
         tick.value = 1
     tf = TrigFunc(m, send_tick)
-    start_play_metro = Trig()
+    #start_play_metro = Trig()
     cos_t = CosTable([(0,0), (50,1), (250,.3), (8191,0)])
     amp_metro = TrigEnv(m, table=cos_t, dur=.25, mul=.1)
     a = Sine(freq=1000, mul=amp_metro).out()
@@ -114,7 +114,7 @@ def mixer_loops(event, channel, metro_time, tick, duration):
         if ch == 0 and e == 1000 :
 
             for play_t in play_tables:
-                last_period = False
+                #last_period = False
 
                 delta = round(play_tables[play_t][2]-time.time()-play_tables[play_t][3], 3)
                 if play_tables[play_t][1] == 0 and delta <= 0.05:
@@ -127,11 +127,12 @@ def mixer_loops(event, channel, metro_time, tick, duration):
 
 
         if e == NEW_LOOP and ch and not (ch in rec_tables):
-            new_table_dur = 6
-            if str(ch) in dur_loops: 
-                new_table_dur = dur_loops[str(ch)]
-            newTable = NewTable(length=new_table_dur, chnls=1, feedback=0)
-            print('mixer start rec:', time.time(), 'duration: ', new_table_dur)
+#            new_table_dur = 6
+#            if str(ch) in dur_loops: 
+#                new_table_dur = dur_loops[str(ch)]
+
+            newTable = NewTable(length=rec_play_dur, chnls=1, feedback=0)
+            print('mixer start rec:', time.time(), 'duration: ', rec_play_dur)
             table_rec = TableRec(inp_after_effects, table=newTable, fadetime=0).play()
             event.value = 1000
             channel.value = 0
@@ -144,7 +145,7 @@ def mixer_loops(event, channel, metro_time, tick, duration):
             inp_after_effects = load_effects(inp_main, ch+1)
             mixer.addInput('main', inp_after_effects)
             mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.3)
-            dur = 0
+            #dur = 0
             if not ch in play_tables:
                 looper = Looper( table=newTable, 
                                 start=0.05,
@@ -166,18 +167,12 @@ def mixer_loops(event, channel, metro_time, tick, duration):
         elif e == STOP_PLAY and ch:
             print('mixer stop play')
             play_tables[ch][0].stop()
-            #del play_tables[ch]
-            #del temp_tables[ch]
             event.value = 1000
             channel.value = 0
         
         elif e == PLAY and ch:
             print('mixer start play')
-            print(play_tables[ch])
-            print(play_tables[ch][0])
             play_tables[ch][0].out()
-            #del play_tables[ch]
-            #del temp_tables[ch]
             event.value = 1000
             channel.value = 0
             
@@ -218,11 +213,13 @@ def mixer_loops(event, channel, metro_time, tick, duration):
             channel.value = 0
             
         elif e == MUTE and ch:
+            print('mixer MUTE')
             mixer.setAmp(ch,0,0)
             event.value = 1000
             channel.value = 0
             
         elif e == UNMUTE and ch:
+            print('mixer UNMUTE')
             mixer.setAmp(ch,0,NORMAL_VALUE_LOOP)
             event.value = 1000
             channel.value = 0
@@ -232,6 +229,7 @@ def mixer_loops(event, channel, metro_time, tick, duration):
             mixer.delInput(ch)
             play_tables[ch][0].stop()
             del play_tables[ch]
+            #del temp_tables[ch]
             event.value = 1000
             channel.value = 0
             
@@ -260,7 +258,6 @@ def mixer_loops(event, channel, metro_time, tick, duration):
             return True
             #sys.exit()
 
-    
     print('start record process')
     server = Server(audio=AUDIO_SYSTEM,  ichnls=1)
     server.deactivateMidi()
@@ -270,7 +267,7 @@ def mixer_loops(event, channel, metro_time, tick, duration):
     inp = Input(chnl=0)
     e = event.value
     id = loop_id.value
-    ready_to_record = False
+    #ready_to_record = False
     soundTable = None
     name = "/audio-%d" % id
     
@@ -287,12 +284,7 @@ def mixer_loops(event, channel, metro_time, tick, duration):
             
             print('rec proc connect to shared_tab: ', name, length)
             share_tab = SharedTable(name, create=False, size=bufsize)
-            #print('share_tab: ', dir(share_tab._base_objs))
             
-            #
-            # Rack of effects
-            # = inp
-            #res_out = Delay(inp, delay=.1, feedback=0.8, mul=0.2)
             res_out = inp
             
             #ready_to_record = True

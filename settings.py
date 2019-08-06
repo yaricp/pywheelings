@@ -46,11 +46,7 @@ STEP_VALUE_LOOP_SYNC = 0.01
 THICKNESS_LINE_LOOP_SYNC = 1
 FOCUS_THICKNESS_LINE_LOOP_SYNC = 3
 
-# Evevnts of mouse
 
-WHEEL_UP = 12
-WHEEL_DOWN = 13
-CLICK = 11
 
 # Keys for main events of looper
 
@@ -78,13 +74,20 @@ MUTE = 7
 UNMUTE = 8
 MUTE_ALL = 9
 UNMUTE_ALL = 10
-LENGTH_INC = 11
-LENGTH_DEC = 12
+
+# Evevnts of mouse
+CLICK = 11
+WHEEL_UP = 12
+WHEEL_DOWN = 13
+LENGTH_INC = 14
+LENGTH_DEC = 15
+
 QUIT = 20
 CHANGE_METRO_TIME = 21
 
 #PYO SETTINGS
 DEFAULT_LOOP_LENGTH = 8
+DEFAULT_DELTA_LENGTH_SYNTH = 0.01 #delta of change length of loop
 DEFAULT_METRO_TIME = 1
 HUMAN_FACTOR  = 3 # percent of time of metro if human mistak press stop record
 DEFAULT_TIME_CLICK = 1000 # seconds of time click
