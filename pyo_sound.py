@@ -215,12 +215,14 @@ def mixer_loops(event, channel, metro_time, tick, duration):
         elif e == MUTE and ch:
             print('mixer MUTE')
             mixer.setAmp(ch,0,0)
+            play_tables[ch][0].mul = 0
             event.value = 1000
             channel.value = 0
             
         elif e == UNMUTE and ch:
             print('mixer UNMUTE')
             mixer.setAmp(ch,0,NORMAL_VALUE_LOOP)
+            play_tables[ch][0].mul = 1
             event.value = 1000
             channel.value = 0
             
