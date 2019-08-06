@@ -76,10 +76,9 @@ class Loop(sprite.Sprite):
             self.focus = False
             return False
 
-    def event(self, e, m_pos=None):
-        if not e == 1000 and self.id ==1:
-            print('Loop e:', e)
-            print(LENGTH_INC)
+    def event(  self, e, m_pos=None, 
+                list_loops_for_mute=None, 
+                list_loops_for_unmute=None):
         if e in [WHEEL_UP, WHEEL_DOWN, CLICK, LENGTH_INC, LENGTH_DEC]:
             if self.rect.collidepoint(m_pos):
                 print('in rect')
@@ -168,6 +167,8 @@ class Loop(sprite.Sprite):
         self.count_ticks = 0
         self.mixer_channel.value = self.id
         #send max duration to mixer
+        #self.mixer_list_mute = list_loops_for_mute
+        #self.mixer_list_unmute = list_loops_for_unmute
         self.mixer_duration.value = self.mixer_metro_time.value * self.count_sync_length
         self.length_sound = self.mixer_metro_time.value * self.count_sync_length
         self.mixer_event.value = NEW_LOOP
@@ -188,8 +189,10 @@ class Loop(sprite.Sprite):
         else:
             add_tick = 0
         self.length_sound = (self.count_ticks + add_tick)*self.mixer_metro_time.value
+        print('length: ', self.length_sound)
         if self.length_sound > self.mixer_metro_time.value * self.count_sync_length:
             self.length_sound = self.mixer_metro_time.value * self.count_sync_length
+        print('send length: ', self.length_sound)
         self.mixer_event.value = STOP_RECORD
         self.mixer_channel.value = self.id
         self.mixer_duration.value = self.length_sound
@@ -198,18 +201,20 @@ class Loop(sprite.Sprite):
         self.has_sound = True
 
     def mute(self):
-        print('loop mute')
-        self.mixer_event.value = MUTE
-        self.mixer_channel.value = self.id
-        self.rad_vol = 3
-        self.muted = True
+        print('loop mute:', self.id)
+        if self.has_sound:
+            self.mixer_event.value = MUTE
+            self.mixer_channel.value = self.id
+            self.rad_vol = 3
+            self.muted = True
             
     def unmute(self):
         print('loop unmute')
-        self.mixer_event.value = UNMUTE
-        self.mixer_channel.value = self.id
-        self.rad_vol = int(self.current_vol*self.rad)
-        self.muted = False
+        if self.has_sound:
+            self.mixer_event.value = UNMUTE
+            self.mixer_channel.value = self.id
+            self.rad_vol = int(self.current_vol*self.rad)
+            self.muted = False
             
     def __change_volume_sound(self, direct, value):
         if self.playing:

@@ -55,7 +55,22 @@ class Section(sprite.Sprite):
             else:
                 loop.event(MUTE)
                 self.muted = True
-
+                
+    def mute(self):
+        
+        for loop in self.loops:
+            if not loop.muted:
+                loop.mute()
+                self.muted = True
+    
+    def unmute(self):
+        
+        for loop in self.loops:
+            if loop.muted:
+                loop.unmute()
+                self.muted = False
+        
+                
     def draw(self,screen):
 
         if self.focus:

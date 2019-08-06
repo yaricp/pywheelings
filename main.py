@@ -3,9 +3,10 @@
 import sys, pygame
 from pygame import *
 from datetime import datetime
+from ctypes import c_char_p
 
 try:
-    from multiprocessing import Value, Process, Condition
+    from multiprocessing import Value, Process, Condition, Array, Manager
 except ImportError:
     from processing import Value,  Process,  Condition
 
@@ -36,19 +37,23 @@ def main():
     mixer_metro_time = Value('d', DEFAULT_METRO_TIME)
     mixer_duration = Value('d', DEFAULT_LOOP_LENGTH)
     mixer_tick = Value('i', 0)
-    mixer_time_tick = Value('d', 0)
+    #mixer_time_tick = Value('d', 0)
+    manager = Manager()
+    manager_unmute = Manager()
+    mixer_list_loops = manager.dict()        #Value('c', b' ')
+    mixer_list_unmute = manager_unmute.dict()    #Value('c', b' ')
     mixer = Process( target = mixer_loops, 
                     args = (mixer_event,
                             mixer_channel,
                             mixer_metro_time, 
                             mixer_tick, 
-                            mixer_duration
-                           )
+                            mixer_duration, 
+                            mixer_list_loops)
                     ).start()
     
     print('Main')
     
-    pygame.mouse.set_cursor(*pygame.cursors.diamond)
+    pygame.mouse.set_cursor(*pygame.cursors.arrow)
     for row in range(0, COUNT_ROWS):
         #print('row ', row)
         margin_row += MARGIN
@@ -66,7 +71,8 @@ def main():
                         mixer_event, 
                         mixer_metro_time, 
                         mixer_tick, 
-                        mixer_duration)
+                        mixer_duration
+                        )
             total_dict_loops.update({loop.id: loop})
             loops.append(loop)
         
@@ -84,9 +90,13 @@ def main():
                             mixer_metro_time, 
                             mixer_tick
                             )
-    main_process(screen, bg,  list_loops, 
-                total_dict_loops, loop_sync, 
-                timer, mixer_tick)
+    main_process(screen, bg, list_loops, 
+                total_dict_loops, 
+                loop_sync, 
+                timer, 
+                mixer_tick, 
+                mixer_list_loops,
+                mixer_list_unmute )
     mixer_event.value = QUIT
     pygame.quit()
     if mixer:
@@ -94,12 +104,13 @@ def main():
     return 'Quit!'
  
 
-def main_process(screen, bg,  
-                list_loops,
+def main_process(screen, bg, list_loops, 
                 total_dict_loops, 
                 loop_sync, 
                 timer, 
-                mixer_tick):
+                mixer_tick, 
+                mixer_list_loops,
+                mixer_list_unmute ):
     loop_in_focus = 1
     #waiting = False
     current_sect = 1
@@ -123,13 +134,13 @@ def main_process(screen, bg,
                     #print('wheel up')
                     e_loop = WHEEL_UP
                     if pygame.key.get_pressed()[pygame.K_z]:
-                        print('length inc')
+                        #print('length inc')
                         e_loop = LENGTH_INC
                 elif e.dict['button'] == 5:
                     #print('wheel down')
                     e_loop = WHEEL_DOWN
                     if pygame.key.get_pressed()[pygame.K_z]:
-                        print('length dec')
+                        #print('length dec')
                         e_loop = LENGTH_DEC
                 elif e.dict['button'] == 1:
 #                    and check_time_clicked(time_click):
@@ -172,12 +183,26 @@ def main_process(screen, bg,
         #
         # Work with sections and Loops
         #
+        
+        # Mute other section while record loop from current section
+        if KEY == REC_PLAY_LOOP_KEY:
+            for item in list_loops:
+                section = item[0]
+                for loop in section.loops:
+                    mixer_list_loops[loop.id] = section.focus
+                    if section.focus:
+                        loop.unmute()
+                    else:
+                        loop.mute()
+                
+        
         for dict in list_loops:
             sect = dict[0]
             loops = dict[1]
             #
             # Section Events
             #
+            
             if KEY == TOGGLE_SECTION_KEY:
                 if prev_sect and current_sect != prev_sect:
                     current_sect = prev_sect
@@ -196,7 +221,7 @@ def main_process(screen, bg,
                 else:
                     loop_in_focus = last_loop_ob.id+1
             if KEY == ERASE_LAST_LOOP_KEY:
-                print('e_loop: ', e_loop)
+                #print('e_loop: ', e_loop)
                 if sect.focus and sect.playing:
                     loop_for_erase = sect.loops.pop()
                     loop_for_erase.event(ERASE)
@@ -213,7 +238,7 @@ def main_process(screen, bg,
                 loop.next_for_rec(loop_for_rec)
                 #print('check focus: ', loop.id)
                 if loop.id == loop_for_rec and KEY == REC_PLAY_LOOP_KEY:
-                    loop.event(REC_PLAY_LOOP_KEY)
+                    loop.event( REC_PLAY_LOOP_KEY)
                     if loop.has_sound:
                         id_loop_after_rec = loop.id
                         sect.loops.append(loop)
