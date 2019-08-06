@@ -40,9 +40,10 @@ def pads(input):
     return output
     
 dict_effects_by_loops = {
-        1: bass, 
-        2: voices, 
-        3: pads, 
+        1: pads, 
+        #2: voices, 
+        #3: viola, 
+        #4: strings
 }
 
 def load_effects(input, channel):
@@ -101,7 +102,7 @@ def mixer_loops(event, channel, metro_time, tick, duration):
     inp_after_effects = load_effects(inp_main, 1)
     
     mixer.addInput('main', inp_after_effects)
-    mixer.setAmp('main',0,NORMAL_VALUE_LOOP*0.4)
+    mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.4)
     
     #Start main cyrcle
     
@@ -135,14 +136,14 @@ def mixer_loops(event, channel, metro_time, tick, duration):
             event.value = 1000
             channel.value = 0
             
-        elif (e == STOP_RECORD or e == PLAY) and ch:
+        elif e == STOP_RECORD and ch:
             print('mixer stop record and start play ', ch)
             table_rec.stop()
             print('real duration: ',  newTable.getDur())
             mixer.delInput('main')
             inp_after_effects = load_effects(inp_main, ch+1)
             mixer.addInput('main', inp_after_effects)
-            mixer.setAmp('main',0,NORMAL_VALUE_LOOP*0.4)
+            mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.3)
             dur = 0
             if not ch in play_tables:
                 looper = Looper( table=newTable, 
@@ -165,11 +166,22 @@ def mixer_loops(event, channel, metro_time, tick, duration):
         elif e == STOP_PLAY and ch:
             print('mixer stop play')
             play_tables[ch][0].stop()
-            del play_tables[ch]
-            del temp_tables[ch]
+            #del play_tables[ch]
+            #del temp_tables[ch]
+            event.value = 1000
+            channel.value = 0
+        
+        elif e == PLAY and ch:
+            print('mixer start play')
+            print(play_tables[ch])
+            print(play_tables[ch][0])
+            play_tables[ch][0].out()
+            #del play_tables[ch]
+            #del temp_tables[ch]
             event.value = 1000
             channel.value = 0
             
+                    
         elif e == WHEEL_UP and ch:
             #print('mixer wheel_up: ', ch)
             if ch == metro_id:

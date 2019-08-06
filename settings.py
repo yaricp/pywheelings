@@ -34,6 +34,8 @@ FOCUS_THICKNESS_LINE_LOOP = 3
 COLOR_FONT_LOOP = (255, 255, 255)
 COLOR_FOR_NEXT_REC = (0, 128, 0)
 SIZE_FONT_LOOP = 25
+SIZE_FONT_LOOP_LENGTH = 50
+COLOR_FONT_LOOP_LENGTH = (128, 100, 255)
 TYPE_FONT_LOOP = None
 # for Sync loop
 LOOP_RAD_SYNC = LOOP_RAD+10
@@ -76,14 +78,16 @@ MUTE = 7
 UNMUTE = 8
 MUTE_ALL = 9
 UNMUTE_ALL = 10
+LENGTH_INC = 11
+LENGTH_DEC = 12
 QUIT = 20
 CHANGE_METRO_TIME = 21
 
 #PYO SETTINGS
-DEFAULT_LOOP_LENGTH = 6
+DEFAULT_LOOP_LENGTH = 8
 DEFAULT_METRO_TIME = 1
-HUMAN_FACTOR  = 5 # percent of time of metro if human mistak press stop record
-
+HUMAN_FACTOR  = 3 # percent of time of metro if human mistak press stop record
+DEFAULT_TIME_CLICK = 1000 # seconds of time click
 
 # Other properties
 NEW_LOOP = 255

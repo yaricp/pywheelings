@@ -39,14 +39,15 @@ def gate(input):
     
     return output
     
-
-def voices(input):
-    notes = [
+NOTES = [
           {'note': +5, 'amp': 0.7 },
           {'note': +12, 'amp': 0.7 },
           {'note': +17, 'amp': 0.5 },
           {'note': +24, 'amp': 0.4 }
         ]
+        
+def voices(input, notes=NOTES):
+    
     wintables = [ WinTable(1) for i in notes ]
     # Length of the window in seconds.
     wsize = .1
@@ -55,19 +56,19 @@ def voices(input):
     indexes = [Phasor(freq=-(pow(2.,row['note']/12.)-1)/wsize ,phase=[0,0.5]) for row in notes]
     # Each head reads the amplitude envelope...
     pointers = [Pointer(table=wintable, index=index, mul=.7) for wintable,index in zip(wintables,indexes)]
-    # Compressed input
-    comp = Compress(input, thresh=-29, ratio=3, risetime=0.1, 
-                    falltime=0.01, knee=0.5).mix(2)
-    # Gate with slow attack
-    gate = Gate(comp,
-                thresh=-80,
-                risetime=2,
-                falltime=0.01,
-                lookahead=5,
-                mul=0.8)
-    voices = [Delay(gate, delay=index*wsize, mul=pointer) for pointer,index in zip(pointers,indexes)]
+#    # Compressed input
+#    comp = Compress(input, thresh=-29, ratio=3, risetime=0.1, 
+#                    falltime=0.01, knee=0.5).mix(2)
+#    # Gate with slow attack
+#    gate = Gate(comp,
+#                thresh=-80,
+#                risetime=2,
+#                falltime=0.01,
+#                lookahead=5,
+#                mul=0.8)
+    voices = [Delay(input, delay=index*wsize, mul=pointer) for pointer,index in zip(pointers,indexes)]
     mm = Mixer(outs=1, chnls=len(voices), time=.025)
-    mm.addInput(0, gate)
+    mm.addInput(0, input)
     mm.setAmp(0,0,.7)
     count = 0
     for voice in voices:
@@ -75,26 +76,26 @@ def voices(input):
         count += 1
         mm.addInput(count, voice)
         mm.setAmp(count,0,notes[count-1]['amp'])
-    # Sets values for 8 LFO'ed delay lines (you can add more if you want!).
-    # LFO frequencies.
-    freqs = [.254, .465, .657, .879, 1.23, 1.342, 1.654, 1.879]
-    # Center delays in seconds.
-    cdelay = [.0087, .0102, .0111, .01254, .0134, .01501, .01707, .0178]
-    # Modulation depths in seconds.
-    adelay = [.001, .0012, .0013, .0014, .0015, .0016, .002, .0023]
-    # Create 8 sinusoidal LFOs with center delays "cdelay" and depths "adelay".
-    lfos = Sine(freqs, mul=adelay, add=cdelay)
-    # Create 8 modulated delay lines with a little feedback and send the signals
-    # to the output. Streams 1, 3, 5, 7 to the left and streams 2, 4, 6, 8 to the
-    # right (default behaviour of the out() method).
-    chorus = Delay(mm[0], lfos, feedback=.5, mul=.7)
-    output = STRev(mm[0], inpos=0.05, revtime=5, cutoff=5000, 
-                    bal=0.85, roomSize=5,firstRefGain=-2)
-    return output
+#    # Sets values for 8 LFO'ed delay lines (you can add more if you want!).
+#    # LFO frequencies.
+#    freqs = [.254, .465, .657, .879, 1.23, 1.342, 1.654, 1.879]
+#    # Center delays in seconds.
+#    cdelay = [.0087, .0102, .0111, .01254, .0134, .01501, .01707, .0178]
+#    # Modulation depths in seconds.
+#    adelay = [.001, .0012, .0013, .0014, .0015, .0016, .002, .0023]
+#    # Create 8 sinusoidal LFOs with center delays "cdelay" and depths "adelay".
+#    lfos = Sine(freqs, mul=adelay, add=cdelay)
+#    # Create 8 modulated delay lines with a little feedback and send the signals
+#    # to the output. Streams 1, 3, 5, 7 to the left and streams 2, 4, 6, 8 to the
+#    # right (default behaviour of the out() method).
+#    chorus = Delay(mm[0], lfos, feedback=.5, mul=.7)
+#    output = STRev(mm[0], inpos=0.05, revtime=5, cutoff=5000, 
+#                    bal=0.85, roomSize=5,firstRefGain=-2)
+    return mm[0]
     
     
 def bass(input):
-    pva = PVAnal(inp, size=1024)
+    pva = PVAnal(input, size=1024)
     pvt = PVTranspose(pva, transpo=0.5)
     output = PVSynth(pvt)
     return output
@@ -118,3 +119,122 @@ def pitch_bass(input, type='fast_bass'):
     output = Delay(comp, delay=ind*wsize, mul=win)
     return output
     
+    
+def strings(input=None):
+    
+    comp = Compress(input, thresh=-29, ratio=6, risetime=0.01,
+                    falltime=0.01, knee=0.5)
+    dist = distortion(comp)
+    gate = Gate(dist,    
+            thresh=-75, 
+            risetime=1, 
+            falltime=0.01, 
+            lookahead=5, 
+            mul=.4)
+    notes = [
+          {'note': +5, 'amp': 0.7 },
+          {'note': +12, 'amp': 0.7 },
+          {'note': +17, 'amp': 0.5 },
+          {'note': +24, 'amp': 0.4 }
+        ]
+    v = voices(comp, notes)
+    output = STRev(v, inpos=0.05, revtime=5, cutoff=5000, 
+                    bal=0.85, roomSize=5,firstRefGain=-2)
+    
+    return v
+    
+    
+def viola(input):
+    
+    BP_CENTER_FREQ = 300        # Bandpass filter center frequency.
+    BP_Q = 3                    # Bandpass Q (center_freq / Q = bandwidth).
+    BOOST = 25                # Pre-boost (linear gain).
+    LP_CUTOFF_FREQ = 3000       # Lowpass filter cutoff frequency.
+    BALANCE = 0.8               # Balance dry - wet.
+
+    # The transfert function is build in two phases.
+
+    # 1. Transfert function for signal lower than 0.
+    ##table = SawTable(order=7)
+    table = ChebyTable([1,1,.33,0,.2,0,.143,0,.111])
+    # 2. Transfert function for signal higher than 0.
+    # First, create an exponential function from 1 (at the beginning of the table)
+    # to 0 (in the middle of the table).
+    ##high_table = SawTable(order=1)
+    # Then, reverse the table’s data in time, to put the shape in the second
+    # part of the table.
+    ##high_table.reverse()
+
+    # Finally, add the second table to the first, point by point.
+    ##table.add(high_table)
+
+    # Show the transfert function.
+    table.view(title="Transfert function")
+
+    # Bandpass filter and boost gain applied on input signal.
+    bp = ButBP(input, freq=BP_CENTER_FREQ, q=BP_Q)
+    boost = Sig(bp, mul=BOOST)
+    
+    # Apply the transfert function.
+    sig = Lookup(table, boost)
+
+    # Lowpass filter on the distorted signal.
+    lp = ButLP(sig, freq=LP_CUTOFF_FREQ, mul=.7)
+    # Balance between dry and wet signals.
+    mixed = Interp(input, lp, interp=BALANCE)
+    return mixed
+     
+    
+    
+def distortion(input):
+    
+    BP_CENTER_FREQ = 300        # Bandpass filter center frequency.
+    BP_Q = 3                    # Bandpass Q (center_freq / Q = bandwidth).
+    BOOST = 25                # Pre-boost (linear gain).
+    LP_CUTOFF_FREQ = 3000       # Lowpass filter cutoff frequency.
+    BALANCE = 0.8               # Balance dry - wet.
+
+    # The transfert function is build in two phases.
+
+    # 1. Transfert function for signal lower than 0.
+    table = ExpTable([(0,-.25),(4096,0),(8192,0)], exp=30)
+
+    # 2. Transfert function for signal higher than 0.
+    # First, create an exponential function from 1 (at the beginning of the table)
+    # to 0 (in the middle of the table).
+    high_table = ExpTable([(0,1),(3000,2),(4096,0),(4598,0),(8192,0)],
+                          exp=5, inverse=False)
+    # Then, reverse the table’s data in time, to put the shape in the second
+    # part of the table.
+    high_table.reverse()
+
+    # Finally, add the second table to the first, point by point.
+    table.add(high_table)
+
+    # Show the transfert function.
+    table.view(title="Transfert function")
+
+    # Bandpass filter and boost gain applied on input signal.
+    bp = ButBP(input, freq=BP_CENTER_FREQ, q=BP_Q)
+    boost = Sig(bp, mul=BOOST)
+    
+    # Apply the transfert function.
+    sig = Lookup(table, boost)
+
+    # Lowpass filter on the distorted signal.
+    lp = ButLP(sig, freq=LP_CUTOFF_FREQ, mul=.7)
+    # Balance between dry and wet signals.
+    mixed = Interp(input, lp, interp=BALANCE)
+    return mixed
+    
+
+if __name__ == "__main__":
+    s = Server(audio='jack').boot().start()
+    input = Input(0)
+    #sin = Sine(freq=200)
+    mixer = Mixer(outs=1, chnls=1, time=.025).out()
+    out = viola(input)
+    mixer.addInput('main', out)
+    mixer.setAmp('main',0,0.5)
+    s.gui(locals())
+    sys.exit(0)

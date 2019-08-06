@@ -2,6 +2,7 @@
 
 import sys, pygame
 from pygame import *
+from datetime import datetime
 
 try:
     from multiprocessing import Value, Process, Condition
@@ -11,6 +12,7 @@ except ImportError:
 
 from settings import *
 from pyo_sound import mixer_loops
+from utils import *
 
 from loop import Loop, LoopSync
 from sections import Section
@@ -106,6 +108,7 @@ def main_process(screen, bg,
     loop_for_rec = 1
     id_loop_after_rec = 0
     all_tick_checked = True
+    time_click = None
     
     while not done:  # main circle
         e_loop = 1000
@@ -121,6 +124,8 @@ def main_process(screen, bg,
                 elif e.dict['button'] == 5:
                     e_loop = WHEEL_DOWN
                 elif e.dict['button'] == 1:
+#                    and check_time_clicked(time_click):
+#                    time_click = datetime.now()
                     e_loop = CLICK
                     key_for_focus = 1
             # Keyboard
@@ -203,8 +208,8 @@ def main_process(screen, bg,
                     if loop.has_sound:
                         id_loop_after_rec = loop.id
                         sect.loops.append(loop)
-                if loop.focus:
-                    loop.event(e_loop, mouse_pos)
+#                if loop.focus:
+#                    loop.event(e_loop, mouse_pos)
 #                if sect.prev and stop_prev_event and sect.playing:
 #                    loop.event(STOP_PLAY, mouse_pos)
 #                else:

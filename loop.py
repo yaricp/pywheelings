@@ -80,13 +80,14 @@ class Loop(sprite.Sprite):
         elif e == WHEEL_DOWN and self.rect.collidepoint(m_pos):
             self.__change_volume_sound('-', STEP_VALUE_LOOP)
         elif e == CLICK:
+            print ('CLICK')
             if self.rect.collidepoint(m_pos):
                 if self.has_sound:
                     if self.playing:
-                        print('stop play')
+                        print('1stop play')
                         self.stop_play()
                     else:
-                        print('start play')
+                        print('2start play')
                         self.start_play()
                         
         elif e == REC_PLAY_LOOP_KEY:
@@ -106,10 +107,10 @@ class Loop(sprite.Sprite):
                     print('loop stop play')
                     self.stop_play()
         elif e == PLAY:
-            print('start play')
+            print('3start play')
             self.start_play()
         elif e == STOP_PLAY:
-            print('stop play')
+            print('4stop play')
             self.stop_play()
 #        elif e == RECORD:
 #            print('plan to record')
@@ -131,6 +132,7 @@ class Loop(sprite.Sprite):
     def start_play(self):
         print('send start play to mixer')
         self.playing = True
+        self.__time_start = time.time()
         self.mixer_channel.value = self.id
         self.mixer_event.value = PLAY 
         self.mixer_duration.value = self.length_sound
@@ -221,6 +223,7 @@ class Loop(sprite.Sprite):
         
             
     def __end_point(self):
+        
         now = time.time()
         length = self.length_sound
         #print('loop length; ', length)
@@ -258,7 +261,8 @@ class Loop(sprite.Sprite):
             thin = FOCUS_THICKNESS_LINE_LOOP
         else:
             thin = THICKNESS_LINE_LOOP
-            
+        if self.rad_vol < thin:
+            self.rad_vol = thin
         color_loop = self.main_color
         color_vol_loop = COLOR_VOL_LOOP
         if self.recording:
@@ -266,6 +270,7 @@ class Loop(sprite.Sprite):
             color_vol_loop = COLOR_RECORDING
         # circle of volume
         if self.has_sound:
+            
             draw.circle(screen, 
                         color_vol_loop, 
                         (self.x, self.y), 
@@ -274,12 +279,16 @@ class Loop(sprite.Sprite):
         # main circle
         draw.circle(screen, color_loop, (self.x, self.y), self.rad,thin)
         # line of time of loop
-        if self.playing or self.recording:
+#        if self.id ==  1:
+#            print('playing: ', self.playing)
+#            print('recording: ', self.recording)
+        if (self.playing or self.recording):
             if self.__line_delta <= 10:
                 thin = FOCUS_THICKNESS_LINE_LOOP_SYNC+5
             else:
                 thin = THICKNESS_LINE_LOOP_SYNC
             self.__line_delta += 1
+            
             draw.line(  screen, 
                         color_vol_loop, 
                         (self.x, self.y), 
@@ -289,8 +298,12 @@ class Loop(sprite.Sprite):
         font_loop = font.Font(None, SIZE_FONT_LOOP)
         height_font = font_loop.get_height()
         width_font = font_loop.get_linesize()
+        
         text = font_loop.render(str(self.id), True, COLOR_FONT_LOOP)
-        screen.blit(text, [self.x - width_font/2, self.y - height_font/2])
+        screen.blit(text, [self.x - 30, self.y - 30])
+        font_loop_length = font.Font(None, SIZE_FONT_LOOP_LENGTH)
+        text = font_loop_length.render(str(self.length_sound), True, COLOR_FONT_LOOP_LENGTH)
+        screen.blit(text, [self.x , self.y ])
 
 
 class LoopSync(sprite.Sprite):
@@ -312,11 +325,15 @@ class LoopSync(sprite.Sprite):
         self.x = x
         self.y = y
         self.rad = rad
+        self.muted = False
         self.length_loop = DEFAULT_METRO_TIME
         self.mixer_channel = mixer_channel
         self.mixer_event = mixer_event
         self.mixer_metro_time = mixer_metro_time
         self.mixer_tick = mixer_tick
+        
+    def mute(self):
+        self.start_stop()
         
     def check_focus(self, key, m_pos, focus_loop_id):
 
@@ -344,6 +361,10 @@ class LoopSync(sprite.Sprite):
                 self.unmute()
             else:
                 self.mute()
+        elif e == LENGTH_INC and self.rect.collidepoint(m_pos):
+            self.__change_length('+', STEP_VALUE_LOOP)
+        elif e == LENGTH_DEC and self.rect.collidepoint(m_pos):
+            self.__change_length('-', STEP_VALUE_LOOP)
                 
     def __change_volume_sound(self, direct, value):
         if self.playing:
@@ -374,6 +395,10 @@ class LoopSync(sprite.Sprite):
     def play(self):
         self.__line_delta = 0
         self.__time_start_play = time.time()
+        
+        
+    def __change_length(self, delta):
+        self.length_sound += delta
         
 
     def __end_point(self):
