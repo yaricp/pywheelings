@@ -182,6 +182,7 @@ class Loop(sprite.Sprite):
         self.mixer_event.value = NEW_LOOP
         self.mixer_channel.value = self.id
         self.mixer_duration.value = self.mixer_metro_time.value * self.count_sync_length
+        print('send duration to mixer: ', self.mixer_duration.value/self.mixer_metro_time.value)
         self.length_sound = self.mixer_metro_time.value * self.count_sync_length
         
         self.__time_start = time.time()

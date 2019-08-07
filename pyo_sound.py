@@ -68,20 +68,27 @@ def toggle_section(mixer, play_tables, list_loops, direct=None):
                 mute(mixer, play_tables, int(k))
             
     
-def record(mixer, play_tables, rec_play_dur, inp_after_effects, list_loops):
+def record( mixer, play_tables, 
+            rec_play_dur, inp_after_effects, 
+            list_loops, 
+            mixer_metro_time):
     newTable = NewTable(length=rec_play_dur, chnls=1, feedback=0)
-    print('mixer start rec:', time.time(), 'duration: ', rec_play_dur)
+    print('mixer start rec:', time.time(), 
+            'duration: ', 
+            round(rec_play_dur/mixer_metro_time))
     table_rec = TableRec(inp_after_effects, table=newTable, fadetime=0).play()
     print('list_loops: ', list_loops)
     toggle_section(mixer, play_tables, list_loops, '>')
     return table_rec
    
    
-def stop_record(mixer, inp_main, table_rec, play_tables, rec_play_dur, ch):
+def stop_record(mixer, inp_main, table_rec, 
+                play_tables, rec_play_dur, 
+                mixer_metro_time,  ch):
     print('mixer stop record and start play ', ch)
     table_rec.stop()
-    print('max duration: ',  table_rec.table.getDur())
-    print('real duration: ', rec_play_dur)
+    print('max duration cicles: ',  round(table_rec.table.getDur()/mixer_metro_time))
+    print('real duration cicles: ', round(rec_play_dur/mixer_metro_time))
     mixer.delInput('main')
     inp_after_effects = load_effects(inp_main, ch+1)
     mixer.addInput('main', inp_after_effects)
@@ -94,10 +101,11 @@ def stop_record(mixer, inp_main, table_rec, play_tables, rec_play_dur, ch):
                         xfade=0, 
                         interp=1, 
                         mul=1).out()
+        print(looper.mul)
         play_tables.update({ch: [looper, 0, rec_play_dur, time.time()]})
 
     mixer.addInput(ch, looper)
-    mixer.setAmp(ch,0,.5)
+    mixer.setAmp(ch,0,1)
     return mixer, play_tables
    
    
@@ -199,6 +207,7 @@ def mixer_loops(event,
         e = event.value
         ch = channel.value
         rec_play_dur = duration.value
+        mixer_metro_time = metro_time.value
         
         
         if ch == 0 and e == 1000 :
@@ -208,8 +217,6 @@ def mixer_loops(event,
 
                 delta = round(play_tables[play_t][2]-time.time()-play_tables[play_t][3], 3)
                 if play_tables[play_t][1] == 0 and delta <= 0.05:
-                    #print('change start time')
-                    #print('delta: ',0)
                     play_tables[play_t][1] = 1
                     play_tables[play_t][0].setStart(0.01)
                     play_tables[play_t][0].setXfade(0)
@@ -221,7 +228,8 @@ def mixer_loops(event,
                                 play_tables, 
                                 rec_play_dur,
                                 inp_after_effects, 
-                                list_loops )
+                                list_loops, 
+                                mixer_metro_time)
             event.value = 1000
             channel.value = 0
             
@@ -231,6 +239,7 @@ def mixer_loops(event,
                                             table_rec, 
                                             play_tables, 
                                             rec_play_dur,
+                                            mixer_metro_time, 
                                             ch)
             event.value = 1000
             channel.value = 0
@@ -288,6 +297,7 @@ def mixer_loops(event,
             print('Mixer erase all:')
             #for k, i list_loops.items():
             for k, i in play_tables.items():
+                mixer.delInput(k)
                 i[0].stop()
             play_tables = {}
             event.value = 1000
