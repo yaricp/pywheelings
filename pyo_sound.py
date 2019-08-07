@@ -267,6 +267,9 @@ def mixer_loops(event,
             event.value = 1000
             channel.value = 0
             
+#        elif e == MUTE_ALL and ch:
+#            mute
+            
         elif e == TOGGLE_SECTION:
             print('Mixer toggle')
             toggle_section(mixer, play_tables, list_loops)

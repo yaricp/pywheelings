@@ -26,7 +26,6 @@ class Loop(sprite.Sprite):
                         mixer_duration):
         sprite.Sprite.__init__(self)
         
-        #print('loop init')
         self.focus = False
         self.id = Loop.count + 1
         Loop.count += 1
@@ -51,9 +50,6 @@ class Loop(sprite.Sprite):
         
         self.length_sound = 0
         self.count_ticks = 0
-#        self.filename = str(self.id)+'_file.'
-#        self.recfilename = PATH_FILES+self.filename+REC_FILE_EXT
-#        self.playfilename = None
         self.has_sound = None
         self.playing = False
         self.__time_start = None
@@ -132,6 +128,12 @@ class Loop(sprite.Sprite):
                 self.unmute()
             else:
                 self.mute()
+        elif e == MUTE_ALL:
+            if sect_focus:
+                if self.muted:
+                    self.unmute()
+                else:
+                    self.mute()
         elif e == ERASE_ALL:
             print('loop erase all')
             if self.id == 1:
@@ -156,7 +158,6 @@ class Loop(sprite.Sprite):
             self.count_sync_length += 1
         else:
             self.count_sync_length -= 1
-        #self.mixer_duration.value = self.mixer_metro_time * self.count_sync_length
         
             
     def start_play(self):
@@ -204,9 +205,9 @@ class Loop(sprite.Sprite):
         if self.length_sound > self.mixer_metro_time.value * self.count_sync_length:
             self.length_sound = self.mixer_metro_time.value * self.count_sync_length
         print('send length: ', self.length_sound)
+        self.mixer_duration.value = self.length_sound
         self.mixer_event.value = STOP_RECORD
         self.mixer_channel.value = self.id
-        self.mixer_duration.value = self.length_sound
         self.__time_start = time.time()
         print('stop rec length: ', self.length_sound)
         self.has_sound = True
@@ -341,9 +342,7 @@ class Loop(sprite.Sprite):
                         thin)
         # main circle
         draw.circle(screen, color_loop, (self.x, self.y), self.rad,thin)
-#        if self.id == 1:
-#            print(self.playing)
-#            print(self.recording)
+
         if (self.playing or self.recording):
             if self.__line_delta <= 10:
                 thin = FOCUS_THICKNESS_LINE_LOOP_SYNC+5

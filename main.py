@@ -147,7 +147,7 @@ def main_process(screen, bg, list_loops,
                 elif KEY == ERASE_LAST_LOOP_KEY:
                     e_loop = ERASE
                 elif KEY == MUTE_KEY:
-                    e_loop = MUTE
+                    e_loop = MUTE_ALL
                 elif KEY == K_UP:
                     e_loop = WHEEL_UP
                 elif KEY == K_DOWN:
@@ -168,9 +168,6 @@ def main_process(screen, bg, list_loops,
         #
         # Work with sections and Loops
         #
-        
-            
-        
         if e_loop == SELECT_SECTION:
             if current_sect == COUNT_ROWS:
                 current_sect = 1
@@ -178,7 +175,7 @@ def main_process(screen, bg, list_loops,
             else:
                 prev_sect = current_sect
                 current_sect += 1
-            
+                
         elif e_loop == TOGGLE_SECTION:
             next_prev_sect = current_sect
             if prev_sect and current_sect != prev_sect:
