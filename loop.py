@@ -77,57 +77,54 @@ class Loop(sprite.Sprite):
             return False
 
     def event(  self, e, m_pos=None, 
-                list_loops_for_mute=None, 
-                list_loops_for_unmute=None):
+                sect_focus=None, 
+                loop_for_rec=None):
         if e in [WHEEL_UP, WHEEL_DOWN, CLICK, LENGTH_INC, LENGTH_DEC]:
             if self.rect.collidepoint(m_pos):
-                print('in rect')
+                #print('in rect')
                 if e == WHEEL_UP:
-                    print('vol up:', e)
+                    #print('vol up:', e)
                     self.__change_volume_sound('+', STEP_VALUE_LOOP)
                 elif e == WHEEL_DOWN:
-                    print('vol down')
+                    #print('vol down')
                     self.__change_volume_sound('-', STEP_VALUE_LOOP)
                 elif e == CLICK:
-                    print ('CLICK')
+                    #print ('CLICK')
                     if self.has_sound:
                         if not self.muted:
-                           # print('1stop play')
-                            #self.stop_play()
                             self.mute()
                         else:
-                            #print('2start play')
-                            #self.start_play()
                             self.unmute()
                 elif e == LENGTH_INC:
-                    print('Loop length inc')
+                    #print('Loop length inc')
                     self.__change_length('+')
                 
                 elif e == LENGTH_DEC:
-                    print('Loop length dec')
+                    #print('Loop length dec')
                     self.__change_length('-')
                             
-        if e == REC_PLAY_LOOP_KEY:
-            print('ID: ', self.id)
-            if not self.has_sound and not self.recording:
-                print('loop start record: ', time.time())
-                self.start_record()
-            else:
-                if self.recording:
-                    print('loop stop record start play')
-                    self.stop_record()
-                    #self.start_play()
-                elif not self.playing:
-                    print('loop start play')
-                    self.start_play()
+        if e == REC_PLAY_LOOP:
+            
+            if self.id == loop_for_rec:
+                if not self.has_sound and not self.recording:
+                    #print('ID: ', self.id)
+                    #print('loop start record: ', time.time())
+                    self.start_record()
                 else:
-                    print('loop stop play')
-                    self.stop_play()
+                    if self.recording:
+                        #print('loop stop record start play')
+                        self.stop_record()
+                    elif self.has_sound:
+                        if not self.playing:
+                            #print('sect_focus: ', sect_focus)
+                            #print('loop start play')
+                            self.start_play()
+                        else:
+                            #print('loop stop play')
+                            self.stop_play()
         elif e == PLAY:
-            print('3start play')
             self.start_play()
         elif e == STOP_PLAY:
-            print('4stop play')
             self.stop_play()
 
         elif e == MUTE:
@@ -135,8 +132,24 @@ class Loop(sprite.Sprite):
                 self.unmute()
             else:
                 self.mute()
+        elif e == ERASE_ALL:
+            print('loop erase all')
+            if self.id == 1:
+                print('send erase all to mixer')
+                self.mixer_event.value = ERASE_ALL
+            self.erase_all()
         elif e == ERASE:
             self.erase_sound()
+        elif e == TOGGLE_SECTION:
+            #print('loop toggle: ', self.id)
+            if self.id == 1:
+                #print('send toggle to mixer')
+                self.mixer_event.value = TOGGLE_SECTION
+            if sect_focus:
+                self.unmute_show()
+            else:
+                self.mute_show()
+            
             
     def __change_length(self, direct):
         if direct == '+':
@@ -150,28 +163,26 @@ class Loop(sprite.Sprite):
         print('send start play to mixer')
         self.playing = True
         self.__time_start = time.time()
+        self.mixer_event.value = PLAY
         self.mixer_channel.value = self.id
-        self.mixer_event.value = PLAY 
         self.mixer_duration.value = self.length_sound
            
     def stop_play(self):
         print('send stop play to mixer')
         self.playing = False
-        self.mixer_channel.value = self.id
         self.mixer_event.value = STOP_PLAY
+        self.mixer_channel.value = self.id
         self.__time_start = None
 
     def start_record(self):
         print('send to mixer start loop record: ', self.id)
         self.recording = True
         self.count_ticks = 0
+        self.mixer_event.value = NEW_LOOP
         self.mixer_channel.value = self.id
-        #send max duration to mixer
-        #self.mixer_list_mute = list_loops_for_mute
-        #self.mixer_list_unmute = list_loops_for_unmute
         self.mixer_duration.value = self.mixer_metro_time.value * self.count_sync_length
         self.length_sound = self.mixer_metro_time.value * self.count_sync_length
-        self.mixer_event.value = NEW_LOOP
+        
         self.__time_start = time.time()
     
     def stop_record(self):
@@ -202,29 +213,39 @@ class Loop(sprite.Sprite):
 
     def mute(self):
         print('loop mute:', self.id)
-        if self.has_sound:
+        
+        if self.has_sound and not self.muted:
             self.mixer_event.value = MUTE
             self.mixer_channel.value = self.id
             self.rad_vol = 3
             self.muted = True
             
+    def mute_show(self):
+        if self.has_sound and not self.muted:
+            self.rad_vol = 3
+            self.muted = True
+            
     def unmute(self):
-        print('loop unmute')
-        if self.has_sound:
+        if self.has_sound and self.muted:
             self.mixer_event.value = UNMUTE
             self.mixer_channel.value = self.id
+            self.rad_vol = int(self.current_vol*self.rad)
+            self.muted = False
+            
+    def unmute_show(self):
+        if self.has_sound and self.muted:
             self.rad_vol = int(self.current_vol*self.rad)
             self.muted = False
             
     def __change_volume_sound(self, direct, value):
         if self.playing:
             if direct == '+':
-                self.mixer_channel.value = self.id
                 self.mixer_event.value = WHEEL_UP
+                self.mixer_channel.value = self.id
                 self.current_vol = self.current_vol + value
             else:
-                self.mixer_channel.value = self.id
                 self.mixer_event.value = WHEEL_DOWN
+                self.mixer_channel.value = self.id
                 self.current_vol = self.current_vol - value
             new_rad = int(round(self.current_vol*self.rad))
             if new_rad >= self.rad:
@@ -233,11 +254,25 @@ class Loop(sprite.Sprite):
                 new_rad = 0
             self.rad_vol = new_rad
             
+    def erase_all(self):
+        if self.has_sound:
+            print(' erase self :', self.id)
+            self.rad_vol = int(NORMAL_VALUE_LOOP*self.rad)
+            self.main_color = COLOR_LOOP
+            self.current_vol = NORMAL_VALUE_LOOP
+            self.delta = 0
+            self.__line_delta = 0
+            self.length_sound = DEFAULT_LOOP_LENGTH
+            self.has_sound = False
+            self.playing = None
+            self.recording = None
+            self.__time_start = None
+            
     def erase_sound(self):
         if self.has_sound:
             print(' erase self :', self.id)
-            self.mixer_channel.value = self.id
             self.mixer_event.value = ERASE
+            self.mixer_channel.value = self.id
             self.rad_vol = int(NORMAL_VALUE_LOOP*self.rad)
             self.main_color = COLOR_LOOP
             self.current_vol = NORMAL_VALUE_LOOP
@@ -306,7 +341,9 @@ class Loop(sprite.Sprite):
                         thin)
         # main circle
         draw.circle(screen, color_loop, (self.x, self.y), self.rad,thin)
-
+#        if self.id == 1:
+#            print(self.playing)
+#            print(self.recording)
         if (self.playing or self.recording):
             if self.__line_delta <= 10:
                 thin = FOCUS_THICKNESS_LINE_LOOP_SYNC+5

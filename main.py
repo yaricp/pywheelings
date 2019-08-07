@@ -37,11 +37,8 @@ def main():
     mixer_metro_time = Value('d', DEFAULT_METRO_TIME)
     mixer_duration = Value('d', DEFAULT_LOOP_LENGTH)
     mixer_tick = Value('i', 0)
-    #mixer_time_tick = Value('d', 0)
     manager = Manager()
-    manager_unmute = Manager()
-    mixer_list_loops = manager.dict()        #Value('c', b' ')
-    mixer_list_unmute = manager_unmute.dict()    #Value('c', b' ')
+    mixer_list_loops = manager.dict()
     mixer = Process( target = mixer_loops, 
                     args = (mixer_event,
                             mixer_channel,
@@ -95,8 +92,7 @@ def main():
                 loop_sync, 
                 timer, 
                 mixer_tick, 
-                mixer_list_loops,
-                mixer_list_unmute )
+                mixer_list_loops)
     mixer_event.value = QUIT
     pygame.quit()
     if mixer:
@@ -109,8 +105,7 @@ def main_process(screen, bg, list_loops,
                 loop_sync, 
                 timer, 
                 mixer_tick, 
-                mixer_list_loops,
-                mixer_list_unmute ):
+                mixer_list_loops):
     loop_in_focus = 1
     #waiting = False
     current_sect = 1
@@ -125,26 +120,18 @@ def main_process(screen, bg, list_loops,
         e_loop = 1000
         KEY = None
         key_for_focus = 0
-        #Mouse moving
-        
         mouse_pos = pygame.mouse.get_pos()
         for e in pygame.event.get():  # events
             if e.type == pygame.MOUSEBUTTONDOWN:
                 if e.dict['button'] == 4:
-                    #print('wheel up')
                     e_loop = WHEEL_UP
                     if pygame.key.get_pressed()[pygame.K_z]:
-                        #print('length inc')
                         e_loop = LENGTH_INC
                 elif e.dict['button'] == 5:
-                    #print('wheel down')
                     e_loop = WHEEL_DOWN
                     if pygame.key.get_pressed()[pygame.K_z]:
-                        #print('length dec')
                         e_loop = LENGTH_DEC
                 elif e.dict['button'] == 1:
-#                    and check_time_clicked(time_click):
-#                    time_click = datetime.now()
                     e_loop = CLICK
                     key_for_focus = 1
             # Keyboard
@@ -153,28 +140,26 @@ def main_process(screen, bg, list_loops,
                 print(KEY)
                 if KEY == METRO_STOP_PLAY_KEY:
                     loop_sync.start_stop()
-                if KEY == SELECT_SECTION_KEY:
-                    if current_sect == COUNT_ROWS:
-                        current_sect = 1
-                    else:
-                        current_sect += 1
-                    if len(list_loops[current_sect-1][0].loops) > 0:
-                        id_loop_after_rec = list_loops[current_sect-1][0].loops[-1].id
-                    else:
-                        id_loop_after_rec = COUNT_IN_ROW * (current_sect - 1)
-                if KEY == ERASE_KEY:
-                    e_loop=ERASE
+                elif KEY == ERASE_KEY:
+                    e_loop = ERASE_ALL
                     loop_in_focus = 1
                     current_sect = 1
-                if KEY == MUTE_KEY:
+                elif KEY == ERASE_LAST_LOOP_KEY:
+                    e_loop = ERASE
+                elif KEY == MUTE_KEY:
                     e_loop = MUTE
-                if KEY == K_UP:
+                elif KEY == K_UP:
                     e_loop = WHEEL_UP
-                if KEY == K_DOWN:
+                elif KEY == K_DOWN:
                     e_loop = WHEEL_DOWN
-                if KEY == QUIT_KEY:
+                elif KEY == QUIT_KEY:
                     done = True
-                    
+                elif KEY == REC_PLAY_LOOP_KEY:
+                    e_loop = REC_PLAY_LOOP
+                elif KEY == TOGGLE_SECTION_KEY:
+                    e_loop = TOGGLE_SECTION
+                elif KEY == SELECT_SECTION_KEY:
+                    e_loop = SELECT_SECTION
             if e.type == pygame.QUIT:
                 done = True
         screen.blit(bg, (0,0)) 
@@ -184,51 +169,70 @@ def main_process(screen, bg, list_loops,
         # Work with sections and Loops
         #
         
+            
+        
+        if e_loop == SELECT_SECTION:
+            if current_sect == COUNT_ROWS:
+                current_sect = 1
+                prev_sect = COUNT_ROWS
+            else:
+                prev_sect = current_sect
+                current_sect += 1
+            
+        elif e_loop == TOGGLE_SECTION:
+            next_prev_sect = current_sect
+            if prev_sect and current_sect != prev_sect:
+                current_sect = prev_sect
+            prev_sect = next_prev_sect
+            
+        if len(list_loops[current_sect-1][0].loops) > 0:
+            id_loop_after_rec = list_loops[current_sect-1][0].loops[-1].id
+        else:
+            id_loop_after_rec = COUNT_IN_ROW * (current_sect - 1)
+        
         # Mute other section while record loop from current section
-        if KEY == REC_PLAY_LOOP_KEY:
+        if e_loop == REC_PLAY_LOOP or e_loop == TOGGLE_SECTION:
+            #print("LIST_LOOPS: ", len(list_loops))
             for item in list_loops:
                 section = item[0]
+                #print('section.loops: ', section.loops)
                 for loop in section.loops:
                     mixer_list_loops[loop.id] = section.focus
                     if section.focus:
-                        loop.unmute()
+                        loop.unmute_show()
+                        section.muted = False
                     else:
-                        loop.mute()
+                        loop.mute_show()
+                        section.muted = True
                 
-        
         for dict in list_loops:
             sect = dict[0]
             loops = dict[1]
             #
             # Section Events
             #
-            
-            if KEY == TOGGLE_SECTION_KEY:
-                if prev_sect and current_sect != prev_sect:
-                    current_sect = prev_sect
-                if sect.playing:
-                    e_loop = STOP_PLAY
-                elif sect.focus:
-                    e_loop = PLAY
             last_loop_ob = sect.check_focus(current_sect)
+            
             if sect.prev:
                 prev_sect = sect.id
-            if KEY == ERASE_KEY:
-                sect.loops = []
+            
             if sect.focus:
                 if not last_loop_ob:
                     loop_in_focus = loops[0].id
                 else:
                     loop_in_focus = last_loop_ob.id+1
-            if KEY == ERASE_LAST_LOOP_KEY:
-                #print('e_loop: ', e_loop)
+            if e_loop == ERASE:
                 if sect.focus and sect.playing:
                     loop_for_erase = sect.loops.pop()
+                    mixer_list_loops.pop(loop_for_erase.id, None)
                     loop_for_erase.event(ERASE)
                     if len(sect.loops) > 0: 
                         id_loop_after_rec = sect.loops[-1].id
                     else:
                         id_loop_after_rec = COUNT_IN_ROW * (sect.id - 1)
+                    if id_loop_after_rec == 1 and not sect.loops:
+                        loop_for_rec = 1
+                    
             #        
             # Loops Events
             #       
@@ -236,22 +240,34 @@ def main_process(screen, bg, list_loops,
                 
                 loop.check_focus(key_for_focus, mouse_pos, loop_in_focus)
                 loop.next_for_rec(loop_for_rec)
-                #print('check focus: ', loop.id)
-                if loop.id == loop_for_rec and KEY == REC_PLAY_LOOP_KEY:
-                    loop.event( REC_PLAY_LOOP_KEY)
-                    if loop.has_sound:
-                        id_loop_after_rec = loop.id
-                        sect.loops.append(loop)
-#                if loop.focus:
-#                    loop.event(e_loop, mouse_pos)
-#                if sect.prev and stop_prev_event and sect.playing:
-#                    loop.event(STOP_PLAY, mouse_pos)
-#                else:
-                loop.event(e_loop, mouse_pos)
+                
+                if e_loop != ERASE:
+                    
+                    loop.event(e_loop, mouse_pos, sect.focus, loop_for_rec)
+                    if e_loop == REC_PLAY_LOOP:
+                        if loop.has_sound and loop.id == loop_for_rec:
+                            id_loop_after_rec = loop.id
+                            sect.loops.append(loop)
+                            #print('added loop:', )
+                            #print('len loops: ', len(sect.loops))
+                    
+                        
                 loop.draw(screen)
                 if not loop.tick_checked:
                     all_tick_checked = False
+            
             sect.draw(screen)
+            
+        if e_loop == ERASE_ALL:
+            for item in list_loops:
+                section = item[0]
+                for loop in section.loops:
+                    mixer_list_loops.pop(loop.id, None)
+                section.loops = []
+            loop_for_rec = 1
+            loop_in_focus = 1
+                
+            
         if all_tick_checked:
             mixer_tick.value = 0
         for loop in total_dict_loops.values():

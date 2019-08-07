@@ -29,7 +29,6 @@ class Section(sprite.Sprite):
             self.prev = False
             return self.__get_last_loop()
         else:
-
             self.focus = False
             return False
 
@@ -57,18 +56,20 @@ class Section(sprite.Sprite):
                 self.muted = True
                 
     def mute(self):
-        
-        for loop in self.loops:
-            if not loop.muted:
+        print ('section mute: ', self.id)
+        print('muted: ', self.muted)
+        if not self.muted:
+            for loop in self.loops:
                 loop.mute()
-                self.muted = True
+            self.muted = True
     
     def unmute(self):
-        
-        for loop in self.loops:
-            if loop.muted:
+        print('section unmute: ', self.id)
+        print('muted: ', self.muted)
+        if self.muted:
+            for loop in self.loops:
                 loop.unmute()
-                self.muted = False
+            self.muted = False
         
                 
     def draw(self,screen):

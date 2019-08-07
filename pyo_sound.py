@@ -54,16 +54,26 @@ def load_effects(input, channel):
     return output
     
     
+def toggle_section(mixer, play_tables, list_loops, direct=None):
+    for k, i in list_loops.items():
+        if not i:
+            if direct == '>':
+                mute(mixer, play_tables, int(k))
+            else:
+                unmute(mixer, play_tables, int(k))
+        else:
+            if direct == '>':
+                unmute(mixer, play_tables, int(k))
+            else:
+                mute(mixer, play_tables, int(k))
+            
+    
 def record(mixer, play_tables, rec_play_dur, inp_after_effects, list_loops):
     newTable = NewTable(length=rec_play_dur, chnls=1, feedback=0)
     print('mixer start rec:', time.time(), 'duration: ', rec_play_dur)
     table_rec = TableRec(inp_after_effects, table=newTable, fadetime=0).play()
-    print(list_loops)
-    for k, i in list_loops.items():
-        if not i:
-            mute(mixer, play_tables, int(k))
-        else:
-            unmute(mixer, play_tables, int(k))
+    print('list_loops: ', list_loops)
+    toggle_section(mixer, play_tables, list_loops, '>')
     return table_rec
    
    
@@ -97,9 +107,8 @@ def mute(mixer, play_tables, ch):
     play_tables[ch][0].mul = 0
     
     
-    
 def unmute(mixer, play_tables, ch):
-    print('mixer UNMUTE')
+    print('mixer UNMUTE:', ch)
     mixer.setAmp(ch,0,NORMAL_VALUE_LOOP)
     play_tables[ch][0].mul = 1
    
@@ -131,7 +140,7 @@ def volume(mixer, metro_id, amp_metro, ch, direct):
                 mixer.setAmp(ch, 0, value - STEP_VALUE_LOOP)
             else:
                 mixer.setAmp(ch, 0, 0)
-
+                
 
 def mixer_loops(event, 
                 channel, 
@@ -155,17 +164,13 @@ def mixer_loops(event,
     #
     #Load Personal settings from file
     #
-    pers_settings = get_personal_settings()
-    dur_loops = pers_settings['dur_loops']
+    #pers_settings = get_personal_settings()
+    #dur_loops = pers_settings['dur_loops']
     e = event.value
     ch = channel.value
     rec_tables = {}
     play_tables = {}
-    #sh_tables = {}
-    temp_tables = {}
-    #list_for_del = []
-    #print('mixer e: ', e)
-    #print('mixer ch: ', ch)
+    #temp_tables = {}
     metro_playing = False
     t = metro_time.value
     m = Metro(time=t)
@@ -254,20 +259,34 @@ def mixer_loops(event,
             
         elif e == MUTE and ch:
             mute(mixer, play_tables, ch)
-            e = 1000
-            ch = 0
+            event.value = 1000
+            channel.value = 0
             
         elif e == UNMUTE and ch:
             unmute(mixer, play_tables, ch)
-            e = 1000
-            ch = 0
+            event.value = 1000
+            channel.value = 0
+            
+        elif e == TOGGLE_SECTION:
+            print('Mixer toggle')
+            toggle_section(mixer, play_tables, list_loops)
+            event.value = 1000
+            channel.value = 0
             
         elif e == ERASE and ch:
-            print('erase ', ch)
+            print('Mixer erase ', ch)
             mixer.delInput(ch)
             play_tables[ch][0].stop()
             del play_tables[ch]
-            #del temp_tables[ch]
+            event.value = 1000
+            channel.value = 0
+            
+        elif e == ERASE_ALL:
+            print('Mixer erase all:')
+            #for k, i list_loops.items():
+            for k, i in play_tables.items():
+                i[0].stop()
+            play_tables = {}
             event.value = 1000
             channel.value = 0
             
@@ -294,48 +313,3 @@ def mixer_loops(event,
             m.stop()
             server.stop()
             return True
-            #sys.exit()
-
-#    print('start record process')
-#    server = Server(audio=AUDIO_SYSTEM,  ichnls=1)
-#    server.deactivateMidi()
-#    server.boot().start()
-#    bufsize = server.getBufferSize()
-#    soundTable = NewTable(length=10, chnls=1, feedback=0.1)
-#    inp = Input(chnl=0)
-#    e = event.value
-#    id = loop_id.value
-#    #ready_to_record = False
-#    soundTable = None
-#    name = "/audio-%d" % id
-    
-#    while True:
-#        e = event.value
-#        id = loop_id.value
-#        #tick = mixer_tick.value
-#        rec_play_dur = duration.value
-#        
-#        
-#        if e == RECORD:
-#            print('rec proc start server: ', time.time())
-#            length = rec_play_dur
-#            
-#            print('rec proc connect to shared_tab: ', name, length)
-#            share_tab = SharedTable(name, create=False, size=bufsize)
-#            
-#            res_out = inp
-#            
-#            #ready_to_record = True
-#            res = TableFill(res_out, share_tab)
-#            print('rec proc start fil;: ', time.time())
-#            event.value = 1000
-#            loop_id.value = 0
-#        elif e == STOP_RECORD:
-#            print('rec proc stop record')
-#            print('length soundTable: ', soundTable.getDur())
-#            #inp.stop()
-#            res.stop()
-#            res_out.stop()
-#            #server.stop()
-#            return True
-
