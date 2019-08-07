@@ -66,7 +66,6 @@ def main():
                         int(x), int(y), 
                         mixer_channel, 
                         mixer_event, 
-                        mixer_metro_time, 
                         mixer_tick, 
                         mixer_duration
                         )
@@ -163,7 +162,7 @@ def main_process(screen, bg, list_loops,
             if e.type == pygame.QUIT:
                 done = True
         screen.blit(bg, (0,0)) 
-        loop_sync.event(e_loop, mouse_pos)
+        loop_sync.event(e_loop, mouse_pos, total_dict_loops)
         loop_sync.draw(screen)
         #
         # Work with sections and Loops
@@ -202,9 +201,9 @@ def main_process(screen, bg, list_loops,
                         loop.mute_show()
                         section.muted = True
                 
-        for dict in list_loops:
-            sect = dict[0]
-            loops = dict[1]
+        for l in list_loops:
+            sect = l[0]
+            loops = l[1]
             #
             # Section Events
             #

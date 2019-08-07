@@ -21,7 +21,6 @@ class Loop(sprite.Sprite):
     def __init__(self, rad,  x, y, 
                         mixer_channel, 
                         mixer_event, 
-                        mixer_metro_time, 
                         mixer_tick, 
                         mixer_duration):
         sprite.Sprite.__init__(self)
@@ -36,14 +35,15 @@ class Loop(sprite.Sprite):
         self.main_color = COLOR_LOOP
         self.rad_vol = int(NORMAL_VALUE_LOOP*rad)
         self.current_vol = NORMAL_VALUE_LOOP
+        self.sync_length = 1
         # shared with mixer
         self.mixer_event = mixer_event
         self.mixer_channel = mixer_channel
         self.mixer_tick = mixer_tick
-        self.mixer_metro_time = mixer_metro_time
+        #self.mixer_metro_time = mixer_metro_time
         self.mixer_duration = mixer_duration
         self.count_sync_length = DEFAULT_LOOP_LENGTH
-        print('self.mixer_metro_time: ', self.mixer_metro_time.value) 
+        #print('self.mixer_metro_time: ', self.mixer_metro_time.value) 
         
         self.delta = 0
         self.__line_delta = 0
@@ -158,8 +158,10 @@ class Loop(sprite.Sprite):
             self.count_sync_length += 1
         else:
             self.count_sync_length -= 1
+        self.length_sound = self.count_sync_length * self.sync_length
+        print('self.sync_length: ', self.id, self.sync_length)
+        print('self.length_sound: ', self.id, self.length_sound)
         
-            
     def start_play(self):
         print('send start play to mixer')
         self.playing = True
@@ -176,14 +178,15 @@ class Loop(sprite.Sprite):
         self.__time_start = None
 
     def start_record(self):
-        print('send to mixer start loop record: ', self.id)
+        print('start loop record: ', self.id)
         self.recording = True
         self.count_ticks = 0
         self.mixer_event.value = NEW_LOOP
         self.mixer_channel.value = self.id
-        self.mixer_duration.value = self.mixer_metro_time.value * self.count_sync_length
-        print('send duration to mixer: ', self.mixer_duration.value/self.mixer_metro_time.value)
-        self.length_sound = self.mixer_metro_time.value * self.count_sync_length
+        self.mixer_duration.value = self.count_sync_length * self.sync_length
+        print('send duration to mixer: ', self.count_sync_length * self.sync_length)
+        #print('counts: ', self.length_sound/self.mixer_metro_time.value)
+        
         
         self.__time_start = time.time()
     
@@ -193,18 +196,17 @@ class Loop(sprite.Sprite):
             return False
         self.recording = False
         self.playing = True
-        #self.length_sound = time.time() - self.__time_start
         full_time = time.time() - self.__time_start
-        full_time_by_ticks = self.count_ticks*self.mixer_metro_time.value
+        full_time_by_ticks = self.count_ticks*self.sync_length
         delta =full_time - full_time_by_ticks
         if delta >= HUMAN_FACTOR/100:
             add_tick = 1
         else:
             add_tick = 0
-        self.length_sound = (self.count_ticks + add_tick)*self.mixer_metro_time.value
+        self.length_sound = (self.count_ticks + add_tick)*self.sync_length
         print('length: ', self.length_sound)
-        if self.length_sound > self.mixer_metro_time.value * self.count_sync_length:
-            self.length_sound = self.mixer_metro_time.value * self.count_sync_length
+        if self.length_sound > self.sync_length * self.count_sync_length:
+            self.length_sound = self.sync_length * self.count_sync_length
         print('send length: ', self.length_sound)
         self.mixer_duration.value = self.length_sound
         self.mixer_event.value = STOP_RECORD
@@ -311,7 +313,6 @@ class Loop(sprite.Sprite):
             self.main_color = COLOR_LOOP
             
     def check_tick(self):
-        #print('tick: ', self.mixer_tick.value)
         if self.mixer_tick.value == 1:
             if self.recording:
                 #print('recording')
@@ -409,7 +410,7 @@ class LoopSync(sprite.Sprite):
             self.focus = False
             return False
 
-    def event(self, e, m_pos=None):
+    def event(self, e, m_pos=None, list_loops=None):
         if e == MUTE:
             if self.muted:
                 self.unmute()
@@ -423,9 +424,9 @@ class LoopSync(sprite.Sprite):
             elif e == CLICK:
                 self.start_stop()
             elif e == LENGTH_INC:
-                self.__change_length('+', DEFAULT_DELTA_LENGTH_SYNTH)
+                self.__change_length('+', DEFAULT_DELTA_LENGTH_SYNTH, list_loops)
             elif e == LENGTH_DEC:
-                self.__change_length('-', DEFAULT_DELTA_LENGTH_SYNTH)
+                self.__change_length('-', DEFAULT_DELTA_LENGTH_SYNTH, list_loops)
                 
     def __change_volume_sound(self, direct, value):
         if self.playing:
@@ -458,16 +459,20 @@ class LoopSync(sprite.Sprite):
         self.__time_start_play = time.time()
         
         
-    def __change_length(self, direct,  delta):
+    def __change_length(self, direct,  delta, total_dict_loops):
         if direct == '+':
             self.length_loop -= delta
         else:
             self.length_loop += delta
         self.mixer_metro_time.value = self.length_loop
         self.mixer_event.value = CHANGE_METRO_TIME
+        for id, loop in total_dict_loops.items():
+            loop.length_sound = loop.count_sync_length * self.length_loop
+            loop.sync_length = self.length_loop
+            print('loop.sync_length: ', loop.id, loop.sync_length)
+            print('loop.length_sound: ', loop.id, loop.length_sound)
+                
         
-        
-
     def __end_point(self):
         now = time.time()
         length = self.length_loop

@@ -73,6 +73,8 @@ def record( mixer, play_tables,
             list_loops, 
             mixer_metro_time):
     newTable = NewTable(length=rec_play_dur, chnls=1, feedback=0)
+    print(rec_play_dur)
+    print(mixer_metro_time)
     print('mixer start rec:', time.time(), 
             'duration: ', 
             round(rec_play_dur/mixer_metro_time))
@@ -87,6 +89,8 @@ def stop_record(mixer, inp_main, table_rec,
                 mixer_metro_time,  ch):
     print('mixer stop record and start play ', ch)
     table_rec.stop()
+    print(table_rec.table.getDur())
+    print(mixer_metro_time)
     print('max duration cicles: ',  round(table_rec.table.getDur()/mixer_metro_time))
     print('real duration cicles: ', round(rec_play_dur/mixer_metro_time))
     mixer.delInput('main')
@@ -206,7 +210,7 @@ def mixer_loops(event,
     while True:
         e = event.value
         ch = channel.value
-        rec_play_dur = duration.value
+        
         mixer_metro_time = metro_time.value
         
         
@@ -224,6 +228,7 @@ def mixer_loops(event,
 
 
         if e == NEW_LOOP and ch and not (ch in rec_tables):
+            rec_play_dur = duration.value
             table_rec = record( mixer,
                                 play_tables, 
                                 rec_play_dur,
@@ -234,6 +239,7 @@ def mixer_loops(event,
             channel.value = 0
             
         elif e == STOP_RECORD and ch:
+            rec_play_dur = duration.value
             mixer, play_tables = stop_record(mixer, 
                                             inp_main, 
                                             table_rec, 
@@ -295,7 +301,6 @@ def mixer_loops(event,
             
         elif e == ERASE_ALL:
             print('Mixer erase all:')
-            #for k, i list_loops.items():
             for k, i in play_tables.items():
                 mixer.delInput(k)
                 i[0].stop()
