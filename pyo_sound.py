@@ -1,18 +1,9 @@
-import os, sys, time, random, multiprocessing, json
+import os, sys, time, random, multiprocessing
 from pyo import *
 
 from settings import *
 from effects import *
 
-HOME_DIR = os.path.dirname(os.path.abspath(__file__))
-
-def get_personal_settings():
-    """Get Persoaln settings from file"""
-    with open(os.path.join(HOME_DIR,'settings/personal.json'), 'r') as file:
-        text = file.read()
-        objects = json.loads(text)
-        print(objects)
-        return objects
 
 def vocoder(input):
     print('start vocoder')
@@ -55,6 +46,7 @@ def load_effects(input, channel):
     
     
 def toggle_section(mixer, play_tables, list_loops, direct=None):
+    print('list_loops: ', list_loops)
     for k, i in list_loops.items():
         if not i:
             if direct == '>':
@@ -89,14 +81,14 @@ def stop_record(mixer, inp_main, table_rec,
                 mixer_metro_time,  ch):
     print('mixer stop record and start play ', ch)
     table_rec.stop()
-    print(table_rec.table.getDur())
-    print(mixer_metro_time)
+    print('table.getDur: ', table_rec.table.getDur())
+    print('mixer_metro_time:', mixer_metro_time)
     print('max duration cicles: ',  round(table_rec.table.getDur()/mixer_metro_time))
     print('real duration cicles: ', round(rec_play_dur/mixer_metro_time))
     mixer.delInput('main')
     inp_after_effects = load_effects(inp_main, ch+1)
     mixer.addInput('main', inp_after_effects)
-    mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.3)
+    mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.2)
     #dur = 0
     if not ch in play_tables:
         looper = Looper( table=table_rec.table, 
@@ -105,12 +97,31 @@ def stop_record(mixer, inp_main, table_rec,
                         xfade=0, 
                         interp=1, 
                         mul=1).out()
-        print(looper.mul)
+        print('start looper with mul: ', looper.mul)
+        
         play_tables.update({ch: [looper, 0, rec_play_dur, time.time()]})
 
     mixer.addInput(ch, looper)
     mixer.setAmp(ch,0,1)
     return mixer, play_tables
+    
+    
+def sync_start_play(play_tables, tick):
+    if tick.value:
+        #print('tick: ', tick.value)
+        for play_t in play_tables:
+            
+            delta = round((play_tables[play_t][2]
+                            -time.time()
+                            -play_tables[play_t][3]),
+                            3)
+            if play_tables[play_t][1] == 0 and delta <= 0.05:
+                print('mixer start play')
+                play_tables[play_t][1] = 1
+                play_tables[play_t][0].setStart(0.01)
+                play_tables[play_t][0].setXfade(0)
+                play_tables[play_t][0].loopnow()
+                
    
    
 def mute(mixer, play_tables, ch):
@@ -119,11 +130,16 @@ def mute(mixer, play_tables, ch):
     play_tables[ch][0].mul = 0
     
     
-def unmute(mixer, play_tables, ch):
+def unmute(mixer, play_tables, ch, tick=True):
     print('mixer UNMUTE:', ch)
+#    unmuted = False
+#    if tick:
+#        print('play_tables[ch][0].mul: ', play_tables[ch][0].mul)
     mixer.setAmp(ch,0,NORMAL_VALUE_LOOP)
     play_tables[ch][0].mul = 1
-   
+    unmuted = True
+    #return unmuted
+    
    
 def volume(mixer, metro_id, amp_metro, ch, direct):
     #print('mixer wheel_up: ', ch)
@@ -153,7 +169,7 @@ def volume(mixer, metro_id, amp_metro, ch, direct):
             else:
                 mixer.setAmp(ch, 0, 0)
                 
-
+                
 def mixer_loops(event, 
                 channel, 
                 metro_time, 
@@ -176,8 +192,7 @@ def mixer_loops(event,
     #
     #Load Personal settings from file
     #
-    #pers_settings = get_personal_settings()
-    #dur_loops = pers_settings['dur_loops']
+    
     e = event.value
     ch = channel.value
     rec_tables = {}
@@ -186,12 +201,9 @@ def mixer_loops(event,
     metro_playing = False
     t = metro_time.value
     m = Metro(time=t)
-    #print('m: ', m)
     def send_tick():
-        #print('tick:',  time.time())
         tick.value = 1
     tf = TrigFunc(m, send_tick)
-    #start_play_metro = Trig()
     cos_t = CosTable([(0,0), (50,1), (250,.3), (8191,0)])
     amp_metro = TrigEnv(m, table=cos_t, dur=.25, mul=.1)
     a = Sine(freq=1000, mul=amp_metro).out()
@@ -213,20 +225,9 @@ def mixer_loops(event,
         
         mixer_metro_time = metro_time.value
         
-        
         if ch == 0 and e == 1000 :
-
-            for play_t in play_tables:
-                #last_period = False
-
-                delta = round(play_tables[play_t][2]-time.time()-play_tables[play_t][3], 3)
-                if play_tables[play_t][1] == 0 and delta <= 0.05:
-                    play_tables[play_t][1] = 1
-                    play_tables[play_t][0].setStart(0.01)
-                    play_tables[play_t][0].setXfade(0)
-                    play_tables[play_t][0].loopnow()
-
-
+            sync_start_play(play_tables, tick)
+            
         if e == NEW_LOOP and ch and not (ch in rec_tables):
             rec_play_dur = duration.value
             table_rec = record( mixer,
@@ -235,6 +236,7 @@ def mixer_loops(event,
                                 inp_after_effects, 
                                 list_loops, 
                                 mixer_metro_time)
+                    
             event.value = 1000
             channel.value = 0
             
@@ -247,6 +249,7 @@ def mixer_loops(event,
                                             rec_play_dur,
                                             mixer_metro_time, 
                                             ch)
+            print('TICK:', tick.value)
             event.value = 1000
             channel.value = 0
             
@@ -278,7 +281,8 @@ def mixer_loops(event,
             channel.value = 0
             
         elif e == UNMUTE and ch:
-            unmute(mixer, play_tables, ch)
+            #if 
+            unmute(mixer, play_tables, ch, tick.value)
             event.value = 1000
             channel.value = 0
             

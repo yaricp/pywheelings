@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import sys, pygame
+import os, sys, pygame, json
 from pygame import *
 from datetime import datetime
 from ctypes import c_char_p
@@ -17,7 +17,17 @@ from pyo_sound import mixer_loops
 from loop import Loop, LoopSync
 from sections import Section
 
+HOME_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
+def get_personal_settings():
+    """Get Personal settings from file"""
+    with open(os.path.join(HOME_DIR,'settings/personal.json'), 'r') as file:
+        text = file.read()
+        objects = json.loads(text)
+        print(objects)
+        return objects
+        
 
 def main():
     pygame.mixer.init(44100,  -16, 2, 1024)
@@ -50,6 +60,9 @@ def main():
     
     print('Main')
     
+    pers_settings = get_personal_settings()
+    dur_loops = pers_settings['dur_loops']
+    
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
     for row in range(0, COUNT_ROWS):
         #print('row ', row)
@@ -58,7 +71,6 @@ def main():
         loops = []
         margin_loop = 0
         for col in range(0, COUNT_IN_ROW):
-            #print('col ',  col)
             margin_loop += MARGIN 
             x = LOOP_RAD + 2 * col * LOOP_RAD + margin_loop + TOTAL_X_MARGIN
             y = LOOP_RAD + 2 * row * LOOP_RAD + margin_row + TOTAL_Y_MARGIN
@@ -67,7 +79,8 @@ def main():
                         mixer_channel, 
                         mixer_event, 
                         mixer_tick, 
-                        mixer_duration
+                        mixer_duration, 
+                        dur_loops, 
                         )
             total_dict_loops.update({loop.id: loop})
             loops.append(loop)
@@ -84,7 +97,8 @@ def main():
                             mixer_channel, 
                             mixer_event,
                             mixer_metro_time, 
-                            mixer_tick
+                            mixer_tick, 
+                            total_dict_loops
                             )
     main_process(screen, bg, list_loops, 
                 total_dict_loops, 
@@ -263,7 +277,7 @@ def main_process(screen, bg, list_loops,
             loop_for_rec = 1
             loop_in_focus = 1
                 
-            
+        loop_sync.check_started()    
         if all_tick_checked:
             mixer_tick.value = 0
         for loop in total_dict_loops.values():
