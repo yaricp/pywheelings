@@ -199,8 +199,6 @@ def main_process(screen, bg, list_loops,
         if list_show:
             list_files.draw(screen)
           
-            
-        
         elif e_loop == SELECT_SECTION:
             
             if current_sect == COUNT_ROWS:

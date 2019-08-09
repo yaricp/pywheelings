@@ -1,7 +1,7 @@
 
 from pygame import *
 
-import time, os
+import time
 from math import sin, cos, radians
 
 try:
@@ -523,7 +523,6 @@ class LoopSync(sprite.Sprite):
                 thin_vol = self.rad_vol
                 
             draw.circle(screen, COLOR_VOL_LOOP_SYNC, (self.x, self.y), self.rad_vol, thin_vol)
-
 
 
 class LoopMain(sprite.Sprite):

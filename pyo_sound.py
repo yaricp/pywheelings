@@ -31,8 +31,9 @@ def pads(input):
     return output
     
 dict_effects_by_loops = {
-        1: pads, 
-        #2: voices, 
+        1: pad2, 
+        2: pad2, 
+        3: pad2, 
         #3: viola, 
         #4: strings
 }
@@ -46,7 +47,7 @@ def load_effects(input, channel):
     
     
 def toggle_section(mixer, play_tables, list_loops):
-    print('list_loops: ', list_loops)
+    #print('list_loops: ', list_loops)
     for k, i in list_loops.items():
         if not i:
             mute(mixer, play_tables, int(k))
