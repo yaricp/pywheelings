@@ -78,15 +78,11 @@ class Loop(sprite.Sprite):
                 loop_for_rec=None):
         if e in [WHEEL_UP, WHEEL_DOWN, CLICK, LENGTH_INC, LENGTH_DEC]:
             if self.rect.collidepoint(m_pos):
-                #print('in rect')
                 if e == WHEEL_UP:
-                    #print('vol up:', e)
                     self.__change_volume_sound('+', STEP_VALUE_LOOP)
                 elif e == WHEEL_DOWN:
-                    #print('vol down')
                     self.__change_volume_sound('-', STEP_VALUE_LOOP)
                 elif e == CLICK:
-                    #print ('CLICK')
                     if self.has_sound:
                         print('self.muted: ', self.muted)
                         if not self.muted:
@@ -94,51 +90,40 @@ class Loop(sprite.Sprite):
                         else:
                             self.unmute()
                 elif e == LENGTH_INC:
-                    #print('Loop length inc')
                     self.__change_length('+')
                 
                 elif e == LENGTH_DEC:
-                    #print('Loop length dec')
                     self.__change_length('-')
                             
         if e == REC_PLAY_LOOP:
             
             if self.id == loop_for_rec:
                 if not self.has_sound and not self.recording:
-                    #print('ID: ', self.id)
-                    #print('loop start record: ', time.time())
                     self.start_record()
                 else:
                     if self.recording:
-                        #print('loop stop record start play')
                         self.stop_record()
                     elif self.has_sound:
                         if not self.playing:
-                            #print('sect_focus: ', sect_focus)
-                            #print('loop start play')
                             self.start_play()
                         else:
-                            #print('loop stop play')
                             self.stop_play()
         elif e == PLAY:
             self.start_play()
         elif e == STOP_PLAY:
             self.stop_play()
-
         elif e == MUTE:
             print('self.muted: ', self.muted)
             if self.muted:
                 self.unmute()
             else:
                 self.mute()
-                
         elif e == MUTE_ALL:
             if sect_focus:
                 if self.muted:
                     self.unmute()
                 else:
                     self.mute()
-                    
         elif e == ERASE_ALL:
             print('loop erase all')
             if self.id == 1:
@@ -148,26 +133,13 @@ class Loop(sprite.Sprite):
         elif e == ERASE:
             self.erase_sound()
         elif e == TOGGLE_SECTION:
-            #print('loop toggle: ', self.id)
             if self.id == 1:
-                #print('send toggle to mixer')
                 self.mixer_event.value = TOGGLE_SECTION
-            #print('sect_focus: ', sect_focus)
             if sect_focus:
                 print('unmute_show')
                 self.unmute_show()
             else:
                 self.mute_show()
-#        elif e == TOGGLE_AFTER_SELECT:
-#            if self.id == 1:
-#                #print('send toggle to mixer')
-#                self.mixer_event.value = TOGGLE_AFTER_SELECT
-#            if sect_focus:
-#                print('unmute_show')
-#                self.unmute_show()
-#            else:
-#                self.mute_show()
-                
             
     def __change_length(self, direct):
         if direct == '+':
@@ -372,12 +344,20 @@ class Loop(sprite.Sprite):
                         self.__end_point(), 
                         thin)
         #Font of loop and other
+        # number of loop
         font_loop = font.Font(None, SIZE_FONT_LOOP)
         text = font_loop.render(str(self.id), True, COLOR_FONT_LOOP)
         screen.blit(text, [self.x - 30, self.y - 30])
+        # volume of loop
+        font_loop = font.Font(None, SIZE_FONT_LOOP)
+        text = font_loop.render(str(self.rad_vol/self.rad),
+                                True, 
+                                COLOR_FONT_LOOP)
+        screen.blit(text, [self.x - 1, self.y - 30])
+        # length of loop
         font_loop_length = font.Font(None, SIZE_FONT_LOOP_LENGTH)
         text = font_loop_length.render(str(self.count_sync_length), True, COLOR_FONT_LOOP_LENGTH)
-        screen.blit(text, [self.x , self.y ])
+        screen.blit(text, [self.x-5 , self.y-5 ])
 
 
 class LoopSync(sprite.Sprite):

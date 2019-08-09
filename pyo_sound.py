@@ -82,7 +82,7 @@ def stop_record(mixer, inp_main, table_rec,
     mixer.delInput('main')
     inp_after_effects = load_effects(inp_main, ch+1)
     mixer.addInput('main', inp_after_effects)
-    mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.3)
+    mixer.setAmp('main', 0, NORMAL_VALUE_LOOP*1.3)
     #dur = 0
     if not ch in play_tables:
         looper = Looper( table=table_rec.table, 
@@ -96,7 +96,7 @@ def stop_record(mixer, inp_main, table_rec,
         play_tables.update({ch: [looper, 0, rec_play_dur, time.time()]})
 
     mixer.addInput(ch, looper)
-    mixer.setAmp(ch,0,1)
+    mixer.setAmp(ch, 0, NORMAL_VALUE_LOOP)
     return mixer, play_tables
     
     
@@ -136,7 +136,6 @@ def unmute(mixer, play_tables, ch, tick=True):
     
    
 def volume(mixer, metro_id, amp_metro, ch, direct):
-    #print('mixer wheel_up: ', ch)
     
     if ch == metro_id:
         value = amp_metro.mul
@@ -171,7 +170,6 @@ def mixer_loops(event,
                 duration, 
                 list_loops):
     print("Start Mixer")
-    #print("Audio host APIS:")
     pa_list_host_apis()
     pa_list_devices()
     print("Default input device: %i" % pa_get_default_input())
@@ -182,7 +180,7 @@ def mixer_loops(event,
     bufsize = server.getBufferSize()
     mixer = Mixer(outs=1, chnls=COUNT_IN_ROW * COUNT_ROWS, time=.025).out()
     metro_id = COUNT_IN_ROW * COUNT_ROWS + 1
-    #print('metro_id: ', metro_id)
+    
     #
     #Load Personal settings from file
     #
@@ -280,20 +278,11 @@ def mixer_loops(event,
             event.value = 1000
             channel.value = 0
             
-#        elif e == MUTE_ALL and ch:
-#            mute
-            
         elif e == TOGGLE_SECTION:
             print('Mixer toggle')
             toggle_section(mixer, play_tables, list_loops)
             event.value = 1000
             channel.value = 0
-            
-#        elif e == TOGGLE_AFTER_SELECT:
-#            print('Mixer toggle after select')
-#            toggle_section(mixer, play_tables, list_loops, '<')
-#            event.value = 1000
-#            channel.value = 0
             
         elif e == ERASE and ch:
             print('Mixer erase ', ch)
