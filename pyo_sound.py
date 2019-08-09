@@ -82,7 +82,7 @@ def stop_record(mixer, inp_main, table_rec,
     mixer.delInput('main')
     inp_after_effects = load_effects(inp_main, ch+1)
     mixer.addInput('main', inp_after_effects)
-    mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.2)
+    mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.3)
     #dur = 0
     if not ch in play_tables:
         looper = Looper( table=table_rec.table, 
@@ -209,7 +209,7 @@ def mixer_loops(event,
     inp_after_effects = load_effects(inp_main, 1)
     
     mixer.addInput('main', inp_after_effects)
-    mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.4)
+    mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.3)
     
     #Start main cyrcle
     
