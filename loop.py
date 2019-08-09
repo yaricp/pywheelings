@@ -524,3 +524,63 @@ class LoopSync(sprite.Sprite):
                 
             draw.circle(screen, COLOR_VOL_LOOP_SYNC, (self.x, self.y), self.rad_vol, thin_vol)
 
+
+
+class LoopMain(sprite.Sprite):
+
+    def __init__(self, rad,  x, y, 
+                mixer_channel, 
+                mixer_event):
+        sprite.Sprite.__init__(self)
+        self.id = MAIN_LOOP_ID 
+        self.rect = Rect(x-rad, y-rad, 2*rad, 2*rad)
+        self.rad = rad
+        self.rad_vol = rad
+        self.current_vol = 0.99
+        self.x = x
+        self.y = y
+        
+        self.mixer_channel = mixer_channel
+        self.mixer_event = mixer_event
+        
+    def __change_volume_sound(self, direct, value):
+        if direct == '+':
+            self.mixer_channel.value = self.id
+            self.mixer_event.value = WHEEL_UP
+            self.current_vol = self.current_vol + value
+        else:
+            self.mixer_channel.value = self.id
+            self.mixer_event.value = WHEEL_DOWN
+            self.current_vol = self.current_vol - value
+        new_rad = int(round(self.current_vol*self.rad))
+        if new_rad >= self.rad:
+            new_rad = self.rad
+        self.rad_vol = new_rad
+            
+    def event(self, e, m_pos=None):
+        if self.rect.collidepoint(m_pos):
+            if e == WHEEL_UP:
+                self.__change_volume_sound('+', STEP_VALUE_LOOP)
+            elif e == WHEEL_DOWN:
+                self.__change_volume_sound('-', STEP_VALUE_LOOP)
+        
+    def draw(self, screen): 
+        thin = THICKNESS_LINE_LOOP
+        if self.rad_vol < thin:
+            self.rad_vol = thin
+        draw.circle(screen, COLOR_LOOP, 
+                    (self.x, self.y), self.rad, thin)
+        draw.circle(screen, COLOR_VOL_LOOP_SYNC, 
+                    (self.x, self.y), self.rad_vol, thin)
+        #TEXT
+        font_loop = font.Font(None, SIZE_FONT_LOOP)
+        text = font_loop.render("Main Volume", True, COLOR_FONT_LOOP)
+        screen.blit(text, [self.x - 30, self.y])
+        
+        # volume of loop
+        font_loop = font.Font(None, SIZE_FONT_LOOP)
+        text = font_loop.render(str(self.rad_vol/self.rad),
+                                True, 
+                                COLOR_FONT_LOOP)
+        screen.blit(text, [self.x - 1, self.y - 30])
+

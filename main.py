@@ -14,7 +14,7 @@ except ImportError:
 from settings import *
 from pyo_sound import mixer_loops
 
-from loop import Loop, LoopSync
+from loop import Loop, LoopSync, LoopMain
 from sections import Section
 from listfiles import ListFiles
 
@@ -51,7 +51,6 @@ def main():
                     ).start()
     
     print('Main')
-    
     list_files = ListFiles(500, 50, HOME_DIR)
     dur_loops = list_files.get_default_settings()['dur_loops']
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
@@ -91,13 +90,22 @@ def main():
                             mixer_tick, 
                             total_dict_loops
                             )
+    loop_main_value = LoopMain(MAIN_VOL_LOOP_RAD,
+                            int(TOTAL_X_MARGIN+(3*width/4)+35),
+                            int(MARGIN+height*COUNT_ROWS
+                                +LOOP_RAD_SYNC
+                                +TOTAL_Y_MARGIN
+                                +MAIN_VOL_LOOP_RAD/2+30),
+                            mixer_channel, 
+                            mixer_event)
     main_process(screen, bg, list_loops, 
                 total_dict_loops, 
                 loop_sync, 
                 timer, 
                 mixer_tick, 
                 mixer_list_loops, 
-                list_files)
+                list_files, 
+                loop_main_value)
     mixer_event.value = QUIT
     pygame.quit()
     if mixer:
@@ -111,7 +119,8 @@ def main_process(screen, bg, list_loops,
                 timer, 
                 mixer_tick, 
                 mixer_list_loops, 
-                list_files):
+                list_files, 
+                loop_main_value):
     loop_in_focus = 1
     #waiting = False
     current_sect = 1
@@ -177,6 +186,8 @@ def main_process(screen, bg, list_loops,
         screen.blit(bg, (0,0)) 
         loop_sync.event(e_loop, mouse_pos, total_dict_loops)
         loop_sync.draw(screen)
+        loop_main_value.event(e_loop, mouse_pos)
+        loop_main_value.draw(screen)
         #
         # Work with sections and Loops
         #

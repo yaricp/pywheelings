@@ -149,6 +149,18 @@ def volume(mixer, metro_id, amp_metro, ch, direct):
                 amp_metro.mul = value - STEP_VALUE_LOOP
             else:
                 amp_metro.mul = 0
+    elif ch == MAIN_LOOP_ID:
+        value = mixer.mul
+        if direct == '+':
+            if value < 1.0: 
+                mixer.mul = value + STEP_VALUE_LOOP
+            else:
+                mixer.mul = 1.0
+        else:
+            if value > 0: 
+                mixer.mul = value - STEP_VALUE_LOOP
+            else:
+                mixer.mul = 0
     else:
         value = mixer._base_players[ch].gains[str(ch)][0]
         if direct == '+':
