@@ -19,14 +19,9 @@ class Section(sprite.Sprite):
         self.loops = []
         
     def check_focus(self, current_sect):
-
-        if self.playing:
-            self.prev = True
-        else:
-            self.prev = False
         if self.id == current_sect:
             self.focus = True
-            self.prev = False
+            #self.prev = False
             return self.__get_last_loop()
         else:
             self.focus = False

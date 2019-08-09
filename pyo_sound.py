@@ -45,20 +45,14 @@ def load_effects(input, channel):
     return output
     
     
-def toggle_section(mixer, play_tables, list_loops, direct=None):
+def toggle_section(mixer, play_tables, list_loops):
     print('list_loops: ', list_loops)
     for k, i in list_loops.items():
         if not i:
-            if direct == '>':
-                mute(mixer, play_tables, int(k))
-            else:
-                unmute(mixer, play_tables, int(k))
+            mute(mixer, play_tables, int(k))
         else:
-            if direct == '>':
-                unmute(mixer, play_tables, int(k))
-            else:
-                mute(mixer, play_tables, int(k))
-            
+            unmute(mixer, play_tables, int(k))
+ 
     
 def record( mixer, play_tables, 
             rec_play_dur, inp_after_effects, 
@@ -72,7 +66,7 @@ def record( mixer, play_tables,
             round(rec_play_dur/mixer_metro_time))
     table_rec = TableRec(inp_after_effects, table=newTable, fadetime=0).play()
     print('list_loops: ', list_loops)
-    toggle_section(mixer, play_tables, list_loops, '>')
+    toggle_section(mixer, play_tables, list_loops)
     return table_rec
    
    
@@ -294,6 +288,12 @@ def mixer_loops(event,
             toggle_section(mixer, play_tables, list_loops)
             event.value = 1000
             channel.value = 0
+            
+#        elif e == TOGGLE_AFTER_SELECT:
+#            print('Mixer toggle after select')
+#            toggle_section(mixer, play_tables, list_loops, '<')
+#            event.value = 1000
+#            channel.value = 0
             
         elif e == ERASE and ch:
             print('Mixer erase ', ch)

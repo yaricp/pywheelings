@@ -122,6 +122,7 @@ def main_process(screen, bg, list_loops,
     loop_in_focus = 1
     #waiting = False
     current_sect = 1
+    id_playing_sect = 1
     prev_sect = None
     done = False
     loop_for_rec = 1
@@ -171,6 +172,7 @@ def main_process(screen, bg, list_loops,
                     e_loop = REC_PLAY_LOOP
                 elif KEY == TOGGLE_SECTION_KEY:
                     e_loop = TOGGLE_SECTION
+                    print('TOOOGGGLE')
                 elif KEY == SELECT_SECTION_KEY:
                     e_loop = SELECT_SECTION
             if e.type == pygame.QUIT:
@@ -182,18 +184,19 @@ def main_process(screen, bg, list_loops,
         # Work with sections and Loops
         #
         if e_loop == SELECT_SECTION:
+            
             if current_sect == COUNT_ROWS:
                 current_sect = 1
-                prev_sect = COUNT_ROWS
             else:
-                prev_sect = current_sect
                 current_sect += 1
-                
+        
         elif e_loop == TOGGLE_SECTION:
+            #print('1prev_sect: ', prev_sect)
             next_prev_sect = current_sect
             if prev_sect and current_sect != prev_sect:
                 current_sect = prev_sect
             prev_sect = next_prev_sect
+            #print('2prev_sect: ', prev_sect)
             
         if len(list_loops[current_sect-1][0].loops) > 0:
             id_loop_after_rec = list_loops[current_sect-1][0].loops[-1].id
@@ -201,20 +204,40 @@ def main_process(screen, bg, list_loops,
             id_loop_after_rec = COUNT_IN_ROW * (current_sect - 1)
         
         # Mute other section while record loop from current section
-        if e_loop == REC_PLAY_LOOP or e_loop == TOGGLE_SECTION:
-            #print("LIST_LOOPS: ", len(list_loops))
+        
+        if e_loop  == REC_PLAY_LOOP :
             for item in list_loops:
                 section = item[0]
-                #print('section.loops: ', section.loops)
                 for loop in section.loops:
                     mixer_list_loops[loop.id] = section.focus
                     if section.focus:
                         loop.unmute_show()
-                        section.muted = False
                     else:
                         loop.mute_show()
-                        section.muted = True
-                
+                if section.focus:
+                    section.muted = False
+                    section.prev = True
+                else:
+                    section.muted = True
+        elif e_loop == TOGGLE_SECTION:
+            print('id_playing_sect: ', id_playing_sect)
+            print('prev_sect: ', prev_sect)
+            print('current_sect: ', current_sect)
+            
+            for item in list_loops:
+                section = item[0]
+                for loop in section.loops:
+                    mixer_list_loops[loop.id] = section.prev
+                    if section.prev:
+                        loop.unmute_show()
+                    else:
+                        loop.mute_show()
+                if section.prev:
+                    section.muted = False
+                else:
+                    section.muted = True
+                    section.prev = True
+                        
         for l in list_loops:
             sect = l[0]
             loops = l[1]
@@ -222,9 +245,20 @@ def main_process(screen, bg, list_loops,
             # Section Events
             #
             last_loop_ob = sect.check_focus(current_sect)
+            if sect.playing:
+                id_playing_sect = sect.id
+            if sect.id == prev_sect:
+                sect.prev = True
+            else:
+                sect.prev = False
             
-            if sect.prev:
-                prev_sect = sect.id
+            if e_loop == SELECT_SECTION:
+                if sect.playing: 
+                    prev_sect = sect.id
+                    sect.prev = True
+                else:
+                    sect.prev = False
+            
             
             if sect.focus:
                 if not last_loop_ob:
@@ -258,15 +292,13 @@ def main_process(screen, bg, list_loops,
                         if loop.has_sound and loop.id == loop_for_rec:
                             id_loop_after_rec = loop.id
                             sect.loops.append(loop)
-                            #print('added loop:', )
-                            #print('len loops: ', len(sect.loops))
-                    
-                        
+                     
                 loop.draw(screen)
                 if not loop.tick_checked:
                     all_tick_checked = False
             
             sect.draw(screen)
+            
             
         if e_loop == ERASE_ALL:
             for item in list_loops:

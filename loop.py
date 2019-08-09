@@ -152,12 +152,22 @@ class Loop(sprite.Sprite):
             if self.id == 1:
                 #print('send toggle to mixer')
                 self.mixer_event.value = TOGGLE_SECTION
-            print('sect_focus: ', sect_focus)
+            #print('sect_focus: ', sect_focus)
             if sect_focus:
                 print('unmute_show')
                 self.unmute_show()
             else:
                 self.mute_show()
+#        elif e == TOGGLE_AFTER_SELECT:
+#            if self.id == 1:
+#                #print('send toggle to mixer')
+#                self.mixer_event.value = TOGGLE_AFTER_SELECT
+#            if sect_focus:
+#                print('unmute_show')
+#                self.unmute_show()
+#            else:
+#                self.mute_show()
+                
             
     def __change_length(self, direct):
         if direct == '+':
@@ -219,7 +229,7 @@ class Loop(sprite.Sprite):
         self.has_sound = True
 
     def mute(self):
-        print('loop mute:', self.id)
+        #print('loop mute:', self.id)
         if self.has_sound and not self.muted:
             self.mixer_event.value = MUTE
             self.mixer_channel.value = self.id
@@ -228,13 +238,13 @@ class Loop(sprite.Sprite):
             self.muted = True
             
     def mute_show(self):
-        print('loop mute_show:', self.id)
+        #print('loop mute_show:', self.id)
         if self.has_sound:
             self.playing = False
             self.muted = True
             
     def unmute(self):
-        print('loop unmute:', self.id)
+        #print('loop unmute:', self.id)
         if self.has_sound and self.muted and not self.playing :
             self.mixer_event.value = UNMUTE
             self.mixer_channel.value = self.id
@@ -243,7 +253,7 @@ class Loop(sprite.Sprite):
         self.muted = False
             
     def unmute_show(self):
-        print('loop unmute_show:', self.id)
+        #print('loop unmute_show:', self.id)
         if self.has_sound:
             self.playing = True
             self.muted = False
