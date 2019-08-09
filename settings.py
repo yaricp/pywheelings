@@ -9,6 +9,7 @@ WIN_WIDTH = 800                     # width of main window
 WIN_HEIGHT = 640                    # hight of main window
 DISPLAY = (WIN_WIDTH, WIN_HEIGHT)   # width and height of main window
 BACKGROUND_COLOR = "#0F010F"
+FILES_BACKGROUND_COLOR = (5, 145, 255)
 COUNT_IN_ROW = 6                    # count of loop in line
 COUNT_ROWS = 3                      # count of rows of loops
 LOOP_RAD  = 50                      # radius of main circle of loop
@@ -60,6 +61,7 @@ ERASE_KEY = 113                 #key Q
 QUIT_KEY = 27                   #key ESC
 K_UP = 273                      #key UP
 K_DOWN = 274                    #key DOWN
+OPEN_LIST_FILES_KEY = 111       #key O
 
 # Events of loops
 
@@ -85,6 +87,8 @@ LENGTH_DEC = 15
 TOGGLE_SECTION = 16
 SELECT_SECTION = 17
 REC_PLAY_LOOP = 18
+
+OPEN_LIST_FILES = 19
 
 
 QUIT = 20

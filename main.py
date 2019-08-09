@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, sys, pygame, json
+import os, sys, pygame
 from pygame import *
 from datetime import datetime
 from ctypes import c_char_p
@@ -16,18 +16,10 @@ from pyo_sound import mixer_loops
 
 from loop import Loop, LoopSync
 from sections import Section
+from listfiles import ListFiles
 
 HOME_DIR = os.path.dirname(os.path.abspath(__file__))
 
-
-def get_personal_settings():
-    """Get Personal settings from file"""
-    with open(os.path.join(HOME_DIR,'settings/personal.json'), 'r') as file:
-        text = file.read()
-        objects = json.loads(text)
-        print(objects)
-        return objects
-        
 
 def main():
     pygame.mixer.init(44100,  -16, 2, 1024)
@@ -60,9 +52,8 @@ def main():
     
     print('Main')
     
-    pers_settings = get_personal_settings()
-    dur_loops = pers_settings['dur_loops']
-    
+    list_files = ListFiles(500, 50, HOME_DIR)
+    dur_loops = list_files.get_default_settings()['dur_loops']
     pygame.mouse.set_cursor(*pygame.cursors.arrow)
     for row in range(0, COUNT_ROWS):
         #print('row ', row)
@@ -105,7 +96,8 @@ def main():
                 loop_sync, 
                 timer, 
                 mixer_tick, 
-                mixer_list_loops)
+                mixer_list_loops, 
+                list_files)
     mixer_event.value = QUIT
     pygame.quit()
     if mixer:
@@ -118,7 +110,8 @@ def main_process(screen, bg, list_loops,
                 loop_sync, 
                 timer, 
                 mixer_tick, 
-                mixer_list_loops):
+                mixer_list_loops, 
+                list_files):
     loop_in_focus = 1
     #waiting = False
     current_sect = 1
@@ -129,6 +122,7 @@ def main_process(screen, bg, list_loops,
     id_loop_after_rec = 0
     all_tick_checked = True
     #time_click = None
+    list_show = False
     
     while not done:  # main circle
         e_loop = 1000
@@ -158,6 +152,7 @@ def main_process(screen, bg, list_loops,
                     e_loop = ERASE_ALL
                     loop_in_focus = 1
                     current_sect = 1
+                    list_show = False
                 elif KEY == ERASE_LAST_LOOP_KEY:
                     e_loop = ERASE
                 elif KEY == MUTE_KEY:
@@ -175,6 +170,8 @@ def main_process(screen, bg, list_loops,
                     print('TOOOGGGLE')
                 elif KEY == SELECT_SECTION_KEY:
                     e_loop = SELECT_SECTION
+                elif KEY == OPEN_LIST_FILES_KEY:
+                    e_loop = OPEN_LIST_FILES
             if e.type == pygame.QUIT:
                 done = True
         screen.blit(bg, (0,0)) 
@@ -183,7 +180,17 @@ def main_process(screen, bg, list_loops,
         #
         # Work with sections and Loops
         #
-        if e_loop == SELECT_SECTION:
+        #print('list_show: ', list_show)
+        if e_loop == OPEN_LIST_FILES:
+            list_show = True
+        elif e_loop == ERASE_ALL:
+            list_show = False
+        if list_show:
+            list_files.draw(screen)
+          
+            
+        
+        elif e_loop == SELECT_SECTION:
             
             if current_sect == COUNT_ROWS:
                 current_sect = 1
