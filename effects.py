@@ -13,14 +13,14 @@ def comp(input):
 def gate(input):
     print('Gate')
     
-    comp = Compress(input, thresh=-20, ratio=7, risetime=0.1,
-                    falltime=0.1, knee=0.7)
+    comp = Compress(input, thresh=-40, ratio=1, risetime=1,
+                    falltime=0.1, knee=1, lookahead=10, mul=1.3)
     gate = Gate(comp,    
-            thresh=-50, 
-            risetime=2, 
+            thresh=-65, 
+            risetime=3, 
             falltime=0.1, 
-            lookahead=9, 
-            mul=1.1).out()
+            lookahead=1, 
+            mul=1.1)
     return gate
     
 def pad2(input):
@@ -34,6 +34,19 @@ def pad2(input):
     b = STRev(chorus, inpos=0.7, revtime=7, cutoff=3000, bal=0.6, roomSize=300).out()
     return b
     
+def pad3(input):
+    gt = gate(input)
+    freqs = [.254, .465, .657, .879, 1.23, 1.342, 1.654, 1.879]
+    cdelay = [.0087, .0102, .0111, .01254, .0134, .01501, .01707, .0178]
+#    # Modulation depths in seconds.
+    adelay = [.001, .0012, .0013, .0014, .0015, .0016, .002, .0023]
+    lfos = Sine(freqs, mul=adelay, add=cdelay)
+    pva = PVAnal(gt, size=1024)
+    pvt = PVTranspose(pva, transpo=2)
+    v = PVSynth(pvt)
+    chorus = Delay(v, lfos, feedback=.3, mul=1)
+    b = STRev(chorus, inpos=0.7, revtime=7, cutoff=3000, bal=0.6, roomSize=300).out()
+    return b
 
 def pad1(input):
     print('Start Gate')

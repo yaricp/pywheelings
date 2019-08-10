@@ -31,7 +31,7 @@ def pads(input):
     return output
     
 dict_effects_by_loops = {
-        1: pad2, 
+        1: gate, 
         2: pad2, 
         3: pad2, 
         #3: viola, 
