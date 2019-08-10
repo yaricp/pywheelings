@@ -270,6 +270,31 @@ def distortion(input):
     mixed = Interp(input, lp, interp=BALANCE)
     return mixed
     
+def vocoder(input):
+    print('start vocoder')
+    # Second sound - rich and stable spectrum.
+    excite = Noise(0.2)
+
+    # LFOs to modulated every parameters of the Vocoder object.
+    lf1 = Sine(freq=0.1, phase=random.random()).range(60, 100)
+    lf2 = Sine(freq=0.11, phase=random.random()).range(1.05, 1.5)
+    lf3 = Sine(freq=0.07, phase=random.random()).range(1, 20)
+    lf4 = Sine(freq=0.06, phase=random.random()).range(0.01, 0.99)
+
+    output = Vocoder(input, excite, freq=lf1, spread=lf2, q=lf3, slope=lf4, stages=32)
+    return output
+    
+    
+def echo(input):
+    print('start echo')
+    output = STRev(input, inpos=0.5, revtime=1.5, cutoff=5000, bal=1, roomSize=.8, firstRefGain=-3)
+    return output
+    
+def pads(input):
+    print('start pads')
+    output = input
+    return output
+    
 
 if __name__ == "__main__":
     s = Server(audio='jack').boot().start()

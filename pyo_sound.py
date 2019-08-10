@@ -5,30 +5,7 @@ from settings import *
 from effects import *
 
 
-def vocoder(input):
-    print('start vocoder')
-    # Second sound - rich and stable spectrum.
-    excite = Noise(0.2)
 
-    # LFOs to modulated every parameters of the Vocoder object.
-    lf1 = Sine(freq=0.1, phase=random.random()).range(60, 100)
-    lf2 = Sine(freq=0.11, phase=random.random()).range(1.05, 1.5)
-    lf3 = Sine(freq=0.07, phase=random.random()).range(1, 20)
-    lf4 = Sine(freq=0.06, phase=random.random()).range(0.01, 0.99)
-
-    output = Vocoder(input, excite, freq=lf1, spread=lf2, q=lf3, slope=lf4, stages=32)
-    return output
-    
-    
-def echo(input):
-    print('start echo')
-    output = STRev(input, inpos=0.5, revtime=1.5, cutoff=5000, bal=1, roomSize=.8, firstRefGain=-3)
-    return output
-    
-def pads(input):
-    print('start pads')
-    output = input
-    return output
     
 dict_effects_by_loops = {
         1: gate, 
@@ -38,10 +15,22 @@ dict_effects_by_loops = {
         #4: strings
 }
 
+def init_main_channel(mixer):
+    #loading first effect
+    inp_main = Input(chnl=0)
+    inp_after_effects = load_effects(inp_main, 1)
+    
+    mixer.addInput('main', inp_after_effects)
+    mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.3)
+    return inp_after_effects
+    
+
 def load_effects(input, channel):
     print('start effects')
     output = input
     if channel in dict_effects_by_loops:
+        print('channel: ', channel)
+        
         output = dict_effects_by_loops[channel](input)
     return output
     
@@ -175,6 +164,14 @@ def volume(mixer, metro_id, amp_metro, ch, direct):
             else:
                 mixer.setAmp(ch, 0, 0)
                 
+
+def erase_all(mixer, play_tables):
+    for k, i in play_tables.items():
+        mixer.delInput(k)
+        i[0].stop()
+    play_tables = {}
+    return init_main_channel(mixer)
+                
                 
 def mixer_loops(event, 
                 channel, 
@@ -194,9 +191,7 @@ def mixer_loops(event,
     mixer = Mixer(outs=1, chnls=COUNT_IN_ROW * COUNT_ROWS, time=.025).out()
     metro_id = COUNT_IN_ROW * COUNT_ROWS + 1
     
-    #
-    #Load Personal settings from file
-    #
+    
     
     e = event.value
     ch = channel.value
@@ -214,13 +209,8 @@ def mixer_loops(event,
     a = Sine(freq=1000, mul=amp_metro).out()
     print('define metronome')
     #First channel baypass
-    inp_main = Input(chnl=0)
     
-    #loading first effect
-    inp_after_effects = load_effects(inp_main, 1)
-    
-    mixer.addInput('main', inp_after_effects)
-    mixer.setAmp('main',0,NORMAL_VALUE_LOOP*1.3)
+    inp_after_effects = init_main_channel(mixer)
     
     #Start main cyrcle
     
@@ -307,10 +297,7 @@ def mixer_loops(event,
             
         elif e == ERASE_ALL:
             print('Mixer erase all:')
-            for k, i in play_tables.items():
-                mixer.delInput(k)
-                i[0].stop()
-            play_tables = {}
+            inp_after_effects = erase_all(mixer, play_tables)
             event.value = 1000
             channel.value = 0
             
